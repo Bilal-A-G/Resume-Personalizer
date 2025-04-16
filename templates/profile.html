@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resume Personalizer | Profile</title>
+        <script text="text/javascript">
+            function LoadStoredProfileData(){
+                profileJson = localStorage.getItem("profile")
+                if(profileJson == "")
+                    return
+
+                const obj = JSON.parse(profileJson)
+                document.getElementById("name").value = obj.name
+                document.getElementById("email").value = obj.email
+                document.getElementById("website").value = obj.website
+
+                const education = obj.education
+                for(i = 0; i < education.length; i++){
+                    document.getElementById("AddEducation").click()
+                    const allInstitutions = document.getElementsByName("institutionName")
+                    const allDegrees = document.getElementsByName("degree")
+                    allInstitutions[allInstitutions.length - 1].value = education[i].institutionName
+                    allDegrees[allDegrees.length - 1].value = education[i].degree
+                }
+
+                const experience = obj.workExperience
+                for(i = 0; i < experience.length; i++){
+                    document.getElementById("AddExperience").click()
+
+                    const allCompanyNames = document.getElementsByName("companyName")
+                    const allTitles = document.getElementsByName("title")
+                    allCompanyNames[allCompanyNames.length - 1].value = experience[i].companyName
+                    allTitles[allTitles.length - 1].value = experience[i].title
+
+                    const descriptions = experience[i].descriptions
+                    for(v = 0; v < descriptions.length; v++){
+                        document.getElementById("AddDescription" + (i + 1)).click()
+                        const allDescriptions = document.getElementsByName("responsibility" + (i + 1))
+                        allDescriptions[allDescriptions.length - 1].value = descriptions[v]
+                    }
+                }
+
+                const projects = obj.projects
+                for(i = 0; i < projects.length; i++){
+                    document.getElementById("AddProject").click()
+                    const allProjectNames = document.getElementsByName("projectName")
+                    allProjectNames[allProjectNames.length - 1].value = projects[i].projectName
+
+                    const descriptions = projects[i].projectDescriptions
+                    for(v = 0; v < descriptions.length; v++){
+                        document.getElementById("AddProjectDescription" + (i + 1)).click()
+                        const allDescriptions = document.getElementsByName("projectDescription" + (i + 1))
+                        allDescriptions[allDescriptions.length - 1].value = descriptions[v]
+                    }
+                }
+
+                const skills = obj.skills
+                for(i = 0; i < skills.length; i++){
+                    document.getElementById("AddSkill").click()
+                    const allSkills = document.getElementsByName("skill")
+                    allSkills[allSkills.length - 1].value = skills[i]
+                }
+
+                const accomplishments = obj.accomplishments
+                for(i = 0; i < accomplishments.length; i++){
+                    document.getElementById("AddAccomplishment").click()
+                    const allAccomplishments = document.getElementsByName("accomplishment")
+                    allAccomplishments[allAccomplishments.length - 1].value = accomplishments[i]
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="/ceProfile" method="POST">
+            <p><label>Contact</label></p>
+            <ul>
+                <li><input type="text" name="name" id="name" size="50" required placeholder="Full Name"></input></li>
+                <li><input type="text" name="email" id="email" size="50" rows="1" required  placeholder="Email"></input></li>
+                <li><input type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input></li>
+            </ul>
+            <p><label>Education</label></p>
+            <button type="button" id="AddEducation">+</button>
+            <button type="button" id="RemoveEducation">-</button>
+            <ul>
+                <div id = "educationDropdown"\>
+            </ul>
+
+            <p><label>Experience</label></p>
+            <button type="button" id="AddExperience">+</button>
+            <button type="button" id="RemoveExperience">-</button>
+            <ul>
+                <div id = "experienceDropdown"\>
+            </ul>
+
+            <p><label>Projects</label></p>
+            <button type="button" id="AddProject">+</button>
+            <button type="button" id="RemoveProject">-</button>
+            <ul>
+                <div id = "projectsDropdown"\>
+            </ul>
+
+            <p><label>Skills</label></p>
+            <button type="button" id="AddSkill">+</button>
+            <button type="button" id="RemoveSkill">-</button>
+            <ul>
+                <div id = "skillsDropdown"\>
+            </ul>
+
+            <p><label>Accomplishments</label></p>
+            <button type="button" id="AddAccomplishment">+</button>
+            <button type="button" id="RemoveAccomplishment">-</button>
+            <ul>
+                <div id = "accomplishmentsDropdown"\>
+            </ul>
+            <br>
+
+            <input type="submit", value="Submit">
+        </form>
+        <script>
+            function AddHTMLToDOM(html, parentName){
+                const template = document.createElement("template")
+                const parent = document.getElementById(parentName)
+                if(parent === null)
+                    return
+
+                template.innerHTML = html.trim();
+
+                parent.appendChild(template.content.firstElementChild)
+            }
+
+            function RemoveLastChildInDOM(parentName){
+                const parent = document.getElementById(parentName)
+                if(parent.lastChild === null)
+                    return
+
+                parent.removeChild(parent.lastChild)
+            }
+
+            document.getElementById("AddEducation").addEventListener("click", ()=>{
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="institutionName", id="institutionName" size="30" required placeholder="Institution name"></input></li>
+                        <li><input type="text" name="degree", id="degree" size="50" required placeholder="Degree"></input></li>
+                    </ul>
+                </li>`, 
+                "educationDropdown")
+            })
+            document.getElementById("RemoveEducation").addEventListener("click", ()=> {
+                RemoveLastChildInDOM("educationDropdown")
+            })
+
+            experienceIndex = 0
+            document.getElementById("AddExperience").addEventListener("click", ()=> {
+                experienceIndex++
+                const expCopy = experienceIndex
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="companyName", id="companyName" size="30" required placeholder="Company name"></input></li>
+                        <li><input type="text" name="title", id="title" size="50" required placeholder="Title"></input></li>
+                        <button type="button" id="AddDescription${expCopy}">+</button>
+                        <button type="button" id="RemoveDescription${expCopy}">-</button>
+
+                        <ul>
+                            <div id = "descriptionDropdown${expCopy}"\>
+                        </ul>
+                    </ul>
+                </li>
+                `, "experienceDropdown")
+
+                document.getElementById("AddDescription" + expCopy).addEventListener("click", ()=>{
+                    console.log(`responsibility${expCopy}`)
+                    AddHTMLToDOM(`
+                        <li>
+                            <input type="text" name="responsibility${expCopy}", id="responsibility${expCopy}" size="50" required placeholder="Responsibility"></input>
+                        </li> 
+                        `,"descriptionDropdown" + expCopy)
+                })
+                document.getElementById("RemoveDescription" + expCopy).addEventListener("click", ()=>{
+                    RemoveLastChildInDOM("descriptionDropdown" + expCopy)
+                })
+            })
+            document.getElementById("RemoveExperience").addEventListener("click", ()=>{
+                RemoveLastChildInDOM("experienceDropdown")
+                experienceIndex--
+            })
+
+            projectIndex = 0
+            document.getElementById("AddProject").addEventListener("click", ()=>{
+                projectIndex++
+                const projCpy = projectIndex
+
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="projectName", id="projectName" size="50" required placeholder="Name"></input></li>
+                        <button type="button" id="AddProjectDescription${projCpy}">+</button>
+                        <button type="button" id="RemoveProjectDescription${projCpy}">-</button>
+
+                        <ul>
+                            <div id = "projectDescriptionDropdown${projCpy}"\>
+                        </ul>
+                    </ul>
+                </li>
+                `, "projectsDropdown")
+
+                document.getElementById("AddProjectDescription" + projCpy).addEventListener("click", ()=>{
+                    AddHTMLToDOM(`
+                        <li>
+                            <input type="text" name="projectDescription${projCpy}", id="projectDescription${projCpy}" size="50" required placeholder="Description"></input>
+                        </li> 
+                        `,"projectDescriptionDropdown" + projCpy)
+                })
+                document.getElementById("RemoveProjectDescription" + projCpy).addEventListener("click", ()=>{
+                    RemoveLastChildInDOM("projectDescriptionDropdown" + projCpy)
+                })
+            })
+            document.getElementById("RemoveProject").addEventListener("click", ()=>{
+                RemoveLastChildInDOM("projectsDropdown")
+                projectIndex--
+            })
+
+            document.getElementById("AddSkill").addEventListener("click", ()=>{
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="skill", id="skill" size="50" required placeholder="Skill"></input></li>
+                    </ul>
+                </li>`, 
+                "skillsDropdown")
+            })
+            document.getElementById("RemoveSkill").addEventListener("click", ()=>{
+                RemoveLastChildInDOM("skillsDropdown")
+            })
+
+            document.getElementById("AddAccomplishment").addEventListener("click", ()=>{
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="accomplishment", id="accomplishment" size="80" required placeholder="Accomplishment"></input></li>
+                    </ul>
+                </li>`, 
+                "accomplishmentsDropdown")
+            })
+            document.getElementById("RemoveAccomplishment").addEventListener("click", ()=>{
+                RemoveLastChildInDOM("accomplishmentsDropdown")
+            })
+
+            LoadStoredProfileData()
+        </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resume Personalizer</title>
+    </head>
+    <body>
+        <p>You need to have a valid profile first, before you can generate a resume</p>
+        <a href="/profile">Create/Update Profile</a>
+        <form action="/submit" method="POST">
+            <p><label for="jobDesc">Job Description:</label></p>
+            <textarea name="jobDesc", id="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
+            <br>
+            <input type="submit", value="Submit">
+        </form>
+    </body>
+</html>
