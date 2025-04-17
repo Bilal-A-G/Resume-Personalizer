@@ -16,42 +16,9 @@ def home():
 def profile():
     return render_template("profile.html")
 
-#Look into this, we should not need to have to send data to the server here, since it's gonna be stored in local storage
-@app.route("/ceProfile", methods = ["POST", "GET"])
+@app.route("/ceProfile")
 def createEditProfile():
-    name = request.form["name"]
-    email = request.form["email"]
-    website = request.form["website"]
-
-    institutions = request.form.getlist("institutionName")
-    degrees = request.form.getlist("degree")
-
-    education = []
-    for educationIndex in range(len(institutions)):
-        education.append(Education(institutions[educationIndex], degrees[educationIndex]))
-
-    companyNames = request.form.getlist("companyName")
-    titles = request.form.getlist("title")
-
-    workExperience = []
-    for workExperienceIndex in range(len(companyNames)):
-        descriptions = request.form.getlist("responsibility" + str(workExperienceIndex + 1))
-        workExperience.append(WorkExperience(companyNames[workExperienceIndex], titles[workExperienceIndex], descriptions))
-
-    
-    projectNames = request.form.getlist("projectName")
-
-    projects = []
-    for projectIndex in range(len(projectNames)):
-        descriptions = request.form.getlist("projectDescription" + str(projectIndex + 1))
-        projects.append(Project(projectNames[projectIndex], descriptions))
-        
-    skills = request.form.getlist("skill")
-    accomplishments = request.form.getlist("accomplishment")
-
-    profile = ResumeProfile(name, email, education, website, workExperience, projects, skills, accomplishments)
-    
-    return render_template("submitted.html", profile=profile.toJson())
+    return render_template("submitted.html")
 
 @app.route("/submit", methods = ["POST", "GET"])
 def submitted():

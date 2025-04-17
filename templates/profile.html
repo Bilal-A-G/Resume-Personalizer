@@ -5,7 +5,7 @@
         <script text="text/javascript">
             function LoadStoredProfileData(){
                 profileJson = localStorage.getItem("profile")
-                if(profileJson == "")
+                if(profileJson == "" || profileJson == null)
                     return
 
                 const obj = JSON.parse(profileJson)
@@ -70,7 +70,7 @@
         </script>
     </head>
     <body>
-        <form action="/ceProfile" method="POST">
+        <form id="profileForm">
             <p><label>Contact</label></p>
             <ul>
                 <li><input type="text" name="name" id="name" size="50" required placeholder="Full Name"></input></li>
@@ -113,7 +113,7 @@
             </ul>
             <br>
 
-            <input type="submit", value="Submit">
+            <input type="submit" value="Submit" id="Submit">
         </form>
         <script>
             function AddHTMLToDOM(html, parentName){
@@ -169,7 +169,6 @@
                 `, "experienceDropdown")
 
                 document.getElementById("AddDescription" + expCopy).addEventListener("click", ()=>{
-                    console.log(`responsibility${expCopy}`)
                     AddHTMLToDOM(`
                         <li>
                             <input type="text" name="responsibility${expCopy}", id="responsibility${expCopy}" size="50" required placeholder="Responsibility"></input>
@@ -247,6 +246,89 @@
             })
 
             LoadStoredProfileData()
+
+            document.getElementById("profileForm").addEventListener("submit", (e)=>{
+                e.preventDefault()
+
+                jsonString = '{'
+                formData = new FormData(document.getElementById("profileForm"))
+                jsonString += `"name": "${formData.get("name")}", `
+                jsonString += `"email": "${formData.get("email")}", `
+                jsonString += '"education": ['
+
+                const institutionNames = formData.getAll("institutionName")
+                const degrees = formData.getAll("degree")
+
+                for(i = 0; i < institutionNames.length; i++){
+                    jsonString += `{"institutionName": "${institutionNames[i]}", "degree": "${degrees[i]}"}`
+                    if(i != institutionNames.length - 1)
+                        jsonString += ', '
+                }
+
+                jsonString += '], '
+                jsonString += `"website": "${formData.get("website")}", `
+                jsonString += '"workExperience": ['
+
+                const companyNames = formData.getAll("companyName")
+                const titles = formData.getAll("title")
+                for(i = 0; i < companyNames.length; i++){
+                    jsonString += `{"companyName": "${companyNames[i]}", "title": "${titles[i]}", "descriptions": [`
+
+                    const descriptions = formData.getAll(`responsibility${i + 1}`)
+                    for(v = 0; v < descriptions.length; v++){
+                        jsonString += `"${descriptions[v]}"`
+                        if(v != descriptions.length - 1)
+                            jsonString += ', '
+                    }
+
+                    jsonString += ']}'
+
+                    if(i != companyNames.length - 1)
+                        jsonString += ', '
+                }
+
+                jsonString += '], '
+                jsonString += '"projects": ['
+
+                const projectNames = formData.getAll("projectName")
+                for(i = 0; i < projectNames.length; i++){
+                    jsonString += `{"projectName": "${projectNames[i]}", "projectDescriptions": [`
+
+                    const projectDescriptions = formData.getAll(`projectDescription${i + 1}`)
+                    for(v = 0; v < projectDescriptions.length; v++){
+                        jsonString += `"${projectDescriptions[v]}"`
+                        if(v != projectDescriptions.length - 1)
+                            jsonString += ', '
+                    }
+
+                    jsonString += ']}'
+                    if(i != projectNames.length - 1)
+                        jsonString += ', '
+                }
+
+                jsonString += '], '
+
+                const skills = formData.getAll("skill")
+                jsonString += '"skills": ['
+                for(i = 0; i < skills.length; i++){
+                    jsonString += `"${skills[i]}"`
+                    if(i != skills.length - 1)
+                        jsonString += ', '
+                }
+                jsonString += '], '
+
+                const accomplishments = formData.getAll("accomplishment")
+                jsonString += '"accomplishments": ['
+                for(i = 0; i < accomplishments.length; i++){
+                    jsonString += `"${accomplishments[i]}"`
+                    if(i != accomplishments.length - 1)
+                        jsonString += ', '
+                }
+                jsonString += ']}'
+
+                localStorage.setItem("profile", jsonString)
+                window.location.href = "/ceProfile"
+            })
         </script>
     </body>
 </html>
