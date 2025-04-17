@@ -24,6 +24,7 @@ def createEditProfile():
 def submitted():
     punctuation = ".,!&'?;:/()-[]@" + '"'
     jobDesc = request.form["jobDesc"]
+    profile = request.form["profile"]
 
     #Remove all punctuation
     for char in punctuation:

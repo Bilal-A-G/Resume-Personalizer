@@ -6,11 +6,28 @@
     <body>
         <p>You need to have a valid profile first, before you can generate a resume</p>
         <a href="/profile">Create/Update Profile</a>
-        <form action="/submit" method="POST">
+        <form id="form">
             <p><label for="jobDesc">Job Description:</label></p>
             <textarea name="jobDesc", id="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
             <br>
             <input type="submit", value="Submit">
         </form>
     </body>
+    <script text="text/javascript">
+        document.getElementById("form").addEventListener("submit", (e)=>{
+            e.preventDefault()
+            const formData = new FormData(document.getElementById("form"))
+            formData.append("profile", localStorage.getItem("profile"))
+
+            fetch("/submit", {
+                method: "POST",
+                body: formData
+            }).then((res) => {
+                res.text().then((text) => {
+                    console.log(text)
+                    //Do other stuff here probably
+                })
+            })
+        })
+    </script>
 </html>
