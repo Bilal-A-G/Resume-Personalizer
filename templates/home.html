@@ -23,8 +23,15 @@
                 method: "POST",
                 body: formData
             }).then((res) => {
-                res.text().then((text) => {
-                    console.log(text)
+                res.blob().then((blob) => {
+                    const url = window.URL.createObjectURL(blob)
+                    const temp = document.createElement("a")
+                    temp.href = url
+                    temp.download = "Resume"
+                    document.body.appendChild(temp)
+                    temp.click()
+                    temp.remove()
+                    URL.revokeObjectURL(url)
                     //Do other stuff here probably
                 })
             })

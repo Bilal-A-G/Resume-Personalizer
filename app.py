@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import nltk as nlp
 import re
+import subprocess
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
@@ -25,6 +26,9 @@ def submitted():
     punctuation = ".,!&'?;:/()-[]@" + '"'
     jobDesc = request.form["jobDesc"]
     profile = request.form["profile"]
+
+    subprocess.Popen('pdflatex ./laTeX/test.tex -output-directory=./laTeX/compiled', shell=True)
+    return send_file("./laTeX/compiled/test.pdf", mimetype="application/pdf" ,as_attachment=True)
 
     #Remove all punctuation
     for char in punctuation:
