@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, send_file
 import nltk as nlp
 import re
-import subprocess
+from jinja2 import FileSystemLoader, Environment
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from weasyprint import HTML
+from io import BytesIO
 
 from resumeProfile import ResumeProfile, Education, WorkExperience, Project
 
@@ -27,8 +29,16 @@ def submitted():
     jobDesc = request.form["jobDesc"]
     profile = request.form["profile"]
 
-    subprocess.Popen('pdflatex ./laTeX/test.tex -output-directory=./laTeX/compiled', shell=True)
-    return send_file("./laTeX/compiled/test.pdf", mimetype="application/pdf" ,as_attachment=True)
+    jinjaEnv = Environment(loader=FileSystemLoader("./resumeTemplates"))
+    template = jinjaEnv.get_template("template.html")
+
+    fileInfo = template.render(name="Hi")
+    print(fileInfo)
+    pdfFile = BytesIO()
+    HTML(string=fileInfo).write_pdf(pdfFile)
+    pdfFile.seek(0)
+
+    return send_file(pdfFile, mimetype="application/pdf" ,as_attachment=True, download_name="Resume.pdf")
 
     #Remove all punctuation
     for char in punctuation:
