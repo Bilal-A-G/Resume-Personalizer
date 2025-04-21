@@ -5,7 +5,7 @@ import json
 from jinja2 import FileSystemLoader, Environment
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from weasyprint import HTML
+from weasyprint import HTML, CSS
 from io import BytesIO
 
 app = Flask(__name__)
@@ -41,7 +41,7 @@ def submitted():
                                skills=jsonData["skills"], accomplishments=jsonData["accomplishments"])
     print(fileInfo)
     pdfFile = BytesIO()
-    HTML(string=fileInfo).write_pdf(pdfFile)
+    HTML(string=fileInfo).write_pdf(pdfFile, stylesheets=[CSS("./resumeTemplates/template.css")])
     pdfFile.seek(0)
 
     return send_file(pdfFile, mimetype="application/pdf" ,as_attachment=True, download_name="Resume.pdf")
