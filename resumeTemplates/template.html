@@ -1,4 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <h1>Hello {{name}} </h1>
+    <h4>{{name}} | <a href="mailto:{{email}}">{{email}}</a>
+        
+        {% if website != "" %}
+        | <a href="{{website}}" target="_blank" rel="noopener noreferrer">Website</a>
+        {% endif %}
+    </h4>
+    <h3>Education:</h3>
+    <ul>
+        {%for educationItem in education %}
+        <li>
+            {{educationItem["institutionName"]}} |
+            {{educationItem["degree"]}}
+        </li>
+        {% endfor %}
+    </ul>
+    <h3>Work Experience:</h3>
+    <ul>
+        {% for work in workExperience %}
+            <li>
+                {{work["companyName"]}}
+                {{work["title"]}}
+                <ul>
+                    {% for jobDescription in work["descriptions"] %}
+                        <li>
+                            {{jobDescription}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    <h3>Personal Projects:</h3>
+    <ul>
+        {% for project in projects %}
+            <li>
+                {{project["projectName"]}}
+                <ul>
+                    {% for description in project["projectDescriptions"] %}
+                    <li>
+                        {{description}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    <h3>Skills:</h3>
+    <ul>
+        {% for skill in skills %}
+            <li>
+                {{skill}}
+            </li>
+        {% endfor %}
+    </ul>
+    <h3>Accomplishments:</h3>
+    <ul>
+        {% for accomplishment in accomplishments %}
+            <li>
+                {{accomplishment}}
+            </li>
+        {% endfor %}
+    </ul>
 </html>

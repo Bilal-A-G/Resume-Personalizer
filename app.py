@@ -1,13 +1,12 @@
 from flask import Flask, render_template, request, send_file
 import nltk as nlp
 import re
+import json
 from jinja2 import FileSystemLoader, Environment
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from weasyprint import HTML
 from io import BytesIO
-
-from resumeProfile import ResumeProfile, Education, WorkExperience, Project
 
 app = Flask(__name__)
 
@@ -28,11 +27,18 @@ def submitted():
     punctuation = ".,!&'?;:/()-[]@" + '"'
     jobDesc = request.form["jobDesc"]
     profile = request.form["profile"]
+    jsonData = json.loads(profile)
 
     jinjaEnv = Environment(loader=FileSystemLoader("./resumeTemplates"))
     template = jinjaEnv.get_template("template.html")
 
-    fileInfo = template.render(name="Hi")
+    fileInfo = template.render(name=jsonData["name"], 
+                               education=jsonData["education"], 
+                               email=jsonData["email"], 
+                               website=jsonData["website"], 
+                               workExperience=jsonData["workExperience"], 
+                               projects=jsonData["projects"],
+                               skills=jsonData["skills"], accomplishments=jsonData["accomplishments"])
     print(fileInfo)
     pdfFile = BytesIO()
     HTML(string=fileInfo).write_pdf(pdfFile)
