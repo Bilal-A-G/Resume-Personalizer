@@ -1,15 +1,13 @@
 from flask import Flask, render_template, request, send_file
 import json
 from jinja2 import FileSystemLoader, Environment
-from rake_nltk import Rake
 from weasyprint import HTML, CSS
 from io import BytesIO
-import re
 from collections import Counter
 import nltk as nlp
-from nltk.corpus import stopwords, wordnet
+import re
+from nltk.corpus import stopwords
 from nltk import WordNetLemmatizer, pos_tag
-from nltk.metrics import jaccard_distance
 
 app = Flask(__name__)
 
@@ -40,6 +38,54 @@ def computeKeywordSimilarity(jobKeywords, descriptionKeywords, jobLength):
     
     return (jaccardScore + totalIntersectScore)/2
 
+#Use when you want to preserve as many words as possible
+def getRawKeywords(originalText):
+    punctuation = ".,!&'?;:/()-[]@" + '"'
+    modifiedText = originalText
+
+    #Remove all punctuation
+    for char in punctuation:
+        modifiedText = modifiedText.replace(char, " ")
+
+    #Replace all non ascii characters with a space
+    modifiedText = re.sub(r'[^\x00-\x7f]', r' ', modifiedText)
+
+    #Break the text into individual words
+    tokens = nlp.word_tokenize(modifiedText)
+    taggedTokens = pos_tag(tokens)
+
+    lower = []
+    #Convert everything to lowercase
+    for token in taggedTokens:
+        lower.append((token[0].lower(), token[1]))
+
+    #Remove all stop words, ie things like the, I, me, my, etc.
+    allStopWords = set(stopwords.words("english"))
+    filtered = []
+
+    for token in lower:
+        if token[0] not in allStopWords:
+            filtered.append(token)
+
+    #Ensure we remove all punctuation
+    stripped = []
+    for token in filtered:
+        if token[1] == ".":
+            continue
+
+        stripped.append(token)
+
+    #Lematize word, reduce all words to their root dictionary form, ie running -> run
+    lemmatized = []
+    lemmatizer = WordNetLemmatizer()
+    for token in stripped:
+        if token[1] == "NNP" or token[1] == "NNPS":
+            lemmatized.append(token[0])
+            continue
+        lemmatized.append(lemmatizer.lemmatize(token[0]))
+
+    return lemmatized
+
 def getLemmatizedKeywords(originalText):
     punctuation = ".,!&'?;:/()-[]@" + '"'
     modifiedText = originalText
@@ -69,7 +115,6 @@ def getLemmatizedKeywords(originalText):
     nouns = []
     for token in filtered:
         if token[1] != "NN" and token[1] != "NNS" and token[1] != "NNP" and token[1] != "NNPS":
-            #print("Stripped " + token[1] + ": " + token[0])
             continue
 
         nouns.append(token)
@@ -81,7 +126,6 @@ def getLemmatizedKeywords(originalText):
         if token[1] == "NNP" or token[1] == "NNPS":
             lemmatized.append(token[0])
             continue
-        #print("Lemmatizing " + token[1] + ": " + token[0])
         lemmatized.append(lemmatizer.lemmatize(token[0]))
 
     return lemmatized
@@ -93,30 +137,45 @@ def submitted():
     jsonData = json.loads(profile)
 
     jinjaEnv = Environment(loader=FileSystemLoader("./resumeTemplates"))
-    template = jinjaEnv.get_template("template.html") 
+    template = jinjaEnv.get_template("template.html")
 
-    jobKeywords = getLemmatizedKeywords(jobDesc)
+    jobKeywords = getRawKeywords(jobDesc)
     descriptionLength = len(jobKeywords)
     rankedKeywords = Counter(jobKeywords).items()
+    print(rankedKeywords)
 
     projectsCopy = jsonData["projects"]
-    projectDescriptions = jsonData["projects"][0]["projectDescriptions"]
-    relevantDescriptions = []
-    for description in projectDescriptions:
-        descriptionKeywords = getLemmatizedKeywords(description)
-        similarity = computeKeywordSimilarity(rankedKeywords, descriptionKeywords, descriptionLength)
-        relevantDescriptions.append((similarity, descriptionKeywords))
-        #print(descriptionKeywords) 
+    weightedProjects = []
+    relevantProjects = []
+    for projectIndex in range(len(projectsCopy)):
+        projectDescriptions = projectsCopy[projectIndex]["projectDescriptions"]
+        relevantDescriptions = []
+        weightedDescriptions = []
+        for description in projectDescriptions:
+            descriptionKeywords = getLemmatizedKeywords(description)
+            similarity = computeKeywordSimilarity(rankedKeywords, descriptionKeywords, descriptionLength)
+            weightedDescriptions.append((similarity, description))
 
-    relevantDescriptions.sort(key=lambda elem : 1 - elem[0])
-    print(relevantDescriptions)
+        weightedDescriptions.sort(key=lambda elem : 1 - elem[0])
+        descriptionsWeight = 0
+        for i in range(min(len(weightedDescriptions), 3)):
+            relevantDescriptions.append(weightedDescriptions[i][1])
+            descriptionsWeight += weightedDescriptions[i][0]
+        
+        projectsCopy[projectIndex]["projectDescriptions"] = relevantDescriptions
+        weightedProjects.append((descriptionsWeight, projectsCopy[projectIndex]))
+
+    weightedProjects.sort(key=lambda elem : 1 - elem[0])
+    for i in range(min(len(weightedProjects), 3)):
+        relevantProjects.append(weightedProjects[i][1])
+    print(weightedProjects)
 
     fileInfo = template.render(name=jsonData["name"],
                                education=jsonData["education"],
                                email=jsonData["email"],
                                website=jsonData["website"],
                                workExperience=jsonData["workExperience"],
-                               projects=projectsCopy,
+                               projects=relevantProjects,
                                skills=jsonData["skills"], accomplishments=jsonData["accomplishments"])
     pdfFile = BytesIO()
     HTML(string=fileInfo).write_pdf(pdfFile, stylesheets=[CSS("./resumeTemplates/template.css")])
