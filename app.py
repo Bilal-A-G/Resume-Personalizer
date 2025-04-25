@@ -130,6 +130,48 @@ def getLemmatizedKeywords(originalText):
 
     return lemmatized
 
+def getStringKeywordsSimilarity(string, rankedKeywordList, keywordListLength):
+    stringKeywords = getLemmatizedKeywords(string)
+    similarity = computeKeywordSimilarity(rankedKeywordList, stringKeywords, keywordListLength)
+    print(stringKeywords)
+    return (similarity, string)
+
+def getStringListKeywordSimilarity(stringList, rankedKeywordList, keywordListLength):
+    weightedStrings = []
+    for string in stringList:
+        weightedStrings.append(getStringKeywordsSimilarity(string, rankedKeywordList, keywordListLength))
+
+    weightedStrings.sort(key=lambda elem : 1 - elem[0])
+    return weightedStrings
+
+def getTopNElemsInListAndWeight(list, n):
+    totalStringWeight = 0
+    topElems = []
+    for i in range(min(len(list), n)):
+        topElems.append(list[i][1])
+        totalStringWeight += list[i][0]
+    
+    return (totalStringWeight, topElems)
+
+def getWeightedSection(subSectionName, sectionList, rankedJobKeywords, originalJobLength, extraConsiderations = []):
+    sectionListCpy = sectionList
+    weightedSection = []
+    for sectionIndex in range(len(sectionList)):
+        subSectionList = sectionListCpy[sectionIndex][subSectionName]
+        weightedSubSectionList = getStringListKeywordSimilarity(subSectionList, rankedJobKeywords, originalJobLength)
+        topSubSections = getTopNElemsInListAndWeight(weightedSubSectionList, 3)
+
+        extraConsiderationScore = 0
+        for consideration in extraConsiderations:
+            extraConsiderationScore += getStringKeywordsSimilarity(sectionListCpy[sectionIndex][consideration], 
+                                                                   rankedJobKeywords, originalJobLength)[0]
+
+        sectionListCpy[sectionIndex][subSectionName] = topSubSections[1]
+        weightedSection.append((topSubSections[0] + extraConsiderationScore, sectionListCpy[sectionIndex]))
+
+    weightedSection.sort(key=lambda elem : 1 - elem[0])
+    return weightedSection
+
 @app.route("/submit", methods = ["POST", "GET"])
 def submitted():
     jobDesc = request.form["jobDesc"]
@@ -144,37 +186,24 @@ def submitted():
     rankedKeywords = Counter(jobKeywords).items()
     print(rankedKeywords)
 
-    projectsCopy = jsonData["projects"]
-    weightedProjects = []
     relevantProjects = []
-    for projectIndex in range(len(projectsCopy)):
-        projectDescriptions = projectsCopy[projectIndex]["projectDescriptions"]
-        relevantDescriptions = []
-        weightedDescriptions = []
-        for description in projectDescriptions:
-            descriptionKeywords = getLemmatizedKeywords(description)
-            similarity = computeKeywordSimilarity(rankedKeywords, descriptionKeywords, descriptionLength)
-            weightedDescriptions.append((similarity, description))
-
-        weightedDescriptions.sort(key=lambda elem : 1 - elem[0])
-        descriptionsWeight = 0
-        for i in range(min(len(weightedDescriptions), 3)):
-            relevantDescriptions.append(weightedDescriptions[i][1])
-            descriptionsWeight += weightedDescriptions[i][0]
-        
-        projectsCopy[projectIndex]["projectDescriptions"] = relevantDescriptions
-        weightedProjects.append((descriptionsWeight, projectsCopy[projectIndex]))
-
-    weightedProjects.sort(key=lambda elem : 1 - elem[0])
+    weightedProjects = getWeightedSection("projectDescriptions", jsonData["projects"], rankedKeywords, descriptionLength)
     for i in range(min(len(weightedProjects), 3)):
         relevantProjects.append(weightedProjects[i][1])
     print(weightedProjects)
+
+    relevantExperience = []
+    weightedExperience = getWeightedSection("descriptions", jsonData["workExperience"], 
+                                            rankedKeywords, descriptionLength, ["title"])
+    for i in range(min(len(weightedExperience), 3)):
+        relevantExperience.append(weightedExperience[i][1])
+    print(weightedExperience)
 
     fileInfo = template.render(name=jsonData["name"],
                                education=jsonData["education"],
                                email=jsonData["email"],
                                website=jsonData["website"],
-                               workExperience=jsonData["workExperience"],
+                               workExperience=relevantExperience,
                                projects=relevantProjects,
                                skills=jsonData["skills"], accomplishments=jsonData["accomplishments"])
     pdfFile = BytesIO()
