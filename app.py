@@ -111,10 +111,10 @@ def getLemmatizedKeywords(originalText):
         if token[0] not in allStopWords:
             filtered.append(token)
 
-    #Remove anything that isn't a noun
+    #Remove anything that isn't a noun or punctuation
     nouns = []
     for token in filtered:
-        if token[1] != "NN" and token[1] != "NNS" and token[1] != "NNP" and token[1] != "NNPS":
+        if token[1] != "NN" and token[1] != "NNS" and token[1] != "NNP" and token[1] != "NNPS" and token[1] != "#":
             continue
 
         nouns.append(token)
@@ -153,9 +153,11 @@ def getTopNElemsInListAndWeight(list, n):
     
     return (totalStringWeight, topElems)
 
-def getWeightedSection(subSectionName, sectionList, rankedJobKeywords, originalJobLength, extraConsiderations = []):
+def getTopWeightedEntriesInSection(subSectionName, sectionList, rankedJobKeywords, originalJobLength, extraConsiderations = []):
     sectionListCpy = sectionList
     weightedSection = []
+    relevantSections = []
+
     for sectionIndex in range(len(sectionList)):
         subSectionList = sectionListCpy[sectionIndex][subSectionName]
         weightedSubSectionList = getStringListKeywordSimilarity(subSectionList, rankedJobKeywords, originalJobLength)
@@ -170,7 +172,12 @@ def getWeightedSection(subSectionName, sectionList, rankedJobKeywords, originalJ
         weightedSection.append((topSubSections[0] + extraConsiderationScore, sectionListCpy[sectionIndex]))
 
     weightedSection.sort(key=lambda elem : 1 - elem[0])
-    return weightedSection
+    
+    for i in range(min(len(weightedSection), 3)):
+        relevantSections.append(weightedSection[i][1])
+    print(relevantSections)
+
+    return relevantSections
 
 @app.route("/submit", methods = ["POST", "GET"])
 def submitted():
@@ -186,18 +193,15 @@ def submitted():
     rankedKeywords = Counter(jobKeywords).items()
     print(rankedKeywords)
 
-    relevantProjects = []
-    weightedProjects = getWeightedSection("projectDescriptions", jsonData["projects"], rankedKeywords, descriptionLength)
-    for i in range(min(len(weightedProjects), 3)):
-        relevantProjects.append(weightedProjects[i][1])
-    print(weightedProjects)
-
-    relevantExperience = []
-    weightedExperience = getWeightedSection("descriptions", jsonData["workExperience"], 
+    relevantProjects = getTopWeightedEntriesInSection("projectDescriptions", jsonData["projects"], rankedKeywords, descriptionLength)
+    relevantExperience = getTopWeightedEntriesInSection("descriptions", jsonData["workExperience"], 
                                             rankedKeywords, descriptionLength, ["title"])
-    for i in range(min(len(weightedExperience), 3)):
-        relevantExperience.append(weightedExperience[i][1])
-    print(weightedExperience)
+    
+    relevantSkills = getStringListKeywordSimilarity(jsonData["skills"], rankedKeywords, descriptionLength)
+    relevantSkills = getTopNElemsInListAndWeight(relevantSkills, 5)[1]
+
+    relevantAccomplishments = getStringListKeywordSimilarity(jsonData["accomplishments"], rankedKeywords, descriptionLength)
+    relevantAccomplishments = getTopNElemsInListAndWeight(relevantAccomplishments, 3)[1]
 
     fileInfo = template.render(name=jsonData["name"],
                                education=jsonData["education"],
@@ -205,7 +209,8 @@ def submitted():
                                website=jsonData["website"],
                                workExperience=relevantExperience,
                                projects=relevantProjects,
-                               skills=jsonData["skills"], accomplishments=jsonData["accomplishments"])
+                               skills=relevantSkills, 
+                               accomplishments=relevantAccomplishments)
     pdfFile = BytesIO()
     HTML(string=fileInfo).write_pdf(pdfFile, stylesheets=[CSS("./resumeTemplates/template.css")])
     pdfFile.seek(0)
