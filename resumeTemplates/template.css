@@ -1,3 +1,81 @@
+@page {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 body{
-    background-color: beige;
+    display: block;
+    margin: 0%;   
+}
+
+a{
+    color: black;
+}
+
+.title{
+    margin-top: 10px;
+    margin: auto;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: xx-large;
+}
+
+.subHeading{
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: large;
+}
+
+.line{
+    margin-top: 5px;
+    width: max-content;
+    height: 1px;
+    background-color: black;
+}
+
+.textBody{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: small;
+}
+
+.degree{
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: small;
+    margin-bottom: 10px;
+}
+
+.subText{
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: small;
+}
+
+.spacer{
+    margin: 10px;
+}
+
+.mainText{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: small;
+}
+
+.contact{
+    margin: auto;
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: small;
+    margin-bottom: 10px;
 }

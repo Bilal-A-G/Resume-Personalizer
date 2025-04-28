@@ -2,67 +2,72 @@
 <html>
     <head>
         <link rel="stylesheet" href="template.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h4>{{name}} | <a href="mailto:{{email}}">{{email}}</a>
-        
+        <div class="title">{{name}}</div>
+        <div class="contact"> <a href="mailto:{{email}}">{{email}}</a>
             {% if website != "" %}
             | <a href="{{website}}" target="_blank" rel="noopener noreferrer">Website</a>
             {% endif %}
-        </h4>
-        <h3>Education:</h3>
+        </div>
+        <div class="subHeading"> Education </div>
+        <div class="line"></div>
         <ul>
             {%for educationItem in education %}
-            <li>
-                {{educationItem["institutionName"]}} |
-                {{educationItem["degree"]}}
-            </li>
+                <div class="mainText">{{educationItem["institutionName"]}}</div>
+                <div class="subText">{{educationItem["degree"]}}</div>
+                <div class="spacer"></div>
             {% endfor %}
         </ul>
-        <h3>Work Experience:</h3>
+        <div class="subHeading"> Experience </div>
+        <div class="line"></div>
         <ul>
             {% for work in workExperience %}
-                <li>
-                    {{work["companyName"]}}
-                    {{work["title"]}}
-                    <ul>
-                        {% for jobDescription in work["descriptions"] %}
-                            <li>
-                                {{jobDescription}}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </li>
+            <div class="mainText">{{work["title"]}}</div>
+            <div class="subText">{{work["companyName"]}}</div>
+            <ul>
+                {% for jobDescription in work["descriptions"] %}
+                    <li>
+                        <div class="textBody">{{jobDescription}}</div>
+                    </li>
+                {% endfor %}
+                <div class="spacer"></div>
+            </ul>
             {% endfor %}
         </ul>
-        <h3>Personal Projects:</h3>
+        <div class="subHeading"> Projects </div>
+        <div class="line"></div>
         <ul>
             {% for project in projects %}
-                <li>
-                    {{project["projectName"]}}
-                    <ul>
-                        {% for description in project["projectDescriptions"] %}
-                        <li>
-                            {{description}}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
+                <div class="mainText"> {{project["projectName"]}}</div>
+                <ul>
+                    {% for description in project["projectDescriptions"] %}
+                    <li>
+                       <div class="textBody"> {{description}}</div>
+                    </li>
+                    {% endfor %}
+                    <div class="spacer"></div>
+                </ul>
             {% endfor %}
         </ul>
-        <h3>Skills:</h3>
+        <div class="subHeading"> Skills </div>
+        <div class="line"></div>        
         <ul>
             {% for skill in skills %}
                 <li>
-                    {{skill}}
+                    <div class="textBody"> {{skill}}</div>
                 </li>
             {% endfor %}
         </ul>
-        <h3>Accomplishments:</h3>
+        <div class="subHeading"> Accomplishments </div>
+        <div class="line"></div>  
         <ul>
             {% for accomplishment in accomplishments %}
                 <li>
-                    {{accomplishment}}
+                    <div class="textBody"> {{accomplishment}}</div>
                 </li>
             {% endfor %}
         </ul>
