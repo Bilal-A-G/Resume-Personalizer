@@ -77,7 +77,21 @@
                 <li><input type="text" name="email" id="email" size="50" rows="1" required  placeholder="Email"></input></li>
                 <li><input type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input></li>
             </ul>
+            <p><label>Job Titles</label></p>
+            <button type="button" id="AddPersonalTitle">+</button>
+            <button type="button" id="RemovePersonalTitle">-</button>
+            <ul>
+                <div id="titlesDropdown"\>
+            </ul>
+            <p><label>Summary</label></p>
+            <input type="text" name="summaryAlias" id="summaryAlias" size="15" placeholder="Alias"></input>
+            <ul>
+                <li>
+                    <textarea name="summary" id="summart" placeholder="Summary" spellcheck="true"></textarea>
+                </li>
+            </ul>
             <p><label>Education</label></p>
+            <input type="text" name="educationAlias" id="educationAlias" size="15" placeholder="Alias"></input> <br>
             <button type="button" id="AddEducation">+</button>
             <button type="button" id="RemoveEducation">-</button>
             <ul>
@@ -85,6 +99,7 @@
             </ul>
 
             <p><label>Experience</label></p>
+            <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>
             <button type="button" id="AddExperience">+</button>
             <button type="button" id="RemoveExperience">-</button>
             <ul>
@@ -92,6 +107,7 @@
             </ul>
 
             <p><label>Projects</label></p>
+            <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
             <button type="button" id="AddProject">+</button>
             <button type="button" id="RemoveProject">-</button>
             <ul>
@@ -99,13 +115,18 @@
             </ul>
 
             <p><label>Skills</label></p>
+            <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
             <button type="button" id="AddSkill">+</button>
             <button type="button" id="RemoveSkill">-</button>
+            <button type="button" id="AddCategory">++</button>
+            <button type="button" id="RemoveCategory">--</button>
             <ul>
+                <div id = "categorizedSkillsDropdown"\>
                 <div id = "skillsDropdown"\>
             </ul>
 
             <p><label>Accomplishments</label></p>
+            <input type="text" name="accomplishmentsAlias" id="accomplishmentsAlias" size="15" placeholder="Alias"></input> <br>
             <button type="button" id="AddAccomplishment">+</button>
             <button type="button" id="RemoveAccomplishment">-</button>
             <ul>
@@ -134,19 +155,55 @@
 
                 parent.removeChild(parent.lastChild)
             }
-
+            
+            educationIndex = 0
             document.getElementById("AddEducation").addEventListener("click", ()=>{
+                educationIndex++
+                const educationCpy = educationIndex
                 AddHTMLToDOM(`
                 <li>
                     <ul>
                         <li><input type="text" name="institutionName", id="institutionName" size="30" required placeholder="Institution name"></input></li>
                         <li><input type="text" name="degree", id="degree" size="50" required placeholder="Degree"></input></li>
+                        <li><input type="text" name="institutionLocation", id="institutionLocation" size="50" required placeholder="Location"></input></li>
+                        <li><input type="date" name="graduationDate", id="graduationDate" size="50" required></input></li>
+
+                        <button type="button" id="AddEducationDescription${educationCpy}">+</button>
+                        <button type="button" id="RemoveEducationDescription${educationCpy}">-</button>
+                        <ul>
+                            <div id="educationDescriptionDropdown${educationCpy}"\>
+                        </ul>
                     </ul>
                 </li>`, 
                 "educationDropdown")
+
+                document.getElementById("AddEducationDescription" + educationCpy).addEventListener("click", ()=>{
+                    AddHTMLToDOM(`
+                        <li>
+                            <input type="text" name="educationDescription${educationCpy}", id="educationDescription${educationCpy}" size="50" required placeholder="Description"></input>
+                        </li> 
+                        `,"educationDescriptionDropdown" + educationCpy)
+                })
+                document.getElementById("RemoveEducationDescription" + educationCpy).addEventListener("click", ()=>{
+                    RemoveLastChildInDOM("educationDescriptionDropdown" + educationCpy)
+                })
             })
             document.getElementById("RemoveEducation").addEventListener("click", ()=> {
+                educationIndex--
                 RemoveLastChildInDOM("educationDropdown")
+            })
+
+            document.getElementById("AddPersonalTitle").addEventListener("click", ()=>{
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="personalTitle", id="personalTitle" size="80" required placeholder="Title"></input></li>
+                    </ul>
+                </li>`, 
+                "titlesDropdown")
+            })
+            document.getElementById("RemovePersonalTitle").addEventListener("click", ()=> {
+                RemoveLastChildInDOM("titlesDropdown")
             })
 
             experienceIndex = 0
@@ -158,6 +215,13 @@
                     <ul>
                         <li><input type="text" name="companyName", id="companyName" size="30" required placeholder="Company name"></input></li>
                         <li><input type="text" name="title", id="title" size="50" required placeholder="Title"></input></li>
+                        <li><input type="text" name="companyLocation", id="companyLocation" size="50" required placeholder="Location"></input></li>
+                        <li><input type="date" name="jobStart", id="jobStart" size="50" required></input></li>
+                        <li>
+                            <input type="date" name="jobEnd", id="jobEnd" size="50" required></input>
+                            <input type="checkbox" name="presentJob${expCopy}", id="presentJob${expCopy}" size="50"></input>
+                            <label for="presentJob${expCopy}">Present</label>
+                        </li>
                         <button type="button" id="AddDescription${expCopy}">+</button>
                         <button type="button" id="RemoveDescription${expCopy}">-</button>
 
@@ -193,6 +257,12 @@
                 <li>
                     <ul>
                         <li><input type="text" name="projectName", id="projectName" size="50" required placeholder="Name"></input></li>
+                        <li><input type="date" name="projectStart", id="projectStart" size="50" required></input></li>
+                        <li>
+                            <input type="date" name="projectEnd", id="projectEnd" size="50" required></input>
+                            <input type="checkbox" name="presentProject${projCpy}", id="presentProject${projCpy}" size="50"></input>
+                            <label for="presentProject${projCpy}">Present</label>
+                        </li>
                         <button type="button" id="AddProjectDescription${projCpy}">+</button>
                         <button type="button" id="RemoveProjectDescription${projCpy}">-</button>
 
@@ -216,6 +286,41 @@
             })
             document.getElementById("RemoveProject").addEventListener("click", ()=>{
                 RemoveLastChildInDOM("projectsDropdown")
+                projectIndex--
+            })
+
+            categoryIndex = 0
+            document.getElementById("AddCategory").addEventListener("click", ()=>{
+                categoryIndex++
+                const categoryCpy = categoryIndex
+                AddHTMLToDOM(`
+                <li>
+                    <ul>
+                        <li><input type="text" name="categoryName", id="categoryName" size="50" required placeholder="Category Name"></input></li>
+                        <button type="button" id="AddSkillToCategory${categoryCpy}">+</button>
+                        <button type="button" id="RemoveSkillFromCategory${categoryCpy}">-</button>
+
+                        <ul>
+                            <div id = "categorySkillsDropdown${categoryCpy}"\>
+                        </ul>
+                    </ul>
+                </li>`, 
+                "categorizedSkillsDropdown")
+
+                document.getElementById("AddSkillToCategory" + categoryCpy).addEventListener("click", ()=>{
+                    AddHTMLToDOM(`
+                        <li>
+                            <input type="text" name="categorizedSkill${categoryCpy}", id="categorizedSkill${categoryCpy}" size="50" required placeholder="Skill"></input>
+                        </li> 
+                        `,"categorySkillsDropdown" + categoryCpy)
+                })
+                document.getElementById("RemoveSkillFromCategory" + categoryCpy).addEventListener("click", ()=>{
+                    RemoveLastChildInDOM("categorySkillsDropdown" + categoryCpy)
+                })
+            })
+
+            document.getElementById("RemoveCategory").addEventListener("click", ()=>{
+                RemoveLastChildInDOM("categorizedSkillsDropdown")
                 projectIndex--
             })
 

@@ -27,7 +27,7 @@ a{
     font-family: "Lato", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: large;
+    font-size: medium;
 }
 
 .line{
@@ -35,6 +35,17 @@ a{
     width: max-content;
     height: 1px;
     background-color: black;
+}
+
+.resumeItemList{
+    margin-top: 5px;
+    margin-left: 2px;
+    padding-left: 10px;
+}
+
+li{
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .textBody{

@@ -15,7 +15,7 @@
         </div>
         <div class="subHeading"> Education </div>
         <div class="line"></div>
-        <ul>
+        <ul class="resumeItemList">
             {%for educationItem in education %}
                 <div class="mainText">{{educationItem["institutionName"]}}</div>
                 <div class="subText">{{educationItem["degree"]}}</div>
@@ -24,7 +24,7 @@
         </ul>
         <div class="subHeading"> Experience </div>
         <div class="line"></div>
-        <ul>
+        <ul class="resumeItemList">
             {% for work in workExperience %}
             <div class="mainText">{{work["title"]}}</div>
             <div class="subText">{{work["companyName"]}}</div>
@@ -40,7 +40,7 @@
         </ul>
         <div class="subHeading"> Projects </div>
         <div class="line"></div>
-        <ul>
+        <ul class="resumeItemList">
             {% for project in projects %}
                 <div class="mainText"> {{project["projectName"]}}</div>
                 <ul>
