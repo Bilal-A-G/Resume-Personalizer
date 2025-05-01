@@ -153,7 +153,7 @@ def getTopNElemsInListAndWeight(list, n):
     
     return (totalStringWeight, topElems)
 
-def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, originalKeywordsLength):
+def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, originalKeywordsLength, maxDescriptions = 3, maxEntires = 3):
     jsonCpy = json
     weightedEntries = []
     relevantEntries = []
@@ -163,12 +163,12 @@ def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, original
         #Collect all fields
         for fieldName in fieldNames:
             fieldData = json[entryIndex][fieldName]
-            #If this is a list, we want to modify the JSON to only include the top 3 elements. Ie, if this is a description for a job
+            #If this is a list, we want to modify the JSON to only include the top maxDescriptions elements. Ie, if this is a description for a job
             #we only want the most relevant entries to appear on the resume
             if isinstance(fieldData, list):
                 allConsideredFields.extend(fieldData)
                 weightedFields = getStringListKeywordSimilarity(fieldData, rankedMatchKeywords, originalKeywordsLength)
-                topFields = getTopNElemsInListAndWeight(weightedFields, 3)
+                topFields = getTopNElemsInListAndWeight(weightedFields, maxDescriptions)
                 jsonCpy[entryIndex][fieldName] = topFields[1]
             else:
                 allConsideredFields.append(fieldData)
@@ -180,10 +180,10 @@ def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, original
 
         weightedEntries.append((topAllConsideredFields[0], jsonCpy[entryIndex]))
     
-    #Sort our weighted entries and only pick the top 3, ie if we have 10 jobs in the jobs section, 
-    # only pick the top 3 more relevant
+    #Sort our weighted entries and only pick the top maxEntries, ie if we have 10 jobs in the jobs section, 
+    # only pick the top maxEntries most relevant
     weightedEntries.sort(key=lambda elem : 1 - elem[0])
-    for i in range(min(len(weightedEntries), 3)):
+    for i in range(min(len(weightedEntries), maxEntires)):
         relevantEntries.append(weightedEntries[i][1])
     
     return relevantEntries
@@ -202,18 +202,27 @@ def submitted():
     rankedKeywords = Counter(jobKeywords).items()
     print(rankedKeywords)
 
-    relevantProjects = getTopSimilarEntriesByFields(["projectDescriptions"], jsonData["projects"], rankedKeywords, 
-                                                    descriptionLength)
-    relevantExperience = getTopSimilarEntriesByFields(["descriptions", "title"], jsonData["workExperience"], 
+    relevantProjects = getTopSimilarEntriesByFields(["projectDescriptions", "projectTags"], 
+                                                    jsonData["projects"]["data"], rankedKeywords, descriptionLength)
+    relevantExperience = getTopSimilarEntriesByFields(["descriptions", "title", "jobTags"], jsonData["workExperience"]["data"], 
                                             rankedKeywords, descriptionLength)
     
-    relevantSkills = getStringListKeywordSimilarity(jsonData["skills"], rankedKeywords, descriptionLength)
+    relevantSkills = getStringListKeywordSimilarity(jsonData["skills"]["data"], rankedKeywords, descriptionLength)
     relevantSkills = getTopNElemsInListAndWeight(relevantSkills, 5)[1]
 
-    relevantAccomplishments = getStringListKeywordSimilarity(jsonData["accomplishments"], rankedKeywords, descriptionLength)
+    relevantCategorizedSkills = getTopSimilarEntriesByFields(["categorizedSkills"], jsonData["categorizedSkills"],
+                                                              rankedKeywords, descriptionLength, 8, 3)
+
+    relevantAccomplishments = getStringListKeywordSimilarity(jsonData["accomplishments"]["data"], 
+                                                             rankedKeywords, descriptionLength)
     relevantAccomplishments = getTopNElemsInListAndWeight(relevantAccomplishments, 3)[1]
 
-    relevantEducation = getTopSimilarEntriesByFields(["degree"], jsonData["education"], rankedKeywords, descriptionLength)
+    relevantEducation = getTopSimilarEntriesByFields(["degree", "descriptions"], 
+                                                     jsonData["education"]["data"], rankedKeywords, descriptionLength)
+    relevantTitle = getStringListKeywordSimilarity(jsonData["personalTitles"], rankedKeywords, descriptionLength)
+    relevantTitle = getTopNElemsInListAndWeight(relevantTitle, 1)[1]
+
+    print(relevantExperience)
 
     fileInfo = template.render(name=jsonData["name"],
                                education=relevantEducation,
@@ -222,6 +231,8 @@ def submitted():
                                workExperience=relevantExperience,
                                projects=relevantProjects,
                                skills=relevantSkills, 
+                               titles=relevantTitle,
+                               categorizedSkills=relevantCategorizedSkills,
                                accomplishments=relevantAccomplishments)
     pdfFile = BytesIO()
     HTML(string=fileInfo).write_pdf(pdfFile, stylesheets=[CSS("./resumeTemplates/template.css")])

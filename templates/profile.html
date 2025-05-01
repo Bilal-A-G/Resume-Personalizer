@@ -74,6 +74,13 @@
                         const allDescriptions = document.getElementsByName("responsibility" + (i + 1))
                         allDescriptions[allDescriptions.length - 1].value = descriptions[v]
                     }
+
+                    const tags = experience[i].jobTags
+                    for(v = 0; v < tags.length; v++){
+                        document.getElementById("AddTag" + (i + 1)).click()
+                        const allTags = document.getElementsByName("jobTag" + (i + 1))
+                        allTags[allTags.length - 1].value = tags[v]
+                    }
                 }
 
                 const projects = obj.projects.data
@@ -100,6 +107,13 @@
                         document.getElementById("AddProjectDescription" + (i + 1)).click()
                         const allDescriptions = document.getElementsByName("projectDescription" + (i + 1))
                         allDescriptions[allDescriptions.length - 1].value = descriptions[v]
+                    }
+
+                    const tags = projects[i].projectTags
+                    for(v = 0; v < tags.length; v++){
+                        document.getElementById("AddProjectTag" + (i + 1)).click()
+                        const allTags = document.getElementsByName("projectTag" + (i + 1))
+                        allTags[allTags.length - 1].value = tags[v]
                     }
                 }
 
@@ -283,9 +297,13 @@
                             <input type="checkbox" name="presentJob${expCopy}", id="presentJob${expCopy}" size="50"></input>
                             <label for="presentJob${expCopy}">Present</label>
                         </li>
-                        <button type="button" id="AddDescription${expCopy}">+</button>
-                        <button type="button" id="RemoveDescription${expCopy}">-</button>
-
+                        <button type="button" id="AddDescription${expCopy}">++</button>
+                        <button type="button" id="RemoveDescription${expCopy}">--</button>
+                        <button type="button" id="AddTag${expCopy}">+</button>
+                        <button type="button" id="RemoveTag${expCopy}">-</button>
+                        <ul>
+                            <div id = "tagDropdown${expCopy}"\>
+                        </ul>
                         <ul>
                             <div id = "descriptionDropdown${expCopy}"\>
                         </ul>
@@ -302,6 +320,17 @@
                 })
                 document.getElementById("RemoveDescription" + expCopy).addEventListener("click", ()=>{
                     RemoveLastChildInDOM("descriptionDropdown" + expCopy)
+                })
+
+                document.getElementById("AddTag" + expCopy).addEventListener("click", ()=>{
+                    AddHTMLToDOM(`
+                        <li>
+                            <input type="text" name="jobTag${expCopy}", id="jobTag${expCopy}" size="10" required placeholder="Tag"></input>
+                        </li> 
+                        `,"tagDropdown" + expCopy)
+                })
+                document.getElementById("RemoveTag" + expCopy).addEventListener("click", ()=>{
+                    RemoveLastChildInDOM("tagDropdown" + expCopy)
                 })
             })
             document.getElementById("RemoveExperience").addEventListener("click", ()=>{
@@ -324,9 +353,13 @@
                             <input type="checkbox" name="presentProject${projCpy}", id="presentProject${projCpy}" size="50"></input>
                             <label for="presentProject${projCpy}">Present</label>
                         </li>
-                        <button type="button" id="AddProjectDescription${projCpy}">+</button>
-                        <button type="button" id="RemoveProjectDescription${projCpy}">-</button>
-
+                        <button type="button" id="AddProjectDescription${projCpy}">++</button>
+                        <button type="button" id="RemoveProjectDescription${projCpy}">--</button>
+                        <button type="button" id="AddProjectTag${projCpy}">+</button>
+                        <button type="button" id="RemoveProjectTag${projCpy}">-</button>
+                        <ul>
+                            <div id = "projectTagDropdown${projCpy}"\>
+                        </ul>
                         <ul>
                             <div id = "projectDescriptionDropdown${projCpy}"\>
                         </ul>
@@ -343,6 +376,17 @@
                 })
                 document.getElementById("RemoveProjectDescription" + projCpy).addEventListener("click", ()=>{
                     RemoveLastChildInDOM("projectDescriptionDropdown" + projCpy)
+                })
+
+                document.getElementById("AddProjectTag" + projCpy).addEventListener("click", ()=>{
+                    AddHTMLToDOM(`
+                        <li>
+                            <input type="text" name="projectTag${projCpy}", id="projectTag${projCpy}" size="10" required placeholder="Tag"></input>
+                        </li> 
+                        `,"projectTagDropdown" + projCpy)
+                })
+                document.getElementById("RemoveProjectTag" + projCpy).addEventListener("click", ()=>{
+                    RemoveLastChildInDOM("projectTagDropdown" + projCpy)
                 })
             })
             document.getElementById("RemoveProject").addEventListener("click", ()=>{
@@ -480,6 +524,15 @@
                             jsonString += ', '
                     }
 
+                    jsonString += '], "jobTags": ['
+                    const jobTags = formData.getAll(`jobTag${i + 1}`)
+
+                    for(v = 0; v < jobTags.length; v++){
+                        jsonString += `"${jobTags[v]}"`
+                        if(v != jobTags.length - 1)
+                            jsonString += ', '
+                    }
+
                     jsonString += ']}'
 
                     if(i != companyNames.length - 1)
@@ -493,8 +546,10 @@
                 const projectNames = formData.getAll("projectName")
                 const projectStartDates = formData.getAll("projectStart")
                 const projectEndDates = formData.getAll("projectEnd")
+                
                 for(i = 0; i < projectNames.length; i++){
                     const present = formData.get(`presentProject${i + 1}`)
+
                     jsonString += `{"projectName": "${projectNames[i]}", "projectStartDate": "${projectStartDates[i]}",
                     "projectEndDate": "${projectEndDates[i]}", "presentProject": "${present}", "projectDescriptions": [`
 
@@ -502,6 +557,15 @@
                     for(v = 0; v < projectDescriptions.length; v++){
                         jsonString += `"${projectDescriptions[v]}"`
                         if(v != projectDescriptions.length - 1)
+                            jsonString += ', '
+                    }
+
+                    jsonString += '], "projectTags": ['
+                    const projectTags = formData.getAll(`projectTag${i + 1}`)
+
+                    for(v = 0; v < projectTags.length; v++){
+                        jsonString += `"${projectTags[v]}"`
+                        if(v != projectTags.length - 1)
                             jsonString += ', '
                     }
 
