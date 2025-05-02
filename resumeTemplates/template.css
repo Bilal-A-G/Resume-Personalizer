@@ -37,6 +37,38 @@ a{
     background-color: black;
 }
 
+.tag{
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: smaller;
+    display: inline;
+}
+
+.dateRange{
+    text-align: right;
+    font-family: "Lato", sans-serif;
+    font-weight: 350;
+    font-style: italic;
+    font-size: smaller;
+    display: inline;
+    float: right;
+}
+
+.location{
+    text-align: right;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: smaller;
+    display: inline;
+    float: right;
+}
+
+.fullSpan{
+    width: 100%;
+}
+
 .resumeItemList{
     margin-top: 5px;
     margin-left: 2px;
@@ -52,7 +84,23 @@ li{
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: smaller;
+}
+
+.listTextBody{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: small;
+    display: inline;
+}
+
+.boldedBody{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: small;
+    display: inline;
 }
 
 .degree{
@@ -68,6 +116,7 @@ li{
     font-weight: 300;
     font-style: italic;
     font-size: small;
+    display: inline;
 }
 
 .spacer{
@@ -79,6 +128,7 @@ li{
     font-weight: 600;
     font-style: normal;
     font-size: small;
+    display: inline;
 }
 
 .contact{

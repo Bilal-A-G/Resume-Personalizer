@@ -13,63 +13,174 @@
             | <a href="{{website}}" target="_blank" rel="noopener noreferrer">Website</a>
             {% endif %}
         </div>
-        <div class="subHeading"> Education </div>
-        <div class="line"></div>
-        <ul class="resumeItemList">
-            {%for educationItem in education %}
-                <div class="mainText">{{educationItem["institutionName"]}}</div>
-                <div class="subText">{{educationItem["degree"]}}</div>
-                <div class="spacer"></div>
-            {% endfor %}
-        </ul>
-        <div class="subHeading"> Experience </div>
-        <div class="line"></div>
-        <ul class="resumeItemList">
-            {% for work in workExperience %}
-            <div class="mainText">{{work["title"]}}</div>
-            <div class="subText">{{work["companyName"]}}</div>
-            <ul>
-                {% for jobDescription in work["descriptions"] %}
-                    <li>
-                        <div class="textBody">{{jobDescription}}</div>
-                    </li>
+        {% if education | length > 0 %}
+            <div class="subHeading"> 
+                {% if educationAlias != "" %}
+                    {{educationAlias}}
+                {% else %}
+                    Education
+                {% endif %}    
+            </div>
+            <div class="line"></div>
+            <ul class="resumeItemList">
+                {%for educationItem in education %}
+                    <div class="fullSpan">
+                        <div class="mainText">{{educationItem["institutionName"]}} </div>
+                        <div class="dateRange">{{educationItem["graduation"]}}</div>
+                    </div>
+                    <div class="fullSpan">
+                        <div class="subText">{{educationItem["degree"]}}</div>
+                        <div class="location">{{educationItem["institutionLocation"]}}</div>
+                    </div>
+
+                    <ul>
+                        {% for educationDescription in educationItem["descriptions"] %}
+                        <li>
+                            <div class="textBody">{{educationDescription}}</div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="spacer"></div>
                 {% endfor %}
-                <div class="spacer"></div>
             </ul>
-            {% endfor %}
-        </ul>
-        <div class="subHeading"> Projects </div>
-        <div class="line"></div>
-        <ul class="resumeItemList">
-            {% for project in projects %}
-                <div class="mainText"> {{project["projectName"]}}</div>
+        {% endif %}
+        {% if workExperience | length > 0 %}
+            <div class="subHeading">
+                {% if workExperienceAlias != "" %}
+                    {{workExperienceAlias}}
+                {% else %}
+                    Experience
+                {% endif %}     
+            </div>
+            <div class="line"></div>
+            <ul class="resumeItemList">
+                {% for work in workExperience %}
+                <div class="fullSpan">
+                    <div class="mainText">
+                        {{work["title"]}}
+                        <div class="tag">
+                            |
+                            {% for jobTag in work["jobTags"] %}
+                                    {{jobTag}}
+                                {% if loop.last != true %}
+                                    |
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="dateRange">{{work["jobStartDate"]}} - 
+                        {% if work["presentJob"] == "on" %}
+                            Present
+                        {% else %}
+                            {{work["jobEndDate"]}}
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="fullSpan">
+                    <div class="subText">{{work["companyName"]}}</div>
+                    <div class="location">{{work["jobLocation"]}}</div>
+                </div>
                 <ul>
-                    {% for description in project["projectDescriptions"] %}
-                    <li>
-                       <div class="textBody"> {{description}}</div>
-                    </li>
+                    {% for jobDescription in work["descriptions"] %}
+                        <li>
+                            <div class="textBody">{{jobDescription}}</div>
+                        </li>
                     {% endfor %}
                     <div class="spacer"></div>
                 </ul>
-            {% endfor %}
-        </ul>
-        <div class="subHeading"> Skills </div>
-        <div class="line"></div>        
-        <ul>
-            {% for skill in skills %}
-                <li>
-                    <div class="textBody"> {{skill}}</div>
-                </li>
-            {% endfor %}
-        </ul>
-        <div class="subHeading"> Accomplishments </div>
-        <div class="line"></div>  
-        <ul>
-            {% for accomplishment in accomplishments %}
-                <li>
-                    <div class="textBody"> {{accomplishment}}</div>
-                </li>
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if projects | length > 0 %}
+            <div class="subHeading"> 
+                {% if projectsAlias != "" %}
+                    {{projectsAlias}}
+                {% else %}
+                    Projects
+                {% endif %}        
+            </div>
+            <div class="line"></div>
+            <ul class="resumeItemList">
+                {% for project in projects %}
+                    <div class="fullSpan">
+                        <div class="mainText"> 
+                            {{project["projectName"]}}
+                            <div class="tag">
+                                |
+                                {% for projectTag in project["projectTags"] %}
+                                        {{projectTag}}
+                                    {% if loop.last != true %}
+                                        |
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="dateRange"> {{project["projectStartDate"]}} -                     
+                        {% if project["presentProject"] == "on" %}
+                            Present
+                        {% else %}
+                            {{project["projectEndDate"]}}
+                        {% endif %}</div>
+                    </div>
+                    <ul>
+                        {% for description in project["projectDescriptions"] %}
+                        <li>
+                        <div class="textBody"> {{description}}</div>
+                        </li>
+                        {% endfor %}
+                        <div class="spacer"></div>
+                    </ul>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if skills | length > 0 or categorizedSkills | length > 0 %}
+            <div class="subHeading"> 
+                {% if skillsAlias != "" %}
+                    {{skillsAlias}}
+                {% else %}
+                    Skills
+                {% endif %}        
+            </div>
+            <div class="line"></div>        
+            <ul class="resumeItemList">
+                {% for category in categorizedSkills %}
+                    <div class="mainText"> 
+                        {{category["categoryName"]}}:
+                        <div class="listTextBody">
+                            {% for skill in category["categorizedSkills"] %}
+                                {{skill}}
+                                {% if loop.last != true %}
+                                    ,
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for skill in skills %}
+                    <li>
+                        <div class="textBody"> {{skill}}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if accomplishments | length > 0 %}
+            <div class="subHeading">
+                {% if accomplishmentsAlias != "" %}
+                    {{accomplishmentsAlias}}
+                {% else %}
+                    Accomplishments
+                {% endif %}        
+            </div>
+            <div class="line"></div>  
+            <ul>
+                {% for accomplishment in accomplishments %}
+                    <li>
+                        <div class="textBody"> {{accomplishment}}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </body>
 </html>

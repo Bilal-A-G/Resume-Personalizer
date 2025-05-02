@@ -6,6 +6,7 @@ from io import BytesIO
 from collections import Counter
 import nltk as nlp
 import re
+import datetime
 from nltk.corpus import stopwords
 from nltk import WordNetLemmatizer, pos_tag
 
@@ -144,6 +145,15 @@ def getStringListKeywordSimilarity(stringList, rankedKeywordList, keywordListLen
     weightedStrings.sort(key=lambda elem : 1 - elem[0])
     return weightedStrings
 
+def formatFormDate(date):
+    if date == '':
+        return ''
+    
+    timeFormat = '%Y-%m'
+    dts = datetime.datetime.strptime(date, timeFormat)
+    strDate = dts.strftime('%b %Y')
+    return strDate
+
 def getTopNElemsInListAndWeight(list, n):
     totalStringWeight = 0
     topElems = []
@@ -204,8 +214,16 @@ def submitted():
 
     relevantProjects = getTopSimilarEntriesByFields(["projectDescriptions", "projectTags"], 
                                                     jsonData["projects"]["data"], rankedKeywords, descriptionLength)
+    for i in range(0, len(relevantProjects)):
+        relevantProjects[i]["projectStartDate"] = formatFormDate(relevantProjects[i]["projectStartDate"])
+        relevantProjects[i]["projectEndDate"] = formatFormDate(relevantProjects[i]["projectEndDate"])
+    
     relevantExperience = getTopSimilarEntriesByFields(["descriptions", "title", "jobTags"], jsonData["workExperience"]["data"], 
                                             rankedKeywords, descriptionLength)
+    
+    for i in range(0, len(relevantExperience)):
+        relevantExperience[i]["jobStartDate"] = formatFormDate(relevantExperience[i]["jobStartDate"])
+        relevantExperience[i]["jobEndDate"] = formatFormDate(relevantExperience[i]["jobEndDate"])
     
     relevantSkills = getStringListKeywordSimilarity(jsonData["skills"]["data"], rankedKeywords, descriptionLength)
     relevantSkills = getTopNElemsInListAndWeight(relevantSkills, 5)[1]
@@ -219,21 +237,27 @@ def submitted():
 
     relevantEducation = getTopSimilarEntriesByFields(["degree", "descriptions"], 
                                                      jsonData["education"]["data"], rankedKeywords, descriptionLength)
+    for i in range(0, len(relevantEducation)):
+        relevantEducation[i]["graduation"] = formatFormDate(relevantEducation[i]["graduation"])
+    
     relevantTitle = getStringListKeywordSimilarity(jsonData["personalTitles"], rankedKeywords, descriptionLength)
     relevantTitle = getTopNElemsInListAndWeight(relevantTitle, 1)[1]
 
-    print(relevantExperience)
-
     fileInfo = template.render(name=jsonData["name"],
                                education=relevantEducation,
+                               educationAlias=jsonData["education"]["alias"],
                                email=jsonData["email"],
                                website=jsonData["website"],
                                workExperience=relevantExperience,
+                               workExperienceAlias=jsonData["workExperience"]["alias"],
                                projects=relevantProjects,
+                               projectsAlias = jsonData["projects"]["alias"],
                                skills=relevantSkills, 
+                               skillsAlias = jsonData["skills"]["alias"],
                                titles=relevantTitle,
                                categorizedSkills=relevantCategorizedSkills,
-                               accomplishments=relevantAccomplishments)
+                               accomplishments=relevantAccomplishments,
+                               accomplishmentsAlias=jsonData["accomplishments"]["alias"])
     pdfFile = BytesIO()
     HTML(string=fileInfo).write_pdf(pdfFile, stylesheets=[CSS("./resumeTemplates/template.css")])
     pdfFile.seek(0)

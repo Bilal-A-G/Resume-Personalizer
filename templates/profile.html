@@ -241,7 +241,7 @@
                         <li><input type="text" name="institutionName", id="institutionName" size="30" required placeholder="Institution name"></input></li>
                         <li><input type="text" name="degree", id="degree" size="50" required placeholder="Degree"></input></li>
                         <li><input type="text" name="institutionLocation", id="institutionLocation" size="50" required placeholder="Location"></input></li>
-                        <li><input type="date" name="graduationDate", id="graduationDate" size="50" required></input></li>
+                        <li><input type="month" name="graduationDate", id="graduationDate" size="50" required></input></li>
 
                         <button type="button" id="AddEducationDescription${educationCpy}">+</button>
                         <button type="button" id="RemoveEducationDescription${educationCpy}">-</button>
@@ -291,9 +291,9 @@
                         <li><input type="text" name="companyName", id="companyName" size="30" required placeholder="Company name"></input></li>
                         <li><input type="text" name="title", id="title" size="50" required placeholder="Title"></input></li>
                         <li><input type="text" name="companyLocation", id="companyLocation" size="50" required placeholder="Location"></input></li>
-                        <li><input type="date" name="jobStart", id="jobStart" size="50" required></input></li>
+                        <li><input type="month" name="jobStart", id="jobStart" size="50" required></input></li>
                         <li>
-                            <input type="date" name="jobEnd", id="jobEnd" size="50"></input>
+                            <input type="month" name="jobEnd", id="jobEnd" size="50"></input>
                             <input type="checkbox" name="presentJob${expCopy}", id="presentJob${expCopy}" size="50"></input>
                             <label for="presentJob${expCopy}">Present</label>
                         </li>
@@ -347,9 +347,9 @@
                 <li>
                     <ul>
                         <li><input type="text" name="projectName", id="projectName" size="50" required placeholder="Name"></input></li>
-                        <li><input type="date" name="projectStart", id="projectStart" size="50" required></input></li>
+                        <li><input type="month" name="projectStart", id="projectStart" size="50" required></input></li>
                         <li>
-                            <input type="date" name="projectEnd", id="projectEnd" size="50"></input>
+                            <input type="month" name="projectEnd", id="projectEnd" size="50"></input>
                             <input type="checkbox" name="presentProject${projCpy}", id="presentProject${projCpy}" size="50"></input>
                             <label for="presentProject${projCpy}">Present</label>
                         </li>
