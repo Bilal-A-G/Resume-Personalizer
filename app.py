@@ -239,6 +239,7 @@ def submitted():
                                                      jsonData["education"]["data"], rankedKeywords, descriptionLength)
     for i in range(0, len(relevantEducation)):
         relevantEducation[i]["graduation"] = formatFormDate(relevantEducation[i]["graduation"])
+        relevantEducation[i]["enrollment"] = formatFormDate(relevantEducation[i]["enrollment"])
     
     relevantTitle = getStringListKeywordSimilarity(jsonData["personalTitles"], rankedKeywords, descriptionLength)
     relevantTitle = getTopNElemsInListAndWeight(relevantTitle, 1)[1]

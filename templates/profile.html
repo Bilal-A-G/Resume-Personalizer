@@ -29,6 +29,8 @@
                     const allDegrees = document.getElementsByName("degree")
                     const allLocations = document.getElementsByName("institutionLocation")
                     const allGraduationDates = document.getElementsByName("graduationDate")
+                    const allEnrollmentDates = document.getElementsByName("enrollmentDate")
+                    const allPresentEducation = document.getElementsByName(`presentEducation${i + 1}`)
 
                     const descriptions = education[i].descriptions
                     for(v = 0; v < descriptions.length; v++){
@@ -37,10 +39,18 @@
                         allDescriptions[allDescriptions.length - 1].value = descriptions[v]
                     }
 
+                    isPresent = education[i].present
+                    if(isPresent != undefined && isPresent != "null"){
+                        allPresentEducation[allPresentEducation.length - 1].click()
+                    }
+                    else{
+                        allGraduationDates[allGraduationDates.length - 1].value = education[i].graduation
+                    }
+
                     allInstitutions[allInstitutions.length - 1].value = education[i].institutionName
                     allDegrees[allDegrees.length - 1].value = education[i].degree
                     allLocations[allLocations.length - 1].value = education[i].institutionLocation
-                    allGraduationDates[allGraduationDates.length - 1].value = education[i].graduation
+                    allEnrollmentDates[allEnrollmentDates.length - 1].value = education[i].enrollment
                 }
 
                 const experience = obj.workExperience.data
@@ -241,8 +251,12 @@
                         <li><input type="text" name="institutionName", id="institutionName" size="30" required placeholder="Institution name"></input></li>
                         <li><input type="text" name="degree", id="degree" size="50" required placeholder="Degree"></input></li>
                         <li><input type="text" name="institutionLocation", id="institutionLocation" size="50" required placeholder="Location"></input></li>
-                        <li><input type="month" name="graduationDate", id="graduationDate" size="50" required></input></li>
-
+                        <li><input type="month" name="enrollmentDate", id="enrollmentDate" size="50" required></input></li>
+                        <li>
+                            <input type="month" name="graduationDate", id="graduationDate" size="50" required></input>
+                            <input type="checkbox" name="presentEducation${educationCpy}", id="presentEducation${educationCpy}" size="50"></input>
+                            <label for="presentEducation${educationCpy}">Present</label>
+                        </li>
                         <button type="button" id="AddEducationDescription${educationCpy}">+</button>
                         <button type="button" id="RemoveEducationDescription${educationCpy}">-</button>
                         <ul>
@@ -481,11 +495,13 @@
                 const degrees = formData.getAll("degree")
                 const locations = formData.getAll("institutionLocation")
                 const graduationDates = formData.getAll("graduationDate")
+                const enrollmentDates = formData.getAll("enrollmentDate")
 
                 for(i = 0; i < institutionNames.length; i++){
-
+                    const present = formData.get(`presentEducation${i + 1}`)
                     jsonString += `{"institutionName": "${institutionNames[i]}", "degree": "${degrees[i]}", 
-                    "institutionLocation": "${locations[i]}", "graduation": "${graduationDates[i]}", "descriptions": [`
+                    "institutionLocation": "${locations[i]}", "graduation": "${graduationDates[i]}", "present": "${present}", 
+                    "enrollment": "${enrollmentDates[i]}", "descriptions": [`
 
                     const descriptions = formData.getAll(`educationDescription${i + 1}`)
                     for(v = 0; v < descriptions.length; v++){

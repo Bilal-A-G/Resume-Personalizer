@@ -26,7 +26,13 @@
                 {%for educationItem in education %}
                     <div class="fullSpan">
                         <div class="mainText">{{educationItem["institutionName"]}} </div>
-                        <div class="dateRange">{{educationItem["graduation"]}}</div>
+                        <div class="dateRange">{{educationItem["enrollment"]}} - 
+                            {% if educationItem["present"] == "on" %}
+                                Present
+                            {% else %}
+                                {{educationItem["graduation"]}}
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="fullSpan">
                         <div class="subText">{{educationItem["degree"]}}</div>
