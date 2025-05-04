@@ -255,7 +255,7 @@ def submitted():
                                projectsAlias = jsonData["projects"]["alias"],
                                skills=relevantSkills, 
                                skillsAlias = jsonData["skills"]["alias"],
-                               titles=relevantTitle,
+                               title=relevantTitle,
                                categorizedSkills=relevantCategorizedSkills,
                                accomplishments=relevantAccomplishments,
                                accomplishmentsAlias=jsonData["accomplishments"]["alias"])
