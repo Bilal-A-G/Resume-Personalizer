@@ -17,14 +17,14 @@ a{
     margin-top: 10px;
     margin: auto;
     text-align: center;
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 600;
     font-style: normal;
     font-size: xx-large;
 }
 
 .subHeading{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 500;
     font-style: normal;
     font-size: medium;
@@ -38,7 +38,7 @@ a{
 }
 
 .tag{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 300;
     font-style: normal;
     font-size: smaller;
@@ -47,7 +47,7 @@ a{
 
 .dateRange{
     text-align: right;
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 350;
     font-style: italic;
     font-size: smaller;
@@ -57,7 +57,7 @@ a{
 
 .location{
     text-align: right;
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 300;
     font-style: italic;
     font-size: smaller;
@@ -81,14 +81,15 @@ li{
 }
 
 .textBody{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 400;
     font-style: normal;
     font-size: smaller;
+    width: 75%;
 }
 
 .listTextBody{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 400;
     font-style: normal;
     font-size: small;
@@ -96,7 +97,7 @@ li{
 }
 
 .boldedBody{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 600;
     font-style: normal;
     font-size: small;
@@ -104,7 +105,7 @@ li{
 }
 
 .degree{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 300;
     font-style: italic;
     font-size: small;
@@ -112,7 +113,7 @@ li{
 }
 
 .subText{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 300;
     font-style: italic;
     font-size: small;
@@ -124,7 +125,7 @@ li{
 }
 
 .mainText{
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 600;
     font-style: normal;
     font-size: small;
@@ -134,7 +135,7 @@ li{
 .contact{
     margin: auto;
     text-align: center;
-    font-family: "Lato", sans-serif;
+    font-family: "Tinos", serif;
     font-weight: 500;
     font-style: normal;
     font-size: small;
