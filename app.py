@@ -154,6 +154,15 @@ def formatFormDate(date):
     strDate = dts.strftime('%b %Y')
     return strDate
 
+def getRecencyOfDate(date, timeFormat):
+    if date == "":
+        return 0
+    dts = datetime.datetime.strptime(date, timeFormat)
+    delta = (datetime.datetime.now() - dts)
+    #1826 is the number of days in 5 years, we want to only start decreasing our score if the items is older than this
+    #We also want to decrease the score exponentially, so really old items are heavily penalized 
+    return pow(delta.days/1826, 2)
+
 def getTopNElemsInListAndWeight(list, n):
     totalStringWeight = 0
     topElems = []
@@ -163,7 +172,8 @@ def getTopNElemsInListAndWeight(list, n):
     
     return (totalStringWeight, topElems)
 
-def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, originalKeywordsLength, maxDescriptions = 3, maxEntires = 3):
+def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, 
+                                 originalKeywordsLength, maxDescriptions = 3, maxEntires = 3, endDateKey = ""):
     jsonCpy = json
     weightedEntries = []
     relevantEntries = []
@@ -188,7 +198,13 @@ def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords, original
         #Get top 3 most similar fields and their cummulative weight
         topAllConsideredFields = getTopNElemsInListAndWeight(weightedAllConsideredFields, 3)
 
-        weightedEntries.append((topAllConsideredFields[0], jsonCpy[entryIndex]))
+        endDateContribution = 0
+        if endDateKey != '':
+            endDate = jsonCpy[entryIndex][endDateKey]
+            endDateContribution = getRecencyOfDate(endDate, "%Y-%m")
+
+        print(topAllConsideredFields[0] - endDateContribution)
+        weightedEntries.append((topAllConsideredFields[0] - endDateContribution, jsonCpy[entryIndex]))
     
     #Sort our weighted entries and only pick the top maxEntries, ie if we have 10 jobs in the jobs section, 
     # only pick the top maxEntries most relevant
@@ -213,13 +229,14 @@ def submitted():
     print(rankedKeywords)
 
     relevantProjects = getTopSimilarEntriesByFields(["projectDescriptions", "projectTags"], 
-                                                    jsonData["projects"]["data"], rankedKeywords, descriptionLength)
+                                                    jsonData["projects"]["data"], rankedKeywords, 
+                                                    descriptionLength, endDateKey="projectEndDate")
     for i in range(0, len(relevantProjects)):
         relevantProjects[i]["projectStartDate"] = formatFormDate(relevantProjects[i]["projectStartDate"])
         relevantProjects[i]["projectEndDate"] = formatFormDate(relevantProjects[i]["projectEndDate"])
     
     relevantExperience = getTopSimilarEntriesByFields(["descriptions", "title", "jobTags"], jsonData["workExperience"]["data"], 
-                                            rankedKeywords, descriptionLength)
+                                            rankedKeywords, descriptionLength, endDateKey="jobEndDate")
     
     for i in range(0, len(relevantExperience)):
         relevantExperience[i]["jobStartDate"] = formatFormDate(relevantExperience[i]["jobStartDate"])
@@ -236,7 +253,8 @@ def submitted():
     relevantAccomplishments = getTopNElemsInListAndWeight(relevantAccomplishments, 3)[1]
 
     relevantEducation = getTopSimilarEntriesByFields(["degree", "descriptions"], 
-                                                     jsonData["education"]["data"], rankedKeywords, descriptionLength)
+                                                     jsonData["education"]["data"], rankedKeywords, 
+                                                     descriptionLength, endDateKey="graduation")
     for i in range(0, len(relevantEducation)):
         relevantEducation[i]["graduation"] = formatFormDate(relevantEducation[i]["graduation"])
         relevantEducation[i]["enrollment"] = formatFormDate(relevantEducation[i]["enrollment"])
