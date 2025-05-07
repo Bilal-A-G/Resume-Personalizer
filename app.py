@@ -134,7 +134,7 @@ def getLemmatizedKeywords(originalText):
 def getStringKeywordsSimilarity(string, rankedKeywordList, keywordListLength):
     stringKeywords = getLemmatizedKeywords(string)
     similarity = computeKeywordSimilarity(rankedKeywordList, stringKeywords, keywordListLength)
-    print(stringKeywords)
+    print(f"{similarity}, {stringKeywords}")
     return (similarity, string)
 
 def getStringListKeywordSimilarity(stringList, rankedKeywordList, keywordListLength):
@@ -159,9 +159,10 @@ def getRecencyOfDate(date, timeFormat):
         return 0
     dts = datetime.datetime.strptime(date, timeFormat)
     delta = (datetime.datetime.now() - dts)
-    #1826 is the number of days in 5 years, we want to only start decreasing our score if the items is older than this
-    #We also want to decrease the score exponentially, so really old items are heavily penalized 
-    return pow(delta.days/1826, 2)
+    #1826 is the number of days in 5 years, we want to only start drastically decreasing our score if the items is older than this
+    #We also want to decrease the score exponentially, so really old items are heavily penalized, 
+    # a heavy penalty is a around 0.1, so we divide the result by 10 to not penalize entries less than 5 years old as much 
+    return pow(delta.days/1826, 2)/10
 
 def getTopNElemsInListAndWeight(list, n):
     totalStringWeight = 0
@@ -203,7 +204,8 @@ def getTopSimilarEntriesByFields(fieldNames, json, rankedMatchKeywords,
             endDate = jsonCpy[entryIndex][endDateKey]
             endDateContribution = getRecencyOfDate(endDate, "%Y-%m")
 
-        print(topAllConsideredFields[0] - endDateContribution)
+        print(f"Weight of entry = {topAllConsideredFields[0]}")
+        print(f"Recency bias = {endDateContribution}")
         weightedEntries.append((topAllConsideredFields[0] - endDateContribution, jsonCpy[entryIndex]))
     
     #Sort our weighted entries and only pick the top maxEntries, ie if we have 10 jobs in the jobs section, 

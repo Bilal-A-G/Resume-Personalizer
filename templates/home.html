@@ -2,16 +2,24 @@
 <html>
     <head>
         <title>Resume Personalizer</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
     </head>
     <body>
-        <p>You need to have a valid profile first, before you can generate a resume</p>
-        <a href="/profile">Create/Update Profile</a>
-        <form id="form">
-            <p><label for="jobDesc">Job Description:</label></p>
-            <textarea name="jobDesc", id="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
-            <br>
-            <input type="submit", value="Submit">
-        </form>
+        <div class="mainText">Generate a Resume</div>
+            <div class="line"\>
+            <div class="profile">
+                <a href="/profile">Create/Update Profile</a>
+            </div>
+            <div class="formContainer">
+                <form id="form">
+                    <p><label for="jobDesc">Job Description</label></p>
+                    <textarea name="jobDesc", id="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
+                    <br>
+                    <div class="submitButton">
+                        <input type="submit", value="Submit">
+                    <div\>
+                </form>
+            </div>
     </body>
     <script text="text/javascript">
         document.getElementById("form").addEventListener("submit", (e)=>{
