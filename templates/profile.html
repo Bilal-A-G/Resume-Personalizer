@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Resume Personalizer | Profile</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
         <script text="text/javascript">
             function LoadStoredProfileData(){
                 profileJson = localStorage.getItem("profile")
@@ -162,6 +163,8 @@
         </script>
     </head>
     <body>
+        <div class="mainText">Profile</div>
+        <div class="line"></div>
         <form id="profileForm">
             <p><label>Contact</label></p>
             <ul>

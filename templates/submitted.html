@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
         <title>Resume Personalizer | Submitted</title>
         <script type="text/javascript">
             console.log(localStorage.getItem("profile"))
         </script>
     </head>
     <body>
-        <h1>Thanks for creating / updating your profile</h1>
-        <p>The system now has enough information to</p> <a href="/">Generate a resume</a>
+        <div class="mainText">Thanks for creating / updating your profile</div>
+        <div class="line"></div>
+        <div class="profile"><a href="/">Generate a resume</a></div>
     </body>
 </html>
