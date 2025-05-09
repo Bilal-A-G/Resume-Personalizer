@@ -11,6 +11,15 @@
     margin-right: auto;
 }
 
+.subHeading{
+    font-size: large;
+    font-weight: bold;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .profile{
     text-align: center;
     padding-top: 1%;
