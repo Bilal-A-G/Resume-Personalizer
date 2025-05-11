@@ -1,158 +1,99 @@
+function SetDOMElementByIDValue(elementID, value){
+    document.getElementById(elementID).value = value
+}
+
+function SetDomElementsByName(addButtonID, elementName, items){
+    for(let i = 0; i < items.length; i++){
+        document.getElementById(addButtonID).click()
+        const allAddedElements = document.getElementsByName(elementName)
+        allAddedElements[allAddedElements.length - 1].value = items[i]
+    }
+}
+
+function SetDomElementsBySection(items, addSecondButtonID, elementNames, elementValueNames, 
+    addSubSectionButtonIDs, subSectionElementNames, allSubSectionItemNames, 
+    presentDateElementName = "", endDateElementName = "", presentDateElementValueName = "", endDateElementValueName = "")
+{
+    for(let i = 0; i < items.length; i++){
+        document.getElementById(addSecondButtonID).click()
+
+        for(let v = 0; v < subSectionElementNames.length; v++){
+            SetDomElementsByName(addSubSectionButtonIDs[v] + `${i + 1}`, 
+                subSectionElementNames[v]  + `${i + 1}`, items[i][allSubSectionItemNames[v]])
+        }
+
+        for(let v = 0; v < elementNames.length; v++){
+            const allSubSections = document.getElementsByName(elementNames[v])
+            allSubSections[allSubSections.length - 1].value = items[i][elementValueNames[v]]
+        }
+
+        if(presentDateElementName == "" || endDateElementName == "" || 
+            presentDateElementValueName == "" || endDateElementValueName == "")
+            return
+        
+        const allPresents = document.getElementsByName(presentDateElementName + `${i + 1}`)
+        const allEnds = document.getElementsByName(endDateElementName)
+        const presentValue = items[i][presentDateElementValueName]
+        if( presentValue != undefined && presentValue != "null"){
+            allPresents[allPresents.length - 1].click()
+        }
+        else{
+            allEnds[allEnds.length - 1].value = items[i][endDateElementValueName]
+        }
+    }
+}
+
 function LoadStoredProfileData() {
     profileJson = localStorage.getItem("profile")
     if (profileJson == "" || profileJson == null)
         return
 
     const obj = JSON.parse(profileJson)
-    document.getElementById("name").value = obj.name
-    document.getElementById("email").value = obj.email
-    document.getElementById("website").value = obj.website
+    SetDOMElementByIDValue("name", obj.name)
+    SetDOMElementByIDValue("email", obj.email)
+    SetDOMElementByIDValue("website", obj.website)
 
-    const personalTitles = obj.personalTitles
-    for (i = 0; i < personalTitles.length; i++) {
-        document.getElementById("AddPersonalTitle").click()
-        const allPersonalTitles = document.getElementsByName("personalTitle")
-
-        allPersonalTitles[allPersonalTitles.length - 1].value = personalTitles[i]
-    }
+    SetDomElementsByName("AddPersonalTitle", "personalTitle", obj.personalTitles)
 
     const education = obj.education.data
     document.getElementById("educationAlias").value = obj.education.alias
-    for (i = 0; i < education.length; i++) {
-        document.getElementById("AddEducation").click()
-        const allInstitutions = document.getElementsByName("institutionName")
-        const allDegrees = document.getElementsByName("degree")
-        const allLocations = document.getElementsByName("institutionLocation")
-        const allGraduationDates = document.getElementsByName("graduationDate")
-        const allEnrollmentDates = document.getElementsByName("enrollmentDate")
-        const allPresentEducation = document.getElementsByName(`presentEducation${i + 1}`)
-
-        const descriptions = education[i].descriptions
-        for (v = 0; v < descriptions.length; v++) {
-            document.getElementById(`AddEducationDescription${i + 1}`).click()
-            const allDescriptions = document.getElementsByName(`educationDescription${i + 1}`)
-            allDescriptions[allDescriptions.length - 1].value = descriptions[v]
-        }
-
-        isPresent = education[i].present
-        if (isPresent != undefined && isPresent != "null") {
-            allPresentEducation[allPresentEducation.length - 1].click()
-        }
-        else {
-            allGraduationDates[allGraduationDates.length - 1].value = education[i].graduation
-        }
-
-        allInstitutions[allInstitutions.length - 1].value = education[i].institutionName
-        allDegrees[allDegrees.length - 1].value = education[i].degree
-        allLocations[allLocations.length - 1].value = education[i].institutionLocation
-        allEnrollmentDates[allEnrollmentDates.length - 1].value = education[i].enrollment
-    }
+    SetDomElementsBySection(education, "AddEducation", 
+        ["institutionName", "degree", "institutionLocation", "enrollmentDate"], 
+        ["institutionName", "degree", "institutionLocation", "enrollment"], 
+        ["AddEducationDescription"], ["educationDescriptions"], ["descriptions"], 
+        "presentEducation", "graduationDate", "present", "graduation"
+    )
 
     const experience = obj.workExperience.data
     document.getElementById("experienceAlias").value = obj.workExperience.alias
-    for (i = 0; i < experience.length; i++) {
-        document.getElementById("AddExperience").click()
-
-        const allCompanyNames = document.getElementsByName("companyName")
-        const allTitles = document.getElementsByName("title")
-        const allJobStartDates = document.getElementsByName("jobStart")
-        const allJobEndDates = document.getElementsByName("jobEnd")
-        const allCompanyLocations = document.getElementsByName("companyLocation")
-        const allJobPresents = document.getElementsByName(`presentJob${i + 1}`)
-
-        allCompanyNames[allCompanyNames.length - 1].value = experience[i].companyName
-        allTitles[allTitles.length - 1].value = experience[i].title
-        allJobStartDates[allJobStartDates.length - 1].value = experience[i].jobStartDate
-        allCompanyLocations[allCompanyLocations.length - 1].value = experience[i].jobLocation
-
-        isPresent = experience[i].presentJob
-        if (isPresent != undefined && isPresent != "null") {
-            allJobPresents[allJobPresents.length - 1].click()
-        }
-        else {
-            allJobEndDates[allJobEndDates.length - 1].value = experience[i].jobEndDate
-        }
-
-        const descriptions = experience[i].descriptions
-        for (v = 0; v < descriptions.length; v++) {
-            document.getElementById("AddDescription" + (i + 1)).click()
-            const allDescriptions = document.getElementsByName("responsibility" + (i + 1))
-            allDescriptions[allDescriptions.length - 1].value = descriptions[v]
-        }
-
-        const tags = experience[i].jobTags
-        for (v = 0; v < tags.length; v++) {
-            document.getElementById("AddTag" + (i + 1)).click()
-            const allTags = document.getElementsByName("jobTag" + (i + 1))
-            allTags[allTags.length - 1].value = tags[v]
-        }
-    }
+    SetDomElementsBySection(experience, "AddExperience",
+        ["companyName", "title", "jobStart", "companyLocation"],
+        ["companyName", "title", "jobStartDate", "jobLocation"],
+        ["AddDescription", "AddTag"], ["responsibility", "jobTag"], ["descriptions", "jobTags"],
+        "presentJob", "jobEnd", "presentJob", "jobEndDate"
+    )
 
     const projects = obj.projects.data
     document.getElementById("projectsAlias").value = obj.projects.alias
-    for (i = 0; i < projects.length; i++) {
-        document.getElementById("AddProject").click()
-        const allProjectNames = document.getElementsByName("projectName")
-        const allProjectStarts = document.getElementsByName("projectStart")
-        const allProjectEnds = document.getElementsByName("projectEnd")
-        const allProjectPresents = document.getElementsByName(`presentProject${i + 1}`)
-        allProjectNames[allProjectNames.length - 1].value = projects[i].projectName
-        allProjectStarts[allProjectStarts.length - 1].value = projects[i].projectStartDate
-
-        isPresent = projects[i].presentProject
-        if (isPresent != undefined && isPresent != "null") {
-            allProjectPresents[allProjectPresents.length - 1].click()
-        }
-        else {
-            allProjectEnds[allProjectEnds.length - 1].value = projects[i].projectEndDate
-        }
-
-        const descriptions = projects[i].projectDescriptions
-        for (v = 0; v < descriptions.length; v++) {
-            document.getElementById("AddProjectDescription" + (i + 1)).click()
-            const allDescriptions = document.getElementsByName("projectDescription" + (i + 1))
-            allDescriptions[allDescriptions.length - 1].value = descriptions[v]
-        }
-
-        const tags = projects[i].projectTags
-        for (v = 0; v < tags.length; v++) {
-            document.getElementById("AddProjectTag" + (i + 1)).click()
-            const allTags = document.getElementsByName("projectTag" + (i + 1))
-            allTags[allTags.length - 1].value = tags[v]
-        }
-    }
-
+    SetDomElementsBySection(projects, "AddProject",
+        ["projectName", "projectStart"],
+        ["projectName", "projectStartDate"],
+        ["AddProjectDescription", "AddProjectTag"], ["projectDescription", "projectTag"], ["projectDescriptions", "projectTags"],
+        "presentProject", "projectEnd", "presentProject", "projectEndDate"
+    )
+    
     const skills = obj.skills.data
     document.getElementById("skillsAlias").value = obj.skills.alias
+    SetDomElementsByName("AddSkill", "skill", skills)
 
     const skillCategories = obj.categorizedSkills
-    for (i = 0; i < skills.length; i++) {
-        document.getElementById("AddSkill").click()
-        const allSkills = document.getElementsByName("skill")
-        allSkills[allSkills.length - 1].value = skills[i]
-    }
-
-    for (i = 0; i < skillCategories.length; i++) {
-        document.getElementById("AddCategory").click()
-        const allCategories = document.getElementsByName("categoryName")
-        allCategories[allCategories.length - 1].value = skillCategories[i].categoryName
-
-        const categorizedSkills = skillCategories[i].categorizedSkills
-        for (v = 0; v < categorizedSkills.length; v++) {
-            document.getElementById("AddSkillToCategory" + (i + 1)).click()
-            const allCategorizedSkills = document.getElementsByName("categorizedSkill" + (i + 1))
-            allCategorizedSkills[allCategorizedSkills.length - 1].value = categorizedSkills[v]
-        }
-    }
+    SetDomElementsBySection(skillCategories, "AddCategory", ["categoryName"], ["categoryName"], 
+        ["AddSkillToCategory"], ["categorizedSkill"], ["categorizedSkills"]
+    )
 
     const accomplishments = obj.accomplishments.data
     document.getElementById("accomplishmentsAlias").value = obj.accomplishments.alias
-
-    for (i = 0; i < accomplishments.length; i++) {
-        document.getElementById("AddAccomplishment").click()
-        const allAccomplishments = document.getElementsByName("accomplishment")
-        allAccomplishments[allAccomplishments.length - 1].value = accomplishments[i]
-    }
+    SetDomElementsByName("AddAccomplishment", "accomplishment", accomplishments)
 }
 
 function AddHTMLToDOM(html, parentName) {
