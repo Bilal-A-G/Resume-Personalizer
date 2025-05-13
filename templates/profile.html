@@ -3,7 +3,6 @@
     <head>
         <title>Resume Personalizer | Profile</title>
         <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
-        <script src="{{url_for('static', filename='website.js')}}">LoadStoredProfileData()</script>
     </head>
     <body>
         <div class="mainText">Profile</div>
@@ -67,8 +66,8 @@
 
             <input type="submit" value="Submit" id="Submit">
         </form>
-        <script type="text/javascript">
-            HandleProfileUpdate()
-        </script>
+        <script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
+        <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
+        <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
     </body>
 </html>
