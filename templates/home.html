@@ -3,13 +3,26 @@
     <head>
         <title>Resume Personalizer</title>
         <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="mainText">Generate a Resume</div>
-            <div class="line"\>
-            <div class="profile">
-                <a href="/profile">Create/Update Profile</a>
+        <div class="centerOnScreen">
+            <div class="holder">
+                <div class="mainText">Resume Personalizer</div>
+                <div class="subTitle">Generate a personalized resume</div>
+                <div class="buttonHolder">
+                    <button class="button">Browse Resumes</button>
+                    <button class="button">Create Resume</button>
+                    <button class="button">Browse Profiles</button>
+                </div>
             </div>
+        </div>
+            <!-- <div class="line"\>
+            <div class="profile">
+                <a href="/profile">Create/Update Profile</a> -->
+            <!-- </div>
             <div class="formContainer">
                 <form id="form">
                     <p><label for="jobDesc">Job Description</label></p>
@@ -19,7 +32,7 @@
                         <input type="submit", value="Submit">
                     <div\>
                 </form>
-            </div>
+            </div> -->
     </body>
     <script text="text/javascript">
         document.getElementById("form").addEventListener("submit", (e)=>{
