@@ -24,6 +24,10 @@ def home():
 def profile():
     return render_template("profile.html")
 
+@app.route("/resumes")
+def resumes():
+    return render_template("resumes.html")
+
 @app.route("/ceProfile")
 def createEditProfile():
     return render_template("submitted.html")
