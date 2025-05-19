@@ -24,6 +24,10 @@ def home():
 def profile():
     return render_template("profile.html")
 
+@app.route("/profiles")
+def profiles():
+    return render_template("profileList.html")
+
 @app.route("/resumes")
 def resumes():
     return render_template("resumes.html")
