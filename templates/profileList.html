@@ -8,6 +8,16 @@
         <title>Resume Personalizer | Profiles</title>
     </head>
     <body>
+        <div class="stickyElement">
+           <button class="button" id="homePage"> Home
+                <img class="buttonImage" src="{{url_for('static', filename='images/Home.svg')}}">
+            </button>
+            <script>
+            document.getElementById("homePage").addEventListener("click", () => {
+                location.href = "/"
+            })
+            </script>
+        </div>
         <div class="sectionHeader">Created Profiles</div>
         <div class="subTitle">Add new or edit profiles here</div>
         <div class="listContainer">

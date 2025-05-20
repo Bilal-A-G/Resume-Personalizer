@@ -104,6 +104,11 @@ body{
     padding-right: 10px;
 }
 
+.stickyElement{
+    position: sticky;
+    top: 10px;
+}
+
 .listButton{
     background-color: #cbcbcb;
     font-weight: 700;
