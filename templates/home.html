@@ -27,6 +27,17 @@
                     </button>
                 </div>
             </div>
+            <div class="hiddenOverlay" id="hiddenOverlay">
+                <div class="blurOverlay" id="blurOverlay"></div>
+                <div class="profileSelection" id="profileSelection">
+                    <div class="smallButtonHolder">
+                        <button class="smallButton" id="CloseOverlay">
+                            X
+                        </button>
+                    </div>
+                    <div class="majorHeading"> Select a Profile</div>
+                </div>
+            </div>
         </div>
             <!-- <div class="line"\>
             <div class="profile">
@@ -44,34 +55,72 @@
             </div> -->
     </body>
     <script text="text/javascript">
+        var hiddenOverlay = document.getElementById("hiddenOverlay")
+        var profileSelection = document.getElementById("profileSelection")
+        var blurOverlay = document.getElementById("blurOverlay")
+
         document.getElementById("BrowseResumes").addEventListener("click", ()=>{
             location.href = "/resumes"
         })
         document.getElementById("BrowseProfiles").addEventListener("click", ()=>{
             location.href = "/profiles"
         })
+        document.getElementById("NewResume").addEventListener("click", ()=>{
+            hiddenOverlay.classList.remove("fadeBackgroundOut")
+            profileSelection.classList.remove("fadeOpacityOut")
+            blurOverlay.classList.remove("fadeBlurOut")
 
-        document.getElementById("form").addEventListener("submit", (e)=>{
-            e.preventDefault()
-            const formData = new FormData(document.getElementById("form"))
-            formData.append("profile", localStorage.getItem("profile"))
+            void blurOverlay.offsetWidth
+            void profileSelection.offsetWidth
+            void hiddenOverlay.offsetWidth
 
-            fetch("/submit", {
-                method: "POST",
-                body: formData
-            }).then((res) => {
-                res.blob().then((blob) => {
-                    const url = window.URL.createObjectURL(blob)
-                    const temp = document.createElement("a")
-                    temp.href = url
-                    temp.download = "Resume"
-                    document.body.appendChild(temp)
-                    temp.click()
-                    temp.remove()
-                    URL.revokeObjectURL(url)
-                    //Do other stuff here probably
-                })
-            })
+            hiddenOverlay.classList.add("fadeBackgroundIn")
+            profileSelection.classList.add("fadeOpacityIn")
+            blurOverlay.classList.add("fadeBlurIn")
+
+            document.getElementById("hiddenOverlay").style.display = "flex"    
         })
+        document.getElementById("CloseOverlay").addEventListener("click", ()=>{
+            hiddenOverlay.classList.remove("fadeBackgroundIn")
+            profileSelection.classList.remove("fadeOpacityIn")
+            blurOverlay.classList.remove("fadeBlurIn")
+
+            void blurOverlay.offsetWidth
+            void profileSelection.offsetWidth
+            void hiddenOverlay.offsetWidth
+
+            hiddenOverlay.classList.add("fadeBackgroundOut")
+            profileSelection.classList.add("fadeOpacityOut")
+            blurOverlay.classList.add("fadeBlurOut")
+        })
+
+        hiddenOverlay.addEventListener("animationend", (event)=>{
+            if(hiddenOverlay.classList.contains("fadeBackgroundOut")){
+                hiddenOverlay.style.display = "none"
+            }
+        })
+
+        // document.getElementById("form").addEventListener("submit", (e)=>{
+        //     e.preventDefault()
+        //     const formData = new FormData(document.getElementById("form"))
+        //     formData.append("profile", localStorage.getItem("profile"))
+
+        //     fetch("/submit", {
+        //         method: "POST",
+        //         body: formData
+        //     }).then((res) => {
+        //         res.blob().then((blob) => {
+        //             const url = window.URL.createObjectURL(blob)
+        //             const temp = document.createElement("a")
+        //             temp.href = url
+        //             temp.download = "Resume"
+        //             document.body.appendChild(temp)
+        //             temp.click()
+        //             temp.remove()
+        //             URL.revokeObjectURL(url)
+        //             //Do other stuff here probably
+        //         })
+        //     })
+        // })
     </script>
 </html>
