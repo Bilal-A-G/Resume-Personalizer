@@ -32,10 +32,20 @@
                 <div class="profileSelection" id="profileSelection">
                     <div class="smallButtonHolder">
                         <button class="smallButton" id="CloseOverlay">
-                            X
+                            <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
                         </button>
                     </div>
                     <div class="majorHeading"> Select a Profile</div>
+                    <div>
+                        <div class="subHeadingLight">No Profiles Created Yet</div>
+                        <div class="subTitle">Create a Profile to generate a resume</div>
+                        <div class="buttonHolder">
+                            <button class="listButton" id="CreateProfile">
+                                Create New Profile
+                                <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,6 +68,10 @@
         var hiddenOverlay = document.getElementById("hiddenOverlay")
         var profileSelection = document.getElementById("profileSelection")
         var blurOverlay = document.getElementById("blurOverlay")
+
+        document.getElementById("CreateProfile").addEventListener("click", ()=>{
+            location.href = "/profiles"
+        })
 
         document.getElementById("BrowseResumes").addEventListener("click", ()=>{
             location.href = "/resumes"

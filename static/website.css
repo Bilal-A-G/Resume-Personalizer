@@ -153,7 +153,7 @@ body{
 }
 
 .majorHeading{
-    font-size: 30px;
+    font-size: 50px;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -167,7 +167,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     width: 500px;
-    height: 400px;
+    height: 500px;
     border-radius: 10px;
     background-color: #cbcbcb;
     margin-top: 50px;
@@ -177,6 +177,10 @@ body{
 .buttonImage{
     width: 30px;
     margin-top: 5px;
+}
+
+.centeredButtonImage{
+    width: 30px;
 }
 
 .button{
@@ -269,6 +273,7 @@ body{
 
 .smallButton:hover{
     background-color: #EAE7E7;
+    padding-bottom: 12px;
 }
 
 .smallButton:active{
@@ -302,6 +307,15 @@ body{
     margin-left: auto;
     text-align: center;
     margin-top: 20px;
+}
+
+.subHeadingLight{
+    font-size: 25px;
+    font-weight: 400;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-top: 80px;
 }
 
 .profile{
