@@ -1,73 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Resume Personalizer | Profile</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
-    </head>
-    <body>
-        <div class="mainText">Profile</div>
-        <div class="line"></div>
-        <form id="profileForm">
-            <div class="subHeading"><label>Contact</label></div>
-            <ul>
-                <li><input type="text" name="name" id="name" size="50" required placeholder="Full Name"></input></li>
-                <li><input type="text" name="email" id="email" size="50" rows="1" required  placeholder="Email"></input></li>
-                <li><input type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input></li>
-            </ul>
-            <div class="subHeading"><label>Job Titles</label></div>
-            <button type="button" id="AddPersonalTitle">+</button>
-            <button type="button" id="RemovePersonalTitle">-</button>
-            <ul>
-                <div id="titlesDropdown"\>
-            </ul>
-            <div class="subHeading"><label>Education</label></div>
-            <input type="text" name="educationAlias" id="educationAlias" size="15" placeholder="Alias"></input> <br>
-            <button type="button" id="AddEducation">+</button>
-            <button type="button" id="RemoveEducation">-</button>
-            <ul>
-                <div id = "educationDropdown"\>
-            </ul>
 
-            <div class="subHeading"><label>Experience</label></div>
-            <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>
-            <button type="button" id="AddExperience">+</button>
-            <button type="button" id="RemoveExperience">-</button>
-            <ul>
-                <div id = "experienceDropdown"\>
-            </ul>
+<head>
+    <title>Resume Personalizer | Profile</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
+</head>
 
-            <div class="subHeading"><label>Projects</label></div>
-            <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
-            <button type="button" id="AddProject">+</button>
-            <button type="button" id="RemoveProject">-</button>
-            <ul>
-                <div id = "projectsDropdown"\>
-            </ul>
+<body>
+    <div class="stickyElement">
+        <button class="button" id="HomePage"> Home
+            <img class="buttonImage" src="{{url_for('static', filename='images/Home.svg')}}">
+        </button>
+    </div>
+    <div class="mainText">Profile</div>
+    <form id="profileForm">
+        <div class="subHeading"><label>Contact</label></div>
+        <ul>
+            <li><input type="text" name="name" id="name" size="50" required placeholder="Full Name"></input></li>
+            <li><input type="text" name="email" id="email" size="50" rows="1" required placeholder="Email"></input></li>
+            <li><input type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input></li>
+        </ul>
+        <div class="subHeading"><label>Job Titles</label></div>
+        <button type="button" id="AddPersonalTitle">+</button>
+        <button type="button" id="RemovePersonalTitle">-</button>
+        <ul>
+            <div id="titlesDropdown" \>
+        </ul>
+        <div class="subHeading"><label>Education</label></div>
+        <input type="text" name="educationAlias" id="educationAlias" size="15" placeholder="Alias"></input> <br>
+        <button type="button" id="AddEducation">+</button>
+        <button type="button" id="RemoveEducation">-</button>
+        <ul>
+            <div id="educationDropdown" \>
+        </ul>
 
-            <div class="subHeading"><label>Skills</label></div>
-            <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
-            <button type="button" id="AddSkill">+</button>
-            <button type="button" id="RemoveSkill">-</button>
-            <button type="button" id="AddCategory">++</button>
-            <button type="button" id="RemoveCategory">--</button>
-            <ul>
-                <div id = "categorizedSkillsDropdown"\>
-                <div id = "skillsDropdown"\>
-            </ul>
+        <div class="subHeading"><label>Experience</label></div>
+        <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>
+        <button type="button" id="AddExperience">+</button>
+        <button type="button" id="RemoveExperience">-</button>
+        <ul>
+            <div id="experienceDropdown" \>
+        </ul>
 
-            <div class="subHeading"><label>Accomplishments</label></div>
-            <input type="text" name="accomplishmentsAlias" id="accomplishmentsAlias" size="15" placeholder="Alias"></input> <br>
-            <button type="button" id="AddAccomplishment">+</button>
-            <button type="button" id="RemoveAccomplishment">-</button>
-            <ul>
-                <div id = "accomplishmentsDropdown"\>
-            </ul>
-            <br>
+        <div class="subHeading"><label>Projects</label></div>
+        <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
+        <button type="button" id="AddProject">+</button>
+        <button type="button" id="RemoveProject">-</button>
+        <ul>
+            <div id="projectsDropdown" \>
+        </ul>
 
-            <input type="submit" value="Submit" id="Submit">
-        </form>
-        <script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
-        <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
-        <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
-    </body>
+        <div class="subHeading"><label>Skills</label></div>
+        <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
+        <button type="button" id="AddSkill">+</button>
+        <button type="button" id="RemoveSkill">-</button>
+        <button type="button" id="AddCategory">++</button>
+        <button type="button" id="RemoveCategory">--</button>
+        <ul>
+            <div id="categorizedSkillsDropdown" \>
+                <div id="skillsDropdown" \>
+        </ul>
+
+        <div class="subHeading"><label>Accomplishments</label></div>
+        <input type="text" name="accomplishmentsAlias" id="accomplishmentsAlias" size="15" placeholder="Alias"></input>
+        <br>
+        <button type="button" id="AddAccomplishment">+</button>
+        <button type="button" id="RemoveAccomplishment">-</button>
+        <ul>
+            <div id="accomplishmentsDropdown" \>
+        </ul>
+        <br>
+
+        <input type="submit" value="Submit" id="Submit">
+    </form>
+    <script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
+    <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
+    <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
+</body>
+<script>
+    document.getElementById("HomePage").addEventListener("click", () => {
+        location.href = "/"
+    })
+</script>
 </html>

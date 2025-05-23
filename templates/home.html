@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Resume Personalizer</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div class="centerOnScreen">
-            <div class="holder">
-                <div class="mainText">Resume Personalizer</div>
-                <div class="subTitle">Generate a personalized resume today</div>
-                <div class="buttonHolder">
-                    <button class="button" id="BrowseResumes">
-                        Resumes 
-                        <img class="buttonImage" src="{{url_for('static', filename='images/Resumes.svg')}}"\>
-                    </button>
-                    <button class="button" id="NewResume">
-                        New Resume 
-                        <img class="buttonImage" src="{{url_for('static', filename='images/NewResume.svg')}}"\>
-                    </button>
-                    <button class="button" id="BrowseProfiles">
-                        Profiles 
-                        <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}"\>
+
+<head>
+    <title>Resume Personalizer</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="centerOnScreen">
+        <div class="holder">
+            <div class="mainText">Resume Personalizer</div>
+            <div class="subTitle">Generate a personalized resume today</div>
+            <div class="buttonHolder">
+                <button class="button" id="BrowseResumes">
+                    Resumes
+                    <img class="buttonImage" src="{{url_for('static', filename='images/Resumes.svg')}}" \>
+                </button>
+                <button class="button" id="NewResume">
+                    New Resume
+                    <img class="buttonImage" src="{{url_for('static', filename='images/NewResume.svg')}}" \>
+                </button>
+                <button class="button" id="BrowseProfiles">
+                    Profiles
+                    <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}" \>
+                </button>
+            </div>
+        </div>
+        <div class="hiddenOverlay" id="hiddenOverlay">
+            <div class="blurOverlay" id="blurOverlay"></div>
+            <div class="profileSelection" id="profileSelection">
+                <div class="smallButtonHolder">
+                    <button class="smallButton" id="CloseOverlay">
+                        <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
                 </div>
-            </div>
-            <div class="hiddenOverlay" id="hiddenOverlay">
-                <div class="blurOverlay" id="blurOverlay"></div>
-                <div class="profileSelection" id="profileSelection">
-                    <div class="smallButtonHolder">
-                        <button class="smallButton" id="CloseOverlay">
-                            <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
+                <div class="majorHeading"> Select a Profile</div>
+                <div>
+                    <div class="subHeadingLight">No Profiles Created Yet</div>
+                    <div class="subTitle">Create a Profile to generate a resume</div>
+                    <div class="buttonHolder">
+                        <button class="listButton" id="CreateProfile">
+                            Create New Profile
+                            <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
                         </button>
-                    </div>
-                    <div class="majorHeading"> Select a Profile</div>
-                    <div>
-                        <div class="subHeadingLight">No Profiles Created Yet</div>
-                        <div class="subTitle">Create a Profile to generate a resume</div>
-                        <div class="buttonHolder">
-                            <button class="listButton" id="CreateProfile">
-                                Create New Profile
-                                <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-            <!-- <div class="line"\>
+    </div>
+    <!-- <div class="line"\>
             <div class="profile">
                 <a href="/profile">Create/Update Profile</a> -->
-            <!-- </div>
+    <!-- </div>
             <div class="formContainer">
                 <form id="form">
                     <p><label for="jobDesc">Job Description</label></p>
@@ -63,78 +66,79 @@
                     <div\>
                 </form>
             </div> -->
-    </body>
-    <script text="text/javascript">
-        var hiddenOverlay = document.getElementById("hiddenOverlay")
-        var profileSelection = document.getElementById("profileSelection")
-        var blurOverlay = document.getElementById("blurOverlay")
+</body>
+<script text="text/javascript">
+    var hiddenOverlay = document.getElementById("hiddenOverlay")
+    var profileSelection = document.getElementById("profileSelection")
+    var blurOverlay = document.getElementById("blurOverlay")
 
-        document.getElementById("CreateProfile").addEventListener("click", ()=>{
-            location.href = "/profiles"
-        })
+    document.getElementById("CreateProfile").addEventListener("click", () => {
+        location.href = "/profiles"
+    })
 
-        document.getElementById("BrowseResumes").addEventListener("click", ()=>{
-            location.href = "/resumes"
-        })
-        document.getElementById("BrowseProfiles").addEventListener("click", ()=>{
-            location.href = "/profiles"
-        })
-        document.getElementById("NewResume").addEventListener("click", ()=>{
-            hiddenOverlay.classList.remove("fadeBackgroundOut")
-            profileSelection.classList.remove("fadeOpacityOut")
-            blurOverlay.classList.remove("fadeBlurOut")
+    document.getElementById("BrowseResumes").addEventListener("click", () => {
+        location.href = "/resumes"
+    })
+    document.getElementById("BrowseProfiles").addEventListener("click", () => {
+        location.href = "/profiles"
+    })
+    document.getElementById("NewResume").addEventListener("click", () => {
+        hiddenOverlay.classList.remove("fadeBackgroundOut")
+        profileSelection.classList.remove("fadeOpacityOut")
+        blurOverlay.classList.remove("fadeBlurOut")
 
-            void blurOverlay.offsetWidth
-            void profileSelection.offsetWidth
-            void hiddenOverlay.offsetWidth
+        void blurOverlay.offsetWidth
+        void profileSelection.offsetWidth
+        void hiddenOverlay.offsetWidth
 
-            hiddenOverlay.classList.add("fadeBackgroundIn")
-            profileSelection.classList.add("fadeOpacityIn")
-            blurOverlay.classList.add("fadeBlurIn")
+        hiddenOverlay.classList.add("fadeBackgroundIn")
+        profileSelection.classList.add("fadeOpacityIn")
+        blurOverlay.classList.add("fadeBlurIn")
 
-            document.getElementById("hiddenOverlay").style.display = "flex"    
-        })
-        document.getElementById("CloseOverlay").addEventListener("click", ()=>{
-            hiddenOverlay.classList.remove("fadeBackgroundIn")
-            profileSelection.classList.remove("fadeOpacityIn")
-            blurOverlay.classList.remove("fadeBlurIn")
+        document.getElementById("hiddenOverlay").style.display = "flex"
+    })
+    document.getElementById("CloseOverlay").addEventListener("click", () => {
+        hiddenOverlay.classList.remove("fadeBackgroundIn")
+        profileSelection.classList.remove("fadeOpacityIn")
+        blurOverlay.classList.remove("fadeBlurIn")
 
-            void blurOverlay.offsetWidth
-            void profileSelection.offsetWidth
-            void hiddenOverlay.offsetWidth
+        void blurOverlay.offsetWidth
+        void profileSelection.offsetWidth
+        void hiddenOverlay.offsetWidth
 
-            hiddenOverlay.classList.add("fadeBackgroundOut")
-            profileSelection.classList.add("fadeOpacityOut")
-            blurOverlay.classList.add("fadeBlurOut")
-        })
+        hiddenOverlay.classList.add("fadeBackgroundOut")
+        profileSelection.classList.add("fadeOpacityOut")
+        blurOverlay.classList.add("fadeBlurOut")
+    })
 
-        hiddenOverlay.addEventListener("animationend", (event)=>{
-            if(hiddenOverlay.classList.contains("fadeBackgroundOut")){
-                hiddenOverlay.style.display = "none"
-            }
-        })
+    hiddenOverlay.addEventListener("animationend", (event) => {
+        if (hiddenOverlay.classList.contains("fadeBackgroundOut")) {
+            hiddenOverlay.style.display = "none"
+        }
+    })
 
-        // document.getElementById("form").addEventListener("submit", (e)=>{
-        //     e.preventDefault()
-        //     const formData = new FormData(document.getElementById("form"))
-        //     formData.append("profile", localStorage.getItem("profile"))
+    // document.getElementById("form").addEventListener("submit", (e)=>{
+    //     e.preventDefault()
+    //     const formData = new FormData(document.getElementById("form"))
+    //     formData.append("profile", localStorage.getItem("profile"))
 
-        //     fetch("/submit", {
-        //         method: "POST",
-        //         body: formData
-        //     }).then((res) => {
-        //         res.blob().then((blob) => {
-        //             const url = window.URL.createObjectURL(blob)
-        //             const temp = document.createElement("a")
-        //             temp.href = url
-        //             temp.download = "Resume"
-        //             document.body.appendChild(temp)
-        //             temp.click()
-        //             temp.remove()
-        //             URL.revokeObjectURL(url)
-        //             //Do other stuff here probably
-        //         })
-        //     })
-        // })
-    </script>
+    //     fetch("/submit", {
+    //         method: "POST",
+    //         body: formData
+    //     }).then((res) => {
+    //         res.blob().then((blob) => {
+    //             const url = window.URL.createObjectURL(blob)
+    //             const temp = document.createElement("a")
+    //             temp.href = url
+    //             temp.download = "Resume"
+    //             document.body.appendChild(temp)
+    //             temp.click()
+    //             temp.remove()
+    //             URL.revokeObjectURL(url)
+    //             //Do other stuff here probably
+    //         })
+    //     })
+    // })
+</script>
+
 </html>
