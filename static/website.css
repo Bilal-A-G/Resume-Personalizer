@@ -309,6 +309,65 @@ body{
     margin-top: 20px;
 }
 
+.profileSubHeading{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 200px;
+}
+
+.profileRow{
+    display: flex;
+    flex-direction: row;
+    background-color: #cbcbcb;
+    gap: 150px;
+    width: 100%;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.profileFieldLabel{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 15px;
+    align-self: flex-start;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.profileFieldGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileTextField{
+    font-family: "Josefin Sans", sans-serif;
+    padding: 5px;
+    width: 400px;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 3px;
+}
+
+.profilePanel{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-count: 2;
+    gap: 20px;
+    row-gap: 20px;
+    max-width: 1000px;
+}
+
 .subHeadingLight{
     font-size: 25px;
     font-weight: 400;

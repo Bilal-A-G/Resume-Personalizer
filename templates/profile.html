@@ -4,6 +4,10 @@
 <head>
     <title>Resume Personalizer | Profile</title>
     <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -13,13 +17,25 @@
         </button>
     </div>
     <div class="mainText">Profile</div>
+    <div class="subTitle">Provide some information about your work history</div>
     <form id="profileForm">
-        <div class="subHeading"><label>Contact</label></div>
-        <ul>
-            <li><input type="text" name="name" id="name" size="50" required placeholder="Full Name"></input></li>
-            <li><input type="text" name="email" id="email" size="50" rows="1" required placeholder="Email"></input></li>
-            <li><input type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input></li>
-        </ul>
+        <div class="profileRow">
+            <div class="profileSubHeading"><label>Contact</label></div>
+            <div class="profilePanel">
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="name">Full Name</label>
+                    <input class="profileTextField" type="text" name="name" id="name" size="50" required placeholder="Full Name"></input>
+                </div>
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="email">Email</label>
+                    <input class="profileTextField" type="text" name="email" id="email" size="50" rows="1" required placeholder="Email"></input>
+                </div>
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="website">Website</label>
+                    <input class="profileTextField" type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input>
+                </div>
+            </div>
+        </div>
         <div class="subHeading"><label>Job Titles</label></div>
         <button type="button" id="AddPersonalTitle">+</button>
         <button type="button" id="RemovePersonalTitle">-</button>
