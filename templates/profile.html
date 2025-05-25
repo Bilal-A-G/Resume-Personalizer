@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
 </head>
-
 <body>
     <div class="stickyElement">
         <button class="button" id="HomePage"> Home
@@ -34,14 +33,18 @@
                     <label class="profileFieldLabel" for="website">Website</label>
                     <input class="profileTextField" type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input>
                 </div>
+                <div class="largerProfileFieldGroup">
+                    <div class="rowAlignCentered">
+                        <div class="profileFieldLabel">Titles</div>
+                    </div>
+                    <div class="profileDropdown" id="titlesDropdown"></div>
+                    <div class="rowAlignCentered">
+                        <button class="smallerButton" type="button" id="AddPersonalTitle">+</button>
+                        <button class="smallerButton" type="button" id="RemovePersonalTitle">-</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="subHeading"><label>Job Titles</label></div>
-        <button type="button" id="AddPersonalTitle">+</button>
-        <button type="button" id="RemovePersonalTitle">-</button>
-        <ul>
-            <div id="titlesDropdown" \>
-        </ul>
         <div class="subHeading"><label>Education</label></div>
         <input type="text" name="educationAlias" id="educationAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddEducation">+</button>

@@ -7,7 +7,6 @@ function RemoveLastChildInDOM(parentName) {
 }
 
 function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholder, parent){
-    const list = document.createElement("li")
     const input = document.createElement("input")
     input.type = "text"
     input.name = fieldName
@@ -15,9 +14,9 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
     input.size = fieldSize
     input.required = required
     input.placeholder = placeholder
+    input.classList.add("profileTextField")
 
-    list.appendChild(input)
-    parent.appendChild(list)
+    parent.appendChild(input)
 }
 
 function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, required, dateType,
@@ -120,8 +119,7 @@ document.getElementById("RemoveEducation").addEventListener("click", () => {
 })
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
-    const subSectionParent = StartNewSection(document.getElementById("titlesDropdown"))
-    CreateFormTextField("personalTitle", "personalTitle", "80", true, "Title", subSectionParent)
+    CreateFormTextField("personalTitle", "personalTitle", "80", true, "Title", document.getElementById("titlesDropdown"))
 })
 document.getElementById("RemovePersonalTitle").addEventListener("click", () => {
     RemoveLastChildInDOM("titlesDropdown")

@@ -184,7 +184,7 @@ body{
 }
 
 .button{
-    background-color: #d9d9d9;
+    background-color: rgba(217, 217, 217, 0.5);
     font-weight: 700;
     display: flex;
     flex-direction: column;
@@ -227,6 +227,31 @@ body{
     height: 40px;
     padding-top: 2vh;
     padding-bottom: 2vh;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.smallerButton{
+    background-color: #d9d9d9;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    justify-content: center;
+
+    margin-left: 5px;
+    margin-right: 5px;
+    
+    transition: 0.15s;
+    margin-top: 15px;
+    width: 60px;
+    height: 20px;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -281,6 +306,16 @@ body{
     scale: 1.1;
 }
 
+.smallerButton:hover{
+    background-color: #EAE7E7;
+    padding-bottom: 12px;
+}
+
+.smallerButton:active{
+    background-color: white;
+    scale: 1.1;
+}
+
 .button:hover{
     background-color: #EAE7E7;
     padding-bottom: 6px;
@@ -327,7 +362,7 @@ body{
     width: 100%;
     margin-top: 50px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 .profileFieldLabel{
@@ -342,6 +377,45 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.largerProfileFieldGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 20px;
+    width: 110%;
+    height: fit-content;
+}
+
+.rowAlign{
+    display: flex;
+    flex-direction: row;
+    height: 25px;
+}
+
+.rowAlignCentered{
+    display: flex;
+    flex-direction: row;
+    height: 25px;
+    width: 400px;
+    justify-content: center;
+}
+
+.profileDropdown{
+    width: 400px;
+    overflow-y: visible;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    height: 100px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 13px;
+    padding-right: 30px;
 }
 
 .profileTextField{
