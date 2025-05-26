@@ -21,7 +21,7 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
 
 function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, required, dateType,
     endFieldName, endFieldID, checkboxFieldID, parent){
-    const startDateList = document.createElement("li")
+    const startDateList = document.createElement("div")
     const startDateInput = document.createElement("input")
 
     startDateInput.type = dateType
@@ -31,7 +31,7 @@ function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, requi
     startDateInput.required = required
 
     startDateList.appendChild(startDateInput)
-    const endDateList = document.createElement("li")
+    const endDateList = document.createElement("div")
     const endDateInput = document.createElement("input")
 
     endDateInput.type = dateType
@@ -67,7 +67,7 @@ function CreateExpandableSection(addButtonID, addButtonText, removeButtonID, rem
     removeButton.id = removeButtonID
     removeButton.textContent = removeButtonText
 
-    const listContents = document.createElement("ul")
+    const listContents = document.createElement("div")
     const dropdownDiv = document.createElement("div")
     dropdownDiv.id = dropdownID
     listContents.appendChild(dropdownDiv)
@@ -88,8 +88,8 @@ function CreateExpandableSection(addButtonID, addButtonText, removeButtonID, rem
 }
 
 function StartNewSection(parent){
-    const list = document.createElement("li")
-    const listChild = document.createElement("ul")
+    const list = document.createElement("div")
+    const listChild = document.createElement("div")
     list.appendChild(listChild)
     parent.appendChild(list)
 

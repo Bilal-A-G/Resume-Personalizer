@@ -11,12 +11,34 @@
 </head>
 <body>
     <div class="stickyElement">
-        <button class="button" id="HomePage"> Home
-            <img class="buttonImage" src="{{url_for('static', filename='images/Home.svg')}}">
-        </button>
+        <div class="navbarPanel">
+            <button class="navButton" id="ProfilePage">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+                Profiles
+            </button>
+            <button class="navButton" id="HomePage">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/Home.svg')}}">
+                Home
+            </button>
+            <button class="navButton" id="ResumePage">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/Resumes.svg')}}">
+                Resumes
+            </button>
+        </div>
+        <script>
+            document.getElementById("ProfilePage").addEventListener("click", ()=>{
+                location.href = "/profiles"
+            })
+            document.getElementById("ResumePage").addEventListener("click", ()=>{
+                location.href = "/resumes"
+            })
+            document.getElementById("HomePage").addEventListener("click", () => {
+                location.href = "/"
+            })
+        </script>
     </div>
     <div class="mainText">Profile</div>
-    <div class="subTitle">Provide some information about your work history</div>
+    <div class="subTitle">Provide some information about yourself</div>
     <form id="profileForm">
         <div class="profileRow">
             <div class="profileSubHeading"><label>Contact</label></div>
@@ -33,6 +55,11 @@
                     <label class="profileFieldLabel" for="website">Website</label>
                     <input class="profileTextField" type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input>
                 </div>
+            </div>
+        </div>
+        <div class="profileRow">
+            <div class="profileSubHeading">Header</div>
+            <div class="profilePanel">
                 <div class="largerProfileFieldGroup">
                     <div class="rowAlignCentered">
                         <div class="profileFieldLabel">Titles</div>
@@ -45,14 +72,25 @@
                 </div>
             </div>
         </div>
-        <div class="subHeading"><label>Education</label></div>
-        <input type="text" name="educationAlias" id="educationAlias" size="15" placeholder="Alias"></input> <br>
-        <button type="button" id="AddEducation">+</button>
-        <button type="button" id="RemoveEducation">-</button>
-        <ul>
-            <div id="educationDropdown" \>
-        </ul>
-
+        <div class="profileRow">
+            <div class="profileSubHeading">Education</div>
+            <div class="profilePanel">
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="educationAlias">Alias</label>
+                    <input class="profileTextField" type="text" name="educationAlias" id="educationAlias" size="50" rows="1" required placeholder="Alias"></input>
+                </div>
+                <div class="largerProfileFieldGroup">
+                    <div class="rowAlignCentered">
+                        <div class="profileFieldLabel">Education</div>
+                    </div>
+                    <div id="educationDropdown"></div>
+                    <div class="rowAlignCentered">
+                        <button class="smallerButton" type="button" id="AddEducation">+</button>
+                        <button class="smallerButton" type="button" id="RemoveEducation">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="subHeading"><label>Experience</label></div>
         <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddExperience">+</button>
@@ -96,9 +134,4 @@
     <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
     <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
 </body>
-<script>
-    document.getElementById("HomePage").addEventListener("click", () => {
-        location.href = "/"
-    })
-</script>
 </html>

@@ -12,9 +12,32 @@
 
 <body>
     <div class="stickyElement">
-        <button class="button" id="HomePage"> Home
-            <img class="buttonImage" src="{{url_for('static', filename='images/Home.svg')}}">
-        </button>
+        <div class="navbarPanel">
+            <button class="navButton" id="ProfilePage">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+                Profiles
+            </button>
+            <button class="navButton" id="HomePage">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/Home.svg')}}">
+                Home
+            </button>
+            <button class="navButton" id="ResumePage">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/Resumes.svg')}}">
+                Resumes
+            </button>
+        </div>
+        <script>
+            document.getElementById("ProfilePage").classList.add("navbarActive")
+            document.getElementById("ProfilePage").addEventListener("click", ()=>{
+                location.href = "/profiles"
+            })
+            document.getElementById("ResumePage").addEventListener("click", ()=>{
+                location.href = "/resumes"
+            })
+            document.getElementById("HomePage").addEventListener("click", () => {
+                location.href = "/"
+            })
+        </script>
     </div>
     <div class="sectionHeader">Created Profiles</div>
     <div class="subTitle">Add new or edit profiles here</div>
@@ -36,10 +59,6 @@
     </div>
 </body>
 <script>
-    document.getElementById("HomePage").addEventListener("click", () => {
-        location.href = "/"
-    })
-
     document.getElementById("CreateNewResume").addEventListener("click", ()=>{
         location.href = "/profile"
     })
