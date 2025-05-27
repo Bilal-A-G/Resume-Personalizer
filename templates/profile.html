@@ -40,22 +40,13 @@
     <div class="mainText">Profile</div>
     <div class="subTitle">Provide some information about yourself</div>
     <form id="profileForm">
-        <div class="profileRow">
-            <div class="profileSubHeading"><label>Contact</label></div>
-            <div class="profilePanel">
-                <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="name">Full Name</label>
-                    <input class="profileTextField" type="text" name="name" id="name" size="50" required placeholder="Full Name"></input>
-                </div>
-                <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="email">Email</label>
-                    <input class="profileTextField" type="text" name="email" id="email" size="50" rows="1" required placeholder="Email"></input>
-                </div>
-                <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="website">Website</label>
-                    <input class="profileTextField" type="text" name="website" id="website" size="50" rows="1" placeholder="Website"></input>
-                </div>
-            </div>
+        <div class="profileRow rightAlign">
+            <button class="smallerButton small" type="button">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/UpArrow.svg')}}">
+            </button>
+            <button class="smallerButton small medMarginHoriz" type="button">
+                <img class="navButtonImage" src="{{url_for('static', filename='images/DownArrow.svg')}}">
+            </button>
         </div>
         <div class="profileRow">
             <div class="profileSubHeading">Header</div>
