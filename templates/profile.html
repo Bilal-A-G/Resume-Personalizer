@@ -40,7 +40,11 @@
     <div class="mainText">Profile</div>
     <div class="subTitle">Provide some information about yourself</div>
     <form id="profileForm">
-        <div class="profileRow rightAlign">
+        <div class="profileRow">
+            <div class="profileCollapsed">
+                <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+                <div class="centeredText">Personal Information</div>
+            </div>
             <button class="smallerButton small" type="button">
                 <img class="navButtonImage" src="{{url_for('static', filename='images/UpArrow.svg')}}">
             </button>

@@ -260,6 +260,26 @@ body{
     padding-right: 10px;
 }
 
+.profileCollapsed{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 35px;
+    height: 100%;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.centeredText{
+    margin-top: 10px;
+    align-items: center;
+}
+
+.largeImage{
+    width: 45px;
+    height: 45px;
+}
+
 .small{
     width: 40px;
     height: 40px;
@@ -433,6 +453,7 @@ body{
     gap: 20px;
     margin-top: 20px;
     padding-bottom: 20px;
+    align-items: center;
 }
 
 .profileFieldLabel{
