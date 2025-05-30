@@ -38,19 +38,28 @@
         </script>
     </div>
     <div class="mainText">Profile</div>
-    <div class="subTitle">Provide some information about yourself</div>
     <form id="profileForm">
+        <div class="centerAlignedRow">
+            <div class="profileFieldLabelCentered">Profile Name</div>
+            <input class="profileTextField" type="text" id="profileName">
+        </div>
         <div class="profileRow">
-            <div class="profileCollapsed">
-                <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
-                <div class="centeredText">Personal Information</div>
+            Header
+            <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+        </div>
+        <div class="profilePanel">
+            <div class="profileFieldGroup">
+                <label class="profileFieldLabel" for="name">Full Name</label>
+                <input class="profileTextField" type="text" id="name">
             </div>
-            <button class="smallerButton small" type="button">
-                <img class="navButtonImage" src="{{url_for('static', filename='images/UpArrow.svg')}}">
-            </button>
-            <button class="smallerButton small medMarginHoriz" type="button">
-                <img class="navButtonImage" src="{{url_for('static', filename='images/DownArrow.svg')}}">
-            </button>
+            <div class="profileFieldGroup">
+                <label class="profileFieldLabel" for="email">Email</label>
+                <input class="profileTextField" type="text" id="email">
+            </div>
+            <div class="profileFieldGroup">
+                <label class="profileFieldLabel" for="website">Website</label>
+                <input class="profileTextField" type="text" id="website">
+            </div>
         </div>
         <div class="profileRow">
             <div class="profileSubHeading">Header</div>
