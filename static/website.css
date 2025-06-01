@@ -296,10 +296,16 @@ body{
     
     transition: 0.15s;
     margin-top: 15px;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: black;
 }
 
 .stickyElement{
@@ -386,7 +392,6 @@ body{
 
 .smallerButton:hover{
     background-color: #EAE7E7;
-    padding-bottom: 12px;
 }
 
 .smallerButton:active{
@@ -403,14 +408,6 @@ body{
     background-color: white;
     padding-bottom: 8px;
     scale: 1.1;
-}
-
-.line{
-    height: 1px;
-    background-color: black;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .subHeading{
@@ -506,49 +503,58 @@ body{
 .rowAlignCentered{
     display: flex;
     flex-direction: row;
-    height: 25px;
-    width: 400px;
+    width: 100%;
     justify-content: center;
-    margin-left: 9px;
 }
 
 .profileDropdown{
-    width: 400px;
-    overflow-y: visible;
-    overflow-x: hidden;
-    scrollbar-gutter: stable;
-    height: 100px;
-    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 110px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left: 13px;
-    padding-right: 30px;
 }
 
 .profileTextField{
+    box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
     padding: 5px;
     width: 400px;
-    height: 20px;
+    height: 30px;
     font-size: 15px;
     font-weight: 400;
+    flex-shrink: 0;
     border: none;
     border-radius: 3px;
 }
 
 .profilePanel{
-    margin-top: 10px;
-    margin-right: auto;
-    display: grid;
-    width: 400px;
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
     box-sizing: border-box;
     padding-left: 60px;
     padding-right: 60px;
     flex-direction: row;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 20px;
+    width: 100%;
+    gap: 30px;
+    height: fit-content;
+}
+
+.grid{
+    display: grid;
+    row-gap: 10px;
+    column-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.doubleWide{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 .subHeadingLight{

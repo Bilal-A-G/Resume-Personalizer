@@ -48,34 +48,32 @@
             <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
         </div>
         <div class="profilePanel">
-            <div class="profileFieldGroup">
-                <label class="profileFieldLabel" for="name">Full Name</label>
-                <input class="profileTextField" type="text" id="name">
+            <div class="grid">
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="name">Full Name</label>
+                    <input class="profileTextField" type="text" id="name">
+                </div>
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="email">Email</label>
+                    <input class="profileTextField" type="text" id="email">
+                </div>
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel" for="website">Website</label>
+                    <input class="profileTextField" type="text" id="website">
+                </div>
             </div>
             <div class="profileFieldGroup">
-                <label class="profileFieldLabel" for="email">Email</label>
-                <input class="profileTextField" type="text" id="email">
-            </div>
-            <div class="profileFieldGroup">
-                <label class="profileFieldLabel" for="website">Website</label>
-                <input class="profileTextField" type="text" id="website">
-            </div>
-        </div>
-        <div class="profileRow">
-            <div class="profileSubHeading">Header</div>
-            <div class="profilePanel">
-                <div class="largerProfileFieldGroup">
-                    <div class="rowAlignCentered">
-                        <div class="profileFieldLabel">Titles</div>
-                    </div>
-                    <div class="profileDropdown" id="titlesDropdown"></div>
-                    <div class="rowAlignCentered">
-                        <button class="smallerButton" type="button" id="AddPersonalTitle">+</button>
-                        <button class="smallerButton" type="button" id="RemovePersonalTitle">-</button>
-                    </div>
+                <div class="rowAlignCentered">
+                    <div class="profileFieldLabel">Job Titles</div>
+                </div>
+                <div class="profileDropdown" id="titlesDropdown"></div>
+                <div class="line"></div>
+                <div class="rowAlignCentered">
+                    <button class="smallerButton" type="button" id="AddPersonalTitle">Add New <div>+</div></button>
                 </div>
             </div>
         </div>
+
         <div class="profileRow">
             <div class="profileSubHeading">Education</div>
             <div class="profilePanel">
