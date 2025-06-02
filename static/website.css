@@ -517,6 +517,12 @@ body{
     gap: 10px;
 }
 
+.profileRemoveField{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .profileTextField{
     box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
@@ -541,6 +547,28 @@ body{
     width: 100%;
     gap: 30px;
     height: fit-content;
+}
+
+.removeButton{
+    background-color: white;
+    width: 30px;
+    height: 100%;
+    border-top: black;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 2px;
+    font-size: 20px;
+    font-family: "Josefin Sans", sans-serif;
+    margin-right: 5px;
+}
+
+.removeButton:hover{
+    background-color: #EAE7E7;
+}
+
+.removeButton:active{
+    background-color: white;
+    scale: 1.05;
 }
 
 .grid{
