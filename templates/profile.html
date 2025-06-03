@@ -48,50 +48,88 @@
             <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
         </div>
         <div class="profilePanel">
-            <div class="grid">
-                <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="name">Full Name</label>
-                    <input class="profileTextField" type="text" id="name">
+            <div class="flexHorizontal medGap">
+                <div class="grid">
+                    <div class="profileFieldGroup">
+                        <label class="profileFieldLabel medMarginBottom" for="name">Full Name</label>
+                        <input class="profileTextField" type="text" id="name">
+                    </div>
+                    <div class="profileFieldGroup">
+                        <label class="profileFieldLabel medMarginBottom" for="email">Email</label>
+                        <input class="profileTextField" type="text" id="email">
+                    </div>
+                    <div class="profileFieldGroup">
+                        <label class="profileFieldLabel medMarginBottom" for="website">Website</label>
+                        <input class="profileTextField" type="text" id="website">
+                    </div>
                 </div>
                 <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="email">Email</label>
-                    <input class="profileTextField" type="text" id="email">
-                </div>
-                <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="website">Website</label>
-                    <input class="profileTextField" type="text" id="website">
-                </div>
-            </div>
-            <div class="profileFieldGroup">
-                <div class="rowAlignCentered">
-                    <div class="profileFieldLabel">Job Titles</div>
-                </div>
-                <div class="profileDropdown" id="titlesDropdown"></div>
-                <div class="line"></div>
-                <div class="rowAlignCentered">
-                    <button class="smallerButton" type="button" id="AddPersonalTitle">Add New <div>+</div></button>
+                    <div class="rowAlignCentered">
+                        <div class="profileFieldLabel medMarginBottom">Job Titles</div>
+                    </div>
+                    <div class="profileDropdown" id="titlesDropdown"></div>
+                    <div class="line"></div>
+                    <div class="rowAlignCentered">
+                        <button class="smallerButton" type="button" id="AddPersonalTitle">Add New <div>+</div></button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="profileRow">
-            <div class="profileSubHeading">Education</div>
-            <div class="profilePanel">
+            Education
+            <img class="largeImage" src="{{url_for('static', filename='images/Education.svg')}}">
+        </div>
+        <div class="profilePanel">
+            <div class="flexHorizontal medGap">
                 <div class="profileFieldGroup">
-                    <label class="profileFieldLabel" for="educationAlias">Alias</label>
-                    <input class="profileTextField" type="text" name="educationAlias" id="educationAlias" size="50" rows="1" required placeholder="Alias"></input>
+                    <label class="profileFieldLabel medMarginBottom" for="institutionName">Institution Name</label>
+                    <input class="profileTextField" type="text" id="institutionName">
                 </div>
-                <div class="largerProfileFieldGroup">
-                    <div class="rowAlignCentered">
-                        <div class="profileFieldLabel">Education</div>
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel medMarginBottom" for="degree">Degree</label>
+                    <input class="profileTextField" type="text" id="degree">
+                </div>
+                <div class="profileFieldGroup">
+                    <label class="profileFieldLabel medMarginBottom" for="institutionLocation">Location</label>
+                    <input class="profileTextField" type="text" id="institutionLocation">
+                </div>
+            </div>
+            <div class="flexHorizontal medGap">
+                <div class="flexVertical medGap">
+                    <div class="profileFieldGroup">
+                        <label class="profileFieldLabel medMarginBottom" for="startDate">Start Date</label>
+                        <input class="profileTextField" type="text" id="startDate">
                     </div>
-                    <div id="educationDropdown"></div>
+                    <div class="profileFieldGroup smGap">
+                        <div class="flexVertical">
+                            <label class="profileFieldLabel medMarginBottom" for="endDate">End Date</label>
+                            <input class="profileTextField" type="text" id="endDate">
+                        </div>
+                        <div class="flexHorizontal smGap">
+                            <input class="profileCheckboxField" type="checkbox" id="present">
+                            <label class="profileFieldLabel textCenter" for="present">Present</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="profileFieldGroup">
                     <div class="rowAlignCentered">
-                        <button class="smallerButton" type="button" id="AddEducation">+</button>
-                        <button class="smallerButton" type="button" id="RemoveEducation">-</button>
+                        <div class="profileFieldLabel">Descriptions</div>
+                    </div>
+                    <div class="profileDropdown" id="descriptionsDropdown"></div>
+                    <div class="line"></div>
+                    <div class="rowAlignCentered">
+                        <button class="smallerButton" type="button" id="AddDescription">Add New <div>+</div></button>
                     </div>
                 </div>
             </div>
+            <!-- <div class="largerProfileFieldGroup">
+                <div id="educationDropdown"></div>
+                <div class="rowAlignCentered">
+                    <button class="smallerButton" type="button" id="AddEducation">+</button>
+                    <button class="smallerButton" type="button" id="RemoveEducation">-</button>
+                </div>
+            </div> -->
         </div>
         <div class="subHeading"><label>Experience</label></div>
         <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>

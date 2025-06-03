@@ -306,6 +306,7 @@ body{
     width: 100%;
     height: 2px;
     background-color: black;
+    min-width: 300px;
 }
 
 .stickyElement{
@@ -462,12 +463,16 @@ body{
     flex-direction: row;
 }
 
+.medMarginBottom{
+    margin-bottom: 10px;
+}
+
 .profileFieldLabel{
     font-family: "Josefin Sans", sans-serif;
     font-size: 15px;
     align-self: flex-start;
-    margin-bottom: 10px;
     font-weight: 500;
+    height: 100%;
 }
 
 .profileFieldLabelCentered{
@@ -536,16 +541,47 @@ body{
     border-radius: 3px;
 }
 
-.profilePanel{
+.profileCheckboxField{
+    font-family: "Josefin Sans", sans-serif;
+    justify-items: start;
+    width: fit-content;
+    width: 19px;
+    height: 19px;
+    margin: 0px;
+}
+
+.flexHorizontal{
     display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.smGap{
+    gap: 10px
+}
+
+.medGap{
+    gap: 30px;
+}
+
+.flexVertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.textCenter{
+    display: flex;
+    align-items: center;
+}
+
+.profilePanel{
     margin-top: 40px;
     margin-bottom: 40px;
     box-sizing: border-box;
     padding-left: 60px;
     padding-right: 60px;
-    flex-direction: row;
     width: 100%;
-    gap: 30px;
     height: fit-content;
 }
 

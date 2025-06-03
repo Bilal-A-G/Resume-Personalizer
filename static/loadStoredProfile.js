@@ -54,7 +54,6 @@ if (profileJson != "" && profileJson != null){
     SetDomElementsByName("AddPersonalTitle", "personalTitle", obj.personalTitles)
 
     const education = obj.education.data
-    document.getElementById("educationAlias").value = obj.education.alias
     SetDomElementsBySection(education, "AddEducation",
         ["institutionName", "degree", "institutionLocation", "enrollmentDate"],
         ["institutionName", "degree", "institutionLocation", "enrollment"],
