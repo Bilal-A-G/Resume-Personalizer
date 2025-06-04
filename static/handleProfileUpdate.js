@@ -70,15 +70,10 @@ function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, requi
     parent.appendChild(endDateList)
 }
 
-function CreateExpandableSection(addButtonID, addButtonText, removeButtonID, removeButtonText, 
-    dropdownID, expandedFieldID, expandedFieldSize, expandedFieldPlaceholder, parent){
+function CreateExpandableSection(addButtonID, addButtonText, dropdownID, expandedFieldID, expandedFieldSize, expandedFieldPlaceholder, parent){
     const addButton = document.createElement("button")
     addButton.id = addButtonID
     addButton.textContent = addButtonText
-
-    const removeButton = document.createElement("button")
-    removeButton.id = removeButtonID
-    removeButton.textContent = removeButtonText
 
     const listContents = document.createElement("div")
     const dropdownDiv = document.createElement("div")
@@ -86,17 +81,11 @@ function CreateExpandableSection(addButtonID, addButtonText, removeButtonID, rem
     listContents.appendChild(dropdownDiv)
 
     parent.appendChild(addButton)
-    parent.appendChild(removeButton)
     parent.appendChild(listContents)
 
     addButton.onclick = (e) => {
         e.preventDefault()
         CreateFormTextField(expandedFieldID, expandedFieldID, expandedFieldSize, true, expandedFieldPlaceholder, dropdownDiv)
-    }
-
-    removeButton.onclick = (e) => {
-        e.preventDefault()
-        RemoveLastChildInDOM(dropdownID)
     }
 }
 
@@ -109,27 +98,22 @@ function StartNewSection(parent){
     return listChild
 }
 
-educationIndex = 0
-document.getElementById("AddEducation").addEventListener("click", () => {
-    educationIndex++
-    const educationCpy = educationIndex
+// educationIndex = 0
+// document.getElementById("AddEducation").addEventListener("click", () => {
+//     educationIndex++
+//     const educationCpy = educationIndex
 
-    const subSectionParent = StartNewSection(document.getElementById("educationDropdown"))
-    CreateFormTextField("institutionName", "institutionID", 30, true, "Institution name", subSectionParent)
-    CreateFormTextField("degree", "degree", 50, true, "Degree", subSectionParent)
-    CreateFormTextField("institutionLocation", "institutionLocation", 50, true, "Location", subSectionParent)
-    CreateFormDateRangeField("enrollmentDate", "enrollmentDate", 50, true, "month",
-        "graduationDate", "graduationDate", `presentEducation${educationCpy}`, subSectionParent)
-    CreateExpandableSection(`
-                AddEducationDescription${educationCpy}`, "+",
-        `RemoveEducationDescription${educationCpy}`, "-",
-        `educationDescriptionDropdown${educationCpy}`,
-        `educationDescription${educationCpy}`, 50, "Description", subSectionParent)
-})
-document.getElementById("RemoveEducation").addEventListener("click", () => {
-    educationIndex--
-    RemoveLastChildInDOM("educationDropdown")
-})
+//     const subSectionParent = StartNewSection(document.getElementById("educationDropdown"))
+//     CreateFormTextField("institutionName", "institutionID", 30, true, "Institution name", subSectionParent)
+//     CreateFormTextField("degree", "degree", 50, true, "Degree", subSectionParent)
+//     CreateFormTextField("institutionLocation", "institutionLocation", 50, true, "Location", subSectionParent)
+//     CreateFormDateRangeField("enrollmentDate", "enrollmentDate", 50, true, "month",
+//         "graduationDate", "graduationDate", `presentEducation${educationCpy}`, subSectionParent)
+//     CreateExpandableSection(`
+//                 AddEducationDescription${educationCpy}`, "+",
+//         `educationDescriptionDropdown${educationCpy}`,
+//         `educationDescription${educationCpy}`, 50, "Description", subSectionParent)
+// })
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
     CreateFormTextField("personalTitle", "personalTitle", "80", true, "Title", document.getElementById("titlesDropdown"))

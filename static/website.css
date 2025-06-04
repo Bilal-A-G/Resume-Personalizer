@@ -214,6 +214,15 @@ body{
     padding-right: 10px;
 }
 
+.largeFont{
+    font-size: 20px;
+}
+
+.extraLargeFont{
+    font-size: 35px;
+    min-width: 45px;
+}
+
 .navButton{
     background-color: rgba(0, 0, 0, 0.0);
     font-weight: 400;
@@ -282,12 +291,14 @@ body{
     margin-right: 80px;
 }
 
-.smallerButton{
+.greyBackground{
     background-color: #d9d9d9;
+}
+
+.smallerButton{
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    font-size: small;
     align-items: center;
     text-align: center;
     border-radius: 10px;
@@ -302,11 +313,18 @@ body{
     padding-right: 10px;
 }
 
+.extraWide{
+    min-width: 400px;
+}
+
+.wide{
+    min-width: 300px;
+}
+
 .line{
     width: 100%;
     height: 2px;
     background-color: black;
-    min-width: 300px;
 }
 
 .stickyElement{
@@ -516,7 +534,7 @@ body{
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: auto;
-    height: 110px;
+    height: 125px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -532,7 +550,20 @@ body{
     box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
     padding: 5px;
-    width: 400px;
+    width: 370px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: 400;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 3px;
+}
+
+.profileDateField{
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 5px;
+    width: 240px;
     height: 30px;
     font-size: 15px;
     font-weight: 400;
@@ -575,13 +606,43 @@ body{
     align-items: center;
 }
 
-.profilePanel{
+.medTopSpacing{
     margin-top: 40px;
+}
+
+.medBottomSpacing{
     margin-bottom: 40px;
-    box-sizing: border-box;
+}
+
+.largeLeftPadding{
     padding-left: 60px;
+}
+
+.largeRightPadding{
     padding-right: 60px;
+}
+
+.medRightPadding{
+    padding-right: 30px;
+}
+
+.profilePanel{
+    box-sizing: border-box;
     width: 100%;
+    height: fit-content;
+}
+
+.smallLeftSpacing{
+    margin-left: 20px;
+}
+
+.smallRightSpacing{
+    margin-right: 20px;
+}
+
+.offWhiteBackground{
+    display: flex;
+    background-color: #e0e0e0;
     height: fit-content;
 }
 

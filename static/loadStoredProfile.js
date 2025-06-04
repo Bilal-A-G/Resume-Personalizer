@@ -53,13 +53,13 @@ if (profileJson != "" && profileJson != null){
 
     SetDomElementsByName("AddPersonalTitle", "personalTitle", obj.personalTitles)
 
-    const education = obj.education.data
-    SetDomElementsBySection(education, "AddEducation",
-        ["institutionName", "degree", "institutionLocation", "enrollmentDate"],
-        ["institutionName", "degree", "institutionLocation", "enrollment"],
-        ["AddEducationDescription"], ["educationDescriptions"], ["descriptions"],
-        "presentEducation", "graduationDate", "present", "graduation"
-    )
+    // const education = obj.education.data
+    // SetDomElementsBySection(education, "AddEducation",
+    //     ["institutionName", "degree", "institutionLocation", "enrollmentDate"],
+    //     ["institutionName", "degree", "institutionLocation", "enrollment"],
+    //     ["AddEducationDescription"], ["educationDescriptions"], ["descriptions"],
+    //     "presentEducation", "graduationDate", "present", "graduation"
+    // )
 
     const experience = obj.workExperience.data
     document.getElementById("experienceAlias").value = obj.workExperience.alias
