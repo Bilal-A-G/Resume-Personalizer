@@ -75,7 +75,6 @@
                 </div>
             </div>
         </div>
-
         <div class="profileRow">
             Education
             <img class="largeImage" src="{{url_for('static', filename='images/Education.svg')}}">
@@ -139,7 +138,10 @@
         <div class="rowAlignCentered">
             <button class="button largeFont" type="button" id="AddEducation">Add New <div>+</div></button>
         </div>
-        <div class="subHeading"><label>Experience</label></div>
+        <div class="profileRow">
+            Experience
+            <img class="largeImage" src="{{url_for('static', filename='images/WorkExperience.svg')}}">
+        </div>
         <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddExperience">+</button>
         <button type="button" id="RemoveExperience">-</button>
@@ -147,16 +149,20 @@
             <div id="experienceDropdown" \>
         </ul>
 
-        <div class="subHeading"><label>Projects</label></div>
-        <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
+        <div class="profileRow">
+            Projects
+            <img class="largeImage" src="{{url_for('static', filename='images/Projects.svg')}}">
+        </div>        <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddProject">+</button>
         <button type="button" id="RemoveProject">-</button>
         <ul>
             <div id="projectsDropdown" \>
         </ul>
 
-        <div class="subHeading"><label>Skills</label></div>
-        <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
+        <div class="profileRow">
+            Skills & Accomplishments
+            <img class="largeImage" src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}">
+        </div>           <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddSkill">+</button>
         <button type="button" id="RemoveSkill">-</button>
         <button type="button" id="AddCategory">++</button>
@@ -166,7 +172,6 @@
                 <div id="skillsDropdown" \>
         </ul>
 
-        <div class="subHeading"><label>Accomplishments</label></div>
         <input type="text" name="accomplishmentsAlias" id="accomplishmentsAlias" size="15" placeholder="Alias"></input>
         <br>
         <button type="button" id="AddAccomplishment">+</button>
