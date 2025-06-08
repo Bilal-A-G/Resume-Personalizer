@@ -98,22 +98,95 @@ function StartNewSection(parent){
     return listChild
 }
 
-// educationIndex = 0
-// document.getElementById("AddEducation").addEventListener("click", () => {
-//     educationIndex++
-//     const educationCpy = educationIndex
+function CreateTextFieldGroup(parent, id, labelText){
+    const groupParent = document.createElement("div")
+    groupParent.className = "profileFieldGroup"
+    const label = document.createElement("label")
+    label.className = "profileFieldLabel medMarginBottom"
+    label.for = id
+    label.textContent = labelText
 
-//     const subSectionParent = StartNewSection(document.getElementById("educationDropdown"))
-//     CreateFormTextField("institutionName", "institutionID", 30, true, "Institution name", subSectionParent)
-//     CreateFormTextField("degree", "degree", 50, true, "Degree", subSectionParent)
-//     CreateFormTextField("institutionLocation", "institutionLocation", 50, true, "Location", subSectionParent)
-//     CreateFormDateRangeField("enrollmentDate", "enrollmentDate", 50, true, "month",
-//         "graduationDate", "graduationDate", `presentEducation${educationCpy}`, subSectionParent)
-//     CreateExpandableSection(`
-//                 AddEducationDescription${educationCpy}`, "+",
-//         `educationDescriptionDropdown${educationCpy}`,
-//         `educationDescription${educationCpy}`, 50, "Description", subSectionParent)
-// })
+    const inputField = document.createElement("input")
+    inputField.className = "profileTextField"
+    inputField.type = "text"
+    inputField.id = id
+
+    groupParent.appendChild(label)
+    groupParent.appendChild(inputField)
+    parent.appendChild(groupParent)
+}
+
+function CreateNewLargeListEntry(parent, index){
+    const offWhitePanel = document.createElement("div")
+    offWhitePanel.className = "offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing"
+    const insetPanel = document.createElement("div")
+    insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
+    offWhitePanel.appendChild(insetPanel)
+
+    const removeButtonRow = document.createElement("div")
+    removeButtonRow.className = "flexHorizontal rightAlign"
+    const removeButton = document.createElement("button")
+    removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
+    removeButton.type = "button"
+    removeButton.id = `RemoveEducation ${index}`
+    removeButton.textContent = "-"
+
+    removeButton.addEventListener("click", (e)=>{
+        e.preventDefault()
+        parent.removeChild(offWhitePanel)
+    })
+    insetPanel.appendChild(removeButtonRow)
+    removeButtonRow.appendChild(removeButton)
+
+    const firstContentRow = document.createElement("div")
+    firstContentRow.className = "flexHorizontal medGap"
+
+    CreateTextFieldGroup(firstContentRow, "institutionName", "Institution Name")
+    CreateTextFieldGroup(firstContentRow, "degree", "Degree")
+    CreateTextFieldGroup(firstContentRow, "institutionLocation", "Location")
+
+    const secondContentRow = document.createElement("div")
+    secondContentRow.className = "flexHorizontal medGap"
+    const dateRangeColumn = document.createElement("div")
+    dateRangeColumn.className = "flexVertical medGap"
+
+    const startDateGroup = document.createElement("div")
+    startDateGroup.className = "profileFieldGroup"
+    const startDateLabel = document.createElement("label")
+    startDateLabel.className = "profileFieldLabel medMarginBottom"
+    startDateLabel.for = "startDate"
+    startDateLabel.textContent = "Start Date"
+    const startDateField = document.createElement("input")
+    startDateField.className = "profileDateField"
+    startDateField.type = "month"
+    startDateField.id = "startDate"
+    startDateGroup.appendChild(startDateLabel)
+    startDateGroup.appendChild(startDateField)
+    dateRangeColumn.appendChild(startDateGroup)
+
+    secondContentRow.appendChild(dateRangeColumn)
+    insetPanel.appendChild(firstContentRow)
+    insetPanel.appendChild(secondContentRow)
+    parent.appendChild(offWhitePanel)
+}
+
+educationIndex = 0
+document.getElementById("AddEducation").addEventListener("click", () => {
+    educationIndex++
+    const educationCpy = educationIndex
+
+    CreateNewLargeListEntry(document.getElementById("educationDropdown"))
+    // const subSectionParent = StartNewSection(document.getElementById("educationDropdown"))
+    // CreateFormTextField("institutionName", "institutionID", 30, true, "Institution name", subSectionParent)
+    // CreateFormTextField("degree", "degree", 50, true, "Degree", subSectionParent)
+    // CreateFormTextField("institutionLocation", "institutionLocation", 50, true, "Location", subSectionParent)
+    // CreateFormDateRangeField("enrollmentDate", "enrollmentDate", 50, true, "month",
+    //     "graduationDate", "graduationDate", `presentEducation${educationCpy}`, subSectionParent)
+    // CreateExpandableSection(`
+    //             AddEducationDescription${educationCpy}`, "+",
+    //     `educationDescriptionDropdown${educationCpy}`,
+    //     `educationDescription${educationCpy}`, 50, "Description", subSectionParent)
+})
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
     CreateFormTextField("personalTitle", "personalTitle", "80", true, "Title", document.getElementById("titlesDropdown"))

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
     <div class="stickyElement">
         <div class="navbarPanel">
@@ -26,10 +27,10 @@
             </button>
         </div>
         <script>
-            document.getElementById("ProfilePage").addEventListener("click", ()=>{
+            document.getElementById("ProfilePage").addEventListener("click", () => {
                 location.href = "/profiles"
             })
-            document.getElementById("ResumePage").addEventListener("click", ()=>{
+            document.getElementById("ResumePage").addEventListener("click", () => {
                 location.href = "/resumes"
             })
             document.getElementById("HomePage").addEventListener("click", () => {
@@ -70,7 +71,8 @@
                     <div class="profileDropdown" id="titlesDropdown"></div>
                     <div class="line wide"></div>
                     <div class="rowAlignCentered">
-                        <button class="smallerButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+</div></button>
+                        <button class="smallerButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+
+                            </div></button>
                     </div>
                 </div>
             </div>
@@ -79,60 +81,58 @@
             Education
             <img class="largeImage" src="{{url_for('static', filename='images/Education.svg')}}">
         </div>
-        <div class="offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing">
-            <div class="profilePanel largeLeftPadding medRightPadding">
-                <div class="flexHorizontal rightAlign">
-                    <button class="smallerButton extraLargeFont offWhiteBackground" type="button" id="RemoveEducation">-</button>
-                </div>
-                <div class="flexHorizontal medGap">
-                    <div class="profileFieldGroup">
-                        <label class="profileFieldLabel medMarginBottom" for="institutionName">Institution Name</label>
-                        <input class="profileTextField" type="text" id="institutionName">
+        <div id="educationDropdown">
+            <div class="offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing">
+                <div class="profilePanel largeLeftPadding medRightPadding">
+                    <div class="flexHorizontal rightAlign">
+                        <button class="smallerButton extraLargeFont offWhiteBackground" type="button"
+                            id="RemoveEducation">-</button>
                     </div>
-                    <div class="profileFieldGroup">
-                        <label class="profileFieldLabel medMarginBottom" for="degree">Degree</label>
-                        <input class="profileTextField" type="text" id="degree">
-                    </div>
-                    <div class="profileFieldGroup">
-                        <label class="profileFieldLabel medMarginBottom" for="institutionLocation">Location</label>
-                        <input class="profileTextField" type="text" id="institutionLocation">
-                    </div>
-                </div>
-                <div class="flexHorizontal medGap">
-                    <div class="flexVertical medGap">
+                    <div class="flexHorizontal medGap">
                         <div class="profileFieldGroup">
-                            <label class="profileFieldLabel medMarginBottom" for="startDate">Start Date</label>
-                            <input class="profileDateField" type="month" id="startDate">
+                            <label class="profileFieldLabel medMarginBottom" for="institutionName">Institution
+                                Name</label>
+                            <input class="profileTextField" type="text" id="institutionName">
                         </div>
-                        <div class="profileFieldGroup smGap">
-                            <div class="flexVertical">
-                                <label class="profileFieldLabel medMarginBottom" for="endDate">End Date</label>
-                                <input class="profileDateField" type="month" id="endDate">
-                            </div>
-                            <div class="flexHorizontal smGap">
-                                <input class="profileCheckboxField" type="checkbox" id="present">
-                                <label class="profileFieldLabel textCenter" for="present">Present</label>
-                            </div>
+                        <div class="profileFieldGroup">
+                            <label class="profileFieldLabel medMarginBottom" for="degree">Degree</label>
+                            <input class="profileTextField" type="text" id="degree">
+                        </div>
+                        <div class="profileFieldGroup">
+                            <label class="profileFieldLabel medMarginBottom" for="institutionLocation">Location</label>
+                            <input class="profileTextField" type="text" id="institutionLocation">
                         </div>
                     </div>
-                    <div class="profileFieldGroup">
-                        <div class="rowAlignCentered">
-                            <div class="profileFieldLabel">Descriptions</div>
+                    <div class="flexHorizontal medGap">
+                        <div class="flexVertical medGap">
+                            <div class="profileFieldGroup">
+                                <label class="profileFieldLabel medMarginBottom" for="startDate">Start Date</label>
+                                <input class="profileDateField" type="month" id="startDate">
+                            </div>
+                            <div class="profileFieldGroup smGap">
+                                <div class="flexVertical">
+                                    <label class="profileFieldLabel medMarginBottom" for="endDate">End Date</label>
+                                    <input class="profileDateField" type="month" id="endDate">
+                                </div>
+                                <div class="flexHorizontal smGap">
+                                    <input class="profileCheckboxField" type="checkbox" id="present">
+                                    <label class="profileFieldLabel textCenter" for="present">Present</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="profileDropdown" id="descriptionsDropdown"></div>
-                        <div class="line extraWide"></div>
-                        <div class="rowAlignCentered">
-                            <button class="smallerButton offWhiteBackground" type="button" id="AddDescription">Add New <div>+</div></button>
+                        <div class="profileFieldGroup">
+                            <div class="rowAlignCentered">
+                                <div class="profileFieldLabel">Descriptions</div>
+                            </div>
+                            <div class="profileDropdown" id="descriptionsDropdown"></div>
+                            <div class="line extraWide"></div>
+                            <div class="rowAlignCentered">
+                                <button class="smallerButton offWhiteBackground" type="button" id="AddDescription">Add
+                                    New <div>+</div></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="largerProfileFieldGroup">
-                    <div id="educationDropdown"></div>
-                    <div class="rowAlignCentered">
-                        <button class="smallerButton" type="button" id="AddEducation">+</button>
-                        <button class="smallerButton" type="button" id="RemoveEducation">-</button>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="rowAlignCentered">
@@ -152,7 +152,7 @@
         <div class="profileRow">
             Projects
             <img class="largeImage" src="{{url_for('static', filename='images/Projects.svg')}}">
-        </div>        <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
+        </div> <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddProject">+</button>
         <button type="button" id="RemoveProject">-</button>
         <ul>
@@ -162,7 +162,7 @@
         <div class="profileRow">
             Skills & Accomplishments
             <img class="largeImage" src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}">
-        </div>           <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
+        </div> <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
         <button type="button" id="AddSkill">+</button>
         <button type="button" id="RemoveSkill">-</button>
         <button type="button" id="AddCategory">++</button>
@@ -187,4 +187,5 @@
     <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
     <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
 </body>
+
 </html>
