@@ -528,6 +528,7 @@ body{
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    min-height: 25px;
 }
 
 .profileDropdown{
@@ -550,7 +551,7 @@ body{
     box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
     padding: 5px;
-    width: 370px;
+    min-width: 370px;
     height: 30px;
     font-size: 15px;
     font-weight: 400;
@@ -563,7 +564,7 @@ body{
     box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
     padding: 5px;
-    width: 240px;
+    width: 320px;
     height: 30px;
     font-size: 15px;
     font-weight: 400;
@@ -594,6 +595,10 @@ body{
 
 .medGap{
     gap: 30px;
+}
+
+.lgGap{
+    gap: 80px;
 }
 
 .flexVertical{

@@ -81,61 +81,8 @@
             Education
             <img class="largeImage" src="{{url_for('static', filename='images/Education.svg')}}">
         </div>
-        <div id="educationDropdown">
-            <div class="offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing">
-                <div class="profilePanel largeLeftPadding medRightPadding">
-                    <div class="flexHorizontal rightAlign">
-                        <button class="smallerButton extraLargeFont offWhiteBackground" type="button"
-                            id="RemoveEducation">-</button>
-                    </div>
-                    <div class="flexHorizontal medGap">
-                        <div class="profileFieldGroup">
-                            <label class="profileFieldLabel medMarginBottom" for="institutionName">Institution
-                                Name</label>
-                            <input class="profileTextField" type="text" id="institutionName">
-                        </div>
-                        <div class="profileFieldGroup">
-                            <label class="profileFieldLabel medMarginBottom" for="degree">Degree</label>
-                            <input class="profileTextField" type="text" id="degree">
-                        </div>
-                        <div class="profileFieldGroup">
-                            <label class="profileFieldLabel medMarginBottom" for="institutionLocation">Location</label>
-                            <input class="profileTextField" type="text" id="institutionLocation">
-                        </div>
-                    </div>
-                    <div class="flexHorizontal medGap">
-                        <div class="flexVertical medGap">
-                            <div class="profileFieldGroup">
-                                <label class="profileFieldLabel medMarginBottom" for="startDate">Start Date</label>
-                                <input class="profileDateField" type="month" id="startDate">
-                            </div>
-                            <div class="profileFieldGroup smGap">
-                                <div class="flexVertical">
-                                    <label class="profileFieldLabel medMarginBottom" for="endDate">End Date</label>
-                                    <input class="profileDateField" type="month" id="endDate">
-                                </div>
-                                <div class="flexHorizontal smGap">
-                                    <input class="profileCheckboxField" type="checkbox" id="present">
-                                    <label class="profileFieldLabel textCenter" for="present">Present</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profileFieldGroup">
-                            <div class="rowAlignCentered">
-                                <div class="profileFieldLabel">Descriptions</div>
-                            </div>
-                            <div class="profileDropdown" id="descriptionsDropdown"></div>
-                            <div class="line extraWide"></div>
-                            <div class="rowAlignCentered">
-                                <button class="smallerButton offWhiteBackground" type="button" id="AddDescription">Add
-                                    New <div>+</div></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rowAlignCentered">
+        <div id="educationDropdown"></div>
+        <div class="rowAlignCentered medTopSpacing">
             <button class="button largeFont" type="button" id="AddEducation">Add New <div>+</div></button>
         </div>
         <div class="profileRow">

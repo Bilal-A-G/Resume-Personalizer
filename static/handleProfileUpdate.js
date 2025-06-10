@@ -146,7 +146,7 @@ function CreateNewLargeListEntry(parent, index){
     CreateTextFieldGroup(firstContentRow, "institutionLocation", "Location")
 
     const secondContentRow = document.createElement("div")
-    secondContentRow.className = "flexHorizontal medGap"
+    secondContentRow.className = "flexHorizontal lgGap"
     const dateRangeColumn = document.createElement("div")
     dateRangeColumn.className = "flexVertical medGap"
 
@@ -164,7 +164,81 @@ function CreateNewLargeListEntry(parent, index){
     startDateGroup.appendChild(startDateField)
     dateRangeColumn.appendChild(startDateGroup)
 
+    const endDateGroup = document.createElement("div")
+    endDateGroup.className = "profileFieldGroup smGap"
+    const dateFieldGroup = document.createElement("div")
+    dateFieldGroup.className = "flexVertical"
+    const endDateLabel = document.createElement("label")
+    endDateLabel.textContent = "End Date"
+    endDateLabel.className = "profileFieldLabel medMarginBottom"
+    endDateLabel.for = "endDate"
+    const endDateInput = document.createElement("input")
+    endDateInput.className = "profileDateField"
+    endDateInput.type = "month"
+    endDateInput.id = "endDate"
+    const isPresentGroup = document.createElement("div")
+    isPresentGroup.className = "flexHorizontal smGap"
+    const presentCheckbox = document.createElement("input")
+    presentCheckbox.className = "profileCheckboxField"
+    presentCheckbox.type = "checkbox"
+    presentCheckbox.id = "present"
+    const presentLabel = document.createElement("label")
+    presentLabel.className = "profileFieldLabel textCenter"
+    presentLabel.for = "present"
+    presentLabel.textContent = "Present"
+    presentCheckbox.addEventListener("click", (e) => {
+        if(!presentCheckbox.checked){
+            endDateInput.disabled = false
+            return
+        }
+        endDateInput.disabled = true
+        endDateInput.value = "null"
+    })
+    endDateGroup.appendChild(dateFieldGroup)
+    endDateGroup.appendChild(isPresentGroup)
+    dateFieldGroup.appendChild(endDateLabel)
+    dateFieldGroup.appendChild(endDateInput)
+    isPresentGroup.appendChild(presentCheckbox)
+    isPresentGroup.appendChild(presentLabel)
+    dateRangeColumn.appendChild(endDateGroup)
+
+    const descriptionsGroup = document.createElement("div")
+    descriptionsGroup.className = "profileFieldGroup"
+    const labelGroup = document.createElement("div")
+    labelGroup.className = "rowAlignCentered"
+    const descriptionsLabel = document.createElement("div")
+    descriptionsLabel.textContent = "Descriptions"
+    descriptionsLabel.className = "profileFieldLabel"
+    labelGroup.appendChild(descriptionsLabel)
+    const dropdown = document.createElement("div")
+    dropdown.className = "profileDropdown"
+    dropdown.id = "descriptionsDropdown"
+    const line = document.createElement("div")
+    line.className = "line extraWide"
+    const addButtonRow = document.createElement("div")
+    addButtonRow.className = "rowAlignCentered"
+    const addButton = document.createElement("button")
+    addButton.className = "smallerButton offWhiteBackground"
+    addButton.textContent = "Add New"
+    addButton.type = "button"
+    addButton.id = "AddDescription"
+    const addSymbol = document.createElement("div")
+    addSymbol.textContent = "+"
+    addButton.appendChild(addSymbol)
+    addButtonRow.appendChild(addButton)
+
+    addButton.addEventListener("click", (e) => {
+        e.preventDefault()
+        CreateFormTextField("educationDescription", "educationDescription", "50", true, "Description", dropdown)
+    })
+
+    descriptionsGroup.appendChild(labelGroup)
+    descriptionsGroup.appendChild(dropdown)
+    descriptionsGroup.appendChild(line)
+    descriptionsGroup.appendChild(addButtonRow)
+
     secondContentRow.appendChild(dateRangeColumn)
+    secondContentRow.appendChild(descriptionsGroup)
     insetPanel.appendChild(firstContentRow)
     insetPanel.appendChild(secondContentRow)
     parent.appendChild(offWhitePanel)
@@ -189,7 +263,7 @@ document.getElementById("AddEducation").addEventListener("click", () => {
 })
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
-    CreateFormTextField("personalTitle", "personalTitle", "80", true, "Title", document.getElementById("titlesDropdown"))
+    CreateFormTextField("personalTitle", "personalTitle", "50", true, "Title", document.getElementById("titlesDropdown"))
 })
 
 experienceIndex = 0
