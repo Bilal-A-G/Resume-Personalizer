@@ -89,13 +89,10 @@
             Experience
             <img class="largeImage" src="{{url_for('static', filename='images/WorkExperience.svg')}}">
         </div>
-        <input type="text" name="experienceAlias" id="experienceAlias" size="15" placeholder="Alias"></input> <br>
-        <button type="button" id="AddExperience">+</button>
-        <button type="button" id="RemoveExperience">-</button>
-        <ul>
-            <div id="experienceDropdown" \>
-        </ul>
-
+        <div id="experienceDropdown"></div>
+        <div class="rowAlignCentered medTopSpacing">
+            <button class="button largeFont" type="button" id="AddExperience">Add New <div>+</div></button>
+        </div>
         <div class="profileRow">
             Projects
             <img class="largeImage" src="{{url_for('static', filename='images/Projects.svg')}}">

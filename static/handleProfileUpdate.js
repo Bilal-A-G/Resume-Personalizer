@@ -128,7 +128,7 @@ function CreateNewLargeListEntry(parent, index){
     const removeButton = document.createElement("button")
     removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
     removeButton.type = "button"
-    removeButton.id = `RemoveEducation ${index}`
+    removeButton.id = `RemoveEducation${index}`
     removeButton.textContent = "-"
 
     removeButton.addEventListener("click", (e)=>{
@@ -154,12 +154,12 @@ function CreateNewLargeListEntry(parent, index){
     startDateGroup.className = "profileFieldGroup"
     const startDateLabel = document.createElement("label")
     startDateLabel.className = "profileFieldLabel medMarginBottom"
-    startDateLabel.for = "startDate"
+    startDateLabel.for = "enrollmentDate"
     startDateLabel.textContent = "Start Date"
     const startDateField = document.createElement("input")
     startDateField.className = "profileDateField"
     startDateField.type = "month"
-    startDateField.id = "startDate"
+    startDateField.id = "enrollmentDate"
     startDateGroup.appendChild(startDateLabel)
     startDateGroup.appendChild(startDateField)
     dateRangeColumn.appendChild(startDateGroup)
@@ -171,20 +171,20 @@ function CreateNewLargeListEntry(parent, index){
     const endDateLabel = document.createElement("label")
     endDateLabel.textContent = "End Date"
     endDateLabel.className = "profileFieldLabel medMarginBottom"
-    endDateLabel.for = "endDate"
+    endDateLabel.for = "graduationDate"
     const endDateInput = document.createElement("input")
     endDateInput.className = "profileDateField"
     endDateInput.type = "month"
-    endDateInput.id = "endDate"
+    endDateInput.id = "graduationDate"
     const isPresentGroup = document.createElement("div")
     isPresentGroup.className = "flexHorizontal smGap"
     const presentCheckbox = document.createElement("input")
     presentCheckbox.className = "profileCheckboxField"
     presentCheckbox.type = "checkbox"
-    presentCheckbox.id = "present"
+    presentCheckbox.id = `presentEducation${index}`
     const presentLabel = document.createElement("label")
     presentLabel.className = "profileFieldLabel textCenter"
-    presentLabel.for = "present"
+    presentLabel.for = `presentEducation${index}`
     presentLabel.textContent = "Present"
     presentCheckbox.addEventListener("click", (e) => {
         if(!presentCheckbox.checked){
@@ -212,7 +212,7 @@ function CreateNewLargeListEntry(parent, index){
     labelGroup.appendChild(descriptionsLabel)
     const dropdown = document.createElement("div")
     dropdown.className = "profileDropdown"
-    dropdown.id = "descriptionsDropdown"
+    dropdown.id = `educationDescriptionDropdown${index}`
     const line = document.createElement("div")
     line.className = "line extraWide"
     const addButtonRow = document.createElement("div")
@@ -221,7 +221,7 @@ function CreateNewLargeListEntry(parent, index){
     addButton.className = "smallerButton offWhiteBackground"
     addButton.textContent = "Add New"
     addButton.type = "button"
-    addButton.id = "AddDescription"
+    addButton.id = `AddEducationDescription${index}`
     const addSymbol = document.createElement("div")
     addSymbol.textContent = "+"
     addButton.appendChild(addSymbol)
@@ -229,7 +229,7 @@ function CreateNewLargeListEntry(parent, index){
 
     addButton.addEventListener("click", (e) => {
         e.preventDefault()
-        CreateFormTextField("educationDescription", "educationDescription", "50", true, "Description", dropdown)
+        CreateFormTextField(`educationDescription${index}`, `educationDescription${index}`, "50", true, "Description", dropdown)
     })
 
     descriptionsGroup.appendChild(labelGroup)
@@ -248,18 +248,7 @@ educationIndex = 0
 document.getElementById("AddEducation").addEventListener("click", () => {
     educationIndex++
     const educationCpy = educationIndex
-
-    CreateNewLargeListEntry(document.getElementById("educationDropdown"))
-    // const subSectionParent = StartNewSection(document.getElementById("educationDropdown"))
-    // CreateFormTextField("institutionName", "institutionID", 30, true, "Institution name", subSectionParent)
-    // CreateFormTextField("degree", "degree", 50, true, "Degree", subSectionParent)
-    // CreateFormTextField("institutionLocation", "institutionLocation", 50, true, "Location", subSectionParent)
-    // CreateFormDateRangeField("enrollmentDate", "enrollmentDate", 50, true, "month",
-    //     "graduationDate", "graduationDate", `presentEducation${educationCpy}`, subSectionParent)
-    // CreateExpandableSection(`
-    //             AddEducationDescription${educationCpy}`, "+",
-    //     `educationDescriptionDropdown${educationCpy}`,
-    //     `educationDescription${educationCpy}`, 50, "Description", subSectionParent)
+    CreateNewLargeListEntry(document.getElementById("educationDropdown"), educationCpy)
 })
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
