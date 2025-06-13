@@ -244,6 +244,168 @@ function CreateNewLargeListEntry(parent, index){
     parent.appendChild(offWhitePanel)
 }
 
+function ExperienceSection(parent, index){
+    const offWhitePanel = document.createElement("div")
+    offWhitePanel.className = "offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing"
+    const insetPanel = document.createElement("div")
+    insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
+
+    const removeButtonRow = document.createElement("div")
+    removeButtonRow.className = "flexHorizontal rightAlign"
+    const removeButton = document.createElement("button")
+    removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
+    removeButton.type = "button"
+    removeButton.id = `RemoveEducation${index}`
+    removeButton.textContent = "-"
+
+    removeButton.addEventListener("click", (e)=>{
+        e.preventDefault()
+        parent.removeChild(offWhitePanel)
+    })
+    insetPanel.appendChild(removeButtonRow)
+    removeButtonRow.appendChild(removeButton)
+
+    const firstContentRow = document.createElement("div")
+    firstContentRow.className = "flexHorizontal lgGap"
+    const nameDateColumn = document.createElement("div")
+    nameDateColumn.className = "flexVertical medGap"
+    const tagsDescriptionsRow = document.createElement("div")
+    tagsDescriptionsRow.className = "flexHorizontal medGap alignItemsEnd"
+
+    CreateTextFieldGroup(nameDateColumn, "companyName", "Company Name")
+
+    const startDateGroup = document.createElement("div")
+    startDateGroup.className = "profileFieldGroup"
+    const startDateLabel = document.createElement("label")
+    startDateLabel.className = "profileFieldLabel medMarginBottom"
+    startDateLabel.for = "jobStart"
+    startDateLabel.textContent = "Start Date"
+    const startDateField = document.createElement("input")
+    startDateField.className = "profileDateField"
+    startDateField.type = "month"
+    startDateField.id = "jobStart"
+    startDateGroup.appendChild(startDateLabel)
+    startDateGroup.appendChild(startDateField)
+    nameDateColumn.appendChild(startDateGroup)
+
+    const endDateGroup = document.createElement("div")
+    endDateGroup.className = "profileFieldGroup smGap"
+    const dateFieldGroup = document.createElement("div")
+    dateFieldGroup.className = "flexVertical"
+    const endDateLabel = document.createElement("label")
+    endDateLabel.textContent = "End Date"
+    endDateLabel.className = "profileFieldLabel medMarginBottom"
+    endDateLabel.for = "jobEnd"
+    const endDateInput = document.createElement("input")
+    endDateInput.className = "profileDateField"
+    endDateInput.type = "month"
+    endDateInput.id = "jobEnd"
+    const isPresentGroup = document.createElement("div")
+    isPresentGroup.className = "flexHorizontal smGap"
+    const presentCheckbox = document.createElement("input")
+    presentCheckbox.className = "profileCheckboxField"
+    presentCheckbox.type = "checkbox"
+    presentCheckbox.id = `presentEducation${index}`
+    const presentLabel = document.createElement("label")
+    presentLabel.className = "profileFieldLabel textCenter"
+    presentLabel.for = `presentEducation${index}`
+    presentLabel.textContent = "Present"
+    presentCheckbox.addEventListener("click", (e) => {
+        if(!presentCheckbox.checked){
+            endDateInput.disabled = false
+            return
+        }
+        endDateInput.disabled = true
+        endDateInput.value = "null"
+    })
+    endDateGroup.appendChild(dateFieldGroup)
+    endDateGroup.appendChild(isPresentGroup)
+    dateFieldGroup.appendChild(endDateLabel)
+    dateFieldGroup.appendChild(endDateInput)
+    isPresentGroup.appendChild(presentCheckbox)
+    isPresentGroup.appendChild(presentLabel)
+    nameDateColumn.appendChild(endDateGroup)
+
+    const descriptionsGroup = document.createElement("div")
+    descriptionsGroup.className = "profileFieldGroup"
+    const labelGroup = document.createElement("div")
+    labelGroup.className = "rowAlignCentered"
+    const descriptionsLabel = document.createElement("div")
+    descriptionsLabel.textContent = "Descriptions"
+    descriptionsLabel.className = "profileFieldLabel"
+    labelGroup.appendChild(descriptionsLabel)
+    const dropdown = document.createElement("div")
+    dropdown.className = "profileDropdown"
+    dropdown.id = `descriptionDropdown${index}`
+    const line = document.createElement("div")
+    line.className = "line extraWide"
+    const addButtonRow = document.createElement("div")
+    addButtonRow.className = "rowAlignCentered"
+    const addButton = document.createElement("button")
+    addButton.className = "smallerButton offWhiteBackground"
+    addButton.textContent = "Add New"
+    addButton.type = "button"
+    addButton.id = `AddDescription${index}`
+    const addSymbol = document.createElement("div")
+    addSymbol.textContent = "+"
+    addButton.appendChild(addSymbol)
+    addButtonRow.appendChild(addButton)
+
+    addButton.addEventListener("click", (e) => {
+        e.preventDefault()
+        CreateFormTextField(`responsibility${index}`, `responsibility${index}`, "50", true, "Description", dropdown)
+    })
+
+    descriptionsGroup.appendChild(labelGroup)
+    descriptionsGroup.appendChild(dropdown)
+    descriptionsGroup.appendChild(line)
+    descriptionsGroup.appendChild(addButtonRow)
+    tagsDescriptionsRow.appendChild(descriptionsGroup)
+
+    const tagsGroup = document.createElement("div")
+    tagsGroup.className = "profileFieldGroup"
+    const tagsLabelGroup = document.createElement("div")
+    tagsLabelGroup.className = "rowAlignCentered"
+    const tagLabel = document.createElement("div")
+    tagLabel.textContent = "Tag"
+    tagLabel.className = "profileFieldLabel"
+    tagsLabelGroup.appendChild(tagLabel)
+    const tagDropdown = document.createElement("div")
+    tagDropdown.className = "profileDropdown"
+    tagDropdown.id = `tagDropdown${index}`
+    const tagLine = document.createElement("div")
+    tagLine.className = "line extraWide"
+    const tagAddButtonRow = document.createElement("div")
+    tagAddButtonRow.className = "rowAlignCentered"
+    const tagAddButton = document.createElement("button")
+    tagAddButton.className = "smallerButton offWhiteBackground"
+    tagAddButton.textContent = "Add New"
+    tagAddButton.type = "button"
+    tagAddButton.id = `AddTag${index}`
+    const addTagSymbol = document.createElement("div")
+    addTagSymbol.textContent = "+"
+    tagAddButton.appendChild(addTagSymbol)
+    tagAddButtonRow.appendChild(tagAddButton)
+
+    tagAddButton.addEventListener("click", (e) => {
+        e.preventDefault()
+        CreateFormTextField(`jobTag${index}`, `jobTag${index}`, "50", true, "Tag", tagDropdown)
+    })
+
+    tagsGroup.appendChild(tagsLabelGroup)
+    tagsGroup.appendChild(tagDropdown)
+    tagsGroup.appendChild(tagLine)
+    tagsGroup.appendChild(tagAddButtonRow)
+    tagsDescriptionsRow.appendChild(tagsGroup)
+
+    firstContentRow.appendChild(nameDateColumn)
+    firstContentRow.appendChild(tagsDescriptionsRow)
+    insetPanel.appendChild(firstContentRow)
+
+    offWhitePanel.appendChild(insetPanel)
+    parent.appendChild(offWhitePanel)
+}
+
 educationIndex = 0
 document.getElementById("AddEducation").addEventListener("click", () => {
     educationIndex++
@@ -259,17 +421,18 @@ experienceIndex = 0
 document.getElementById("AddExperience").addEventListener("click", () => {
     experienceIndex++
     const expCopy = experienceIndex
-    const subSectionParent = StartNewSection(document.getElementById("experienceDropdown"))
-    CreateFormTextField("companyName", "companyName", 30, true, "Company Name", subSectionParent)
-    CreateFormTextField("title", "title", 50, true, "Title", subSectionParent)
-    CreateFormTextField("companyLocation", "companyLocation", 50, true, "Location", subSectionParent)
-    CreateFormDateRangeField("jobStart", "jobStart", 50, true, "month", "jobEnd", "jobEnd", 
-        `presentJob${expCopy}`, subSectionParent)
+    ExperienceSection(document.getElementById("experienceDropdown"), expCopy)
+    // const subSectionParent = StartNewSection(document.getElementById("experienceDropdown"))
+    // CreateFormTextField("companyName", "companyName", 30, true, "Company Name", subSectionParent)
+    // CreateFormTextField("title", "title", 50, true, "Title", subSectionParent)
+    // CreateFormTextField("companyLocation", "companyLocation", 50, true, "Location", subSectionParent)
+    // CreateFormDateRangeField("jobStart", "jobStart", 50, true, "month", "jobEnd", "jobEnd", 
+    //     `presentJob${expCopy}`, subSectionParent)
 
-    CreateExpandableSection(`AddTag${expCopy}`, "+", `RemoveTag${expCopy}`, "-", `tagDropdown${expCopy}`, 
-        `jobTag${expCopy}`, 10, "Tag", subSectionParent)
-    CreateExpandableSection(`AddDescription${expCopy}`, "++", `RemoveDescription${expCopy}`, "--", "descriptionDropdown", 
-        `responsibility${expCopy}`, 50, "Responsibility", subSectionParent)
+    // CreateExpandableSection(`AddTag${expCopy}`, "+", `RemoveTag${expCopy}`, "-", `tagDropdown${expCopy}`, 
+    //     `jobTag${expCopy}`, 10, "Tag", subSectionParent)
+    // CreateExpandableSection(`AddDescription${expCopy}`, "++", `RemoveDescription${expCopy}`, "--", "descriptionDropdown", 
+    //     `responsibility${expCopy}`, 50, "Responsibility", subSectionParent)
 })
 document.getElementById("RemoveExperience").addEventListener("click", () => {
     RemoveLastChildInDOM("experienceDropdown")

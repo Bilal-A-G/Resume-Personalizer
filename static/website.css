@@ -615,6 +615,10 @@ body{
     margin-top: 40px;
 }
 
+.alignItemsEnd{
+    align-items: end;
+}
+
 .medBottomSpacing{
     margin-bottom: 40px;
 }
