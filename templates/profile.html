@@ -96,13 +96,11 @@
         <div class="profileRow">
             Projects
             <img class="largeImage" src="{{url_for('static', filename='images/Projects.svg')}}">
-        </div> <input type="text" name="projectsAlias" id="projectsAlias" size="15" placeholder="Alias"></input> <br>
-        <button type="button" id="AddProject">+</button>
-        <button type="button" id="RemoveProject">-</button>
-        <ul>
-            <div id="projectsDropdown" \>
-        </ul>
-
+        </div>
+        <div id="projectsDropdown"></div>
+        <div class="rowAlignCentered medTopSpacing">
+            <button class="button largeFont" type="button" id="AddProject">Add New <div>+</div></button>
+        </div>
         <div class="profileRow">
             Skills & Accomplishments
             <img class="largeImage" src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}">

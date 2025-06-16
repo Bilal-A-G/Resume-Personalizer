@@ -268,7 +268,56 @@ function ExperienceSection(parent, index){
     const removeButton = document.createElement("button")
     removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
     removeButton.type = "button"
-    removeButton.id = `RemoveEducation${index}`
+    removeButton.id = `RemoveExperience${index}`
+    removeButton.textContent = "-"
+
+    removeButton.addEventListener("click", (e)=>{
+        e.preventDefault()
+        parent.removeChild(offWhitePanel)
+    })
+    insetPanel.appendChild(removeButtonRow)
+    removeButtonRow.appendChild(removeButton)
+
+    const firstContentRow = document.createElement("div")
+    firstContentRow.className = "flexHorizontal lgGap medBottomSpacing"
+    const secondContentRow = document.createElement("div")
+    secondContentRow.className = "flexHorizontal lgGap"
+    const nameDateColumn = document.createElement("div")
+    nameDateColumn.className = "flexVertical medGap"
+    const tagsDescriptionsRow = document.createElement("div")
+    tagsDescriptionsRow.className = "flexHorizontal medGap alignItemsEnd"
+
+    CreateTextFieldGroup(firstContentRow, "companyName", "Company Name")
+    CreateTextFieldGroup(firstContentRow, "jobTitle", "Title")
+    CreateTextFieldGroup(firstContentRow, "jobLocation", "Location")
+    CreateDateRangeFields(nameDateColumn, "jobStart", "jobEnd", "presentJob", index)
+
+    CreateTextFieldList(tagsDescriptionsRow, index, "Descriptions", 
+        "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description")
+    CreateTextFieldList(tagsDescriptionsRow, index, "Tags", 
+        "tagDropdown", "AddTag", "jobTag", "Tag")
+
+    secondContentRow.appendChild(nameDateColumn)
+    secondContentRow.appendChild(tagsDescriptionsRow)
+    insetPanel.appendChild(firstContentRow)
+    insetPanel.appendChild(secondContentRow)
+
+    offWhitePanel.appendChild(insetPanel)
+    parent.appendChild(offWhitePanel)
+}
+
+function ProjectSection(parent, index){
+    const offWhitePanel = document.createElement("div")
+    offWhitePanel.className = "offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing"
+    const insetPanel = document.createElement("div")
+    insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
+
+    const removeButtonRow = document.createElement("div")
+    removeButtonRow.className = "flexHorizontal rightAlign"
+    const removeButton = document.createElement("button")
+    removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
+    removeButton.type = "button"
+    removeButton.id = `RemoveProject${index}`
     removeButton.textContent = "-"
 
     removeButton.addEventListener("click", (e)=>{
@@ -285,13 +334,13 @@ function ExperienceSection(parent, index){
     const tagsDescriptionsRow = document.createElement("div")
     tagsDescriptionsRow.className = "flexHorizontal medGap alignItemsEnd"
 
-    CreateTextFieldGroup(nameDateColumn, "companyName", "Company Name")
-    CreateDateRangeFields(nameDateColumn, "jobStart", "jobEnd", "presentJob", index)
+    CreateTextFieldGroup(nameDateColumn, "projectName", "Project Name")
+    CreateDateRangeFields(nameDateColumn, "projectStart", "projectEnd", "presentProject", index)
 
     CreateTextFieldList(tagsDescriptionsRow, index, "Descriptions", 
-        "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description")
+        "projectsDescriptionDropdown", "AddProjectDescription", "projectDescription", "Description")
     CreateTextFieldList(tagsDescriptionsRow, index, "Tags", 
-        "tagDropdown", "AddTag", "jobTag", "Tag")
+        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag")
 
     firstContentRow.appendChild(nameDateColumn)
     firstContentRow.appendChild(tagsDescriptionsRow)
@@ -323,19 +372,7 @@ projectIndex = 0
 document.getElementById("AddProject").addEventListener("click", () => {
     projectIndex++
     const projCpy = projectIndex
-    const subSectionParent = StartNewSection(document.getElementById("projectsDropdown"))
-    CreateFormTextField("projectName", "projectName", 50, true, "Name", subSectionParent)
-    CreateFormDateRangeField("projectStart", "projectStart", 50, true, "month", "projectEnd", 
-        "projectEnd", `presentProject${projCpy}`, subSectionParent)
-
-    CreateExpandableSection(`AddProjectTag${projCpy}`, "+", `RemoveProjectTag${projCpy}`, "-", `projectTagDropdown${projCpy}`,
-        `projectTag${projCpy}`, 10, "Tag", subSectionParent)
-    CreateExpandableSection(`AddProjectDescription${projCpy}`, "++", `RemoveProjectDescription${projCpy}`, "--", `projectsDescriptionDropdown${projCpy}`, 
-        `projectDescription${projCpy}`, 50, "Description", subSectionParent)
-})
-document.getElementById("RemoveProject").addEventListener("click", () => {
-    RemoveLastChildInDOM("projectsDropdown")
-    projectIndex--
+    ProjectSection(document.getElementById("projectsDropdown"), projCpy)
 })
 
 categoryIndex = 0
