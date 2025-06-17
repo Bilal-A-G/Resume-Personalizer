@@ -42,34 +42,34 @@
     <form id="profileForm">
         <div class="centerAlignedRow">
             <div class="profileFieldLabelCentered">Profile Name</div>
-            <input class="profileTextField" type="text" id="profileName">
+            <input class="profileTextField wide" type="text" id="profileName">
         </div>
         <div class="profileRow">
             Header
             <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
         </div>
-        <div class="profilePanel medTopSpacing medBottomSpacing largeLeftPadding largeRightPadding">
+        <div class="profilePanel medTopSpacing medBottomSpacing XLLeftPadding XLRightPadding">
             <div class="flexHorizontal medGap">
                 <div class="grid">
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="name">Full Name</label>
-                        <input class="profileTextField" type="text" id="name">
+                        <input class="profileTextField wide" type="text" id="name">
                     </div>
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="email">Email</label>
-                        <input class="profileTextField" type="text" id="email">
+                        <input class="profileTextField wide" type="text" id="email">
                     </div>
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="website">Website</label>
-                        <input class="profileTextField" type="text" id="website">
+                        <input class="profileTextField wide" type="text" id="website">
                     </div>
                 </div>
                 <div class="profileFieldGroup">
                     <div class="rowAlignCentered">
                         <div class="profileFieldLabel medMarginBottom">Job Titles</div>
                     </div>
-                    <div class="profileDropdown" id="titlesDropdown"></div>
-                    <div class="line wide"></div>
+                    <div class="profileDropdown extraWide" id="titlesDropdown"></div>
+                    <div class="line"></div>
                     <div class="rowAlignCentered">
                         <button class="smallerButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+
                             </div></button>
@@ -83,7 +83,7 @@
         </div>
         <div id="educationDropdown"></div>
         <div class="rowAlignCentered medTopSpacing">
-            <button class="button largeFont" type="button" id="AddEducation">Add New <div>+</div></button>
+            <button class="button largeFont" type="button" id="AddEducation">Add Education <div>+</div></button>
         </div>
         <div class="profileRow">
             Experience
@@ -91,7 +91,7 @@
         </div>
         <div id="experienceDropdown"></div>
         <div class="rowAlignCentered medTopSpacing">
-            <button class="button largeFont" type="button" id="AddExperience">Add New <div>+</div></button>
+            <button class="button largeFont" type="button" id="AddExperience">Add Experience <div>+</div></button>
         </div>
         <div class="profileRow">
             Projects
@@ -99,31 +99,48 @@
         </div>
         <div id="projectsDropdown"></div>
         <div class="rowAlignCentered medTopSpacing">
-            <button class="button largeFont" type="button" id="AddProject">Add New <div>+</div></button>
+            <button class="button largeFont" type="button" id="AddProject">Add Project <div>+</div></button>
         </div>
         <div class="profileRow">
             Skills & Accomplishments
             <img class="largeImage" src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}">
-        </div> <input type="text" name="skillsAlias" id="skillsAlias" size="15" placeholder="Alias"></input> <br>
-        <button type="button" id="AddSkill">+</button>
-        <button type="button" id="RemoveSkill">-</button>
-        <button type="button" id="AddCategory">++</button>
-        <button type="button" id="RemoveCategory">--</button>
-        <ul>
-            <div id="categorizedSkillsDropdown" \>
-                <div id="skillsDropdown" \>
-        </ul>
-
-        <input type="text" name="accomplishmentsAlias" id="accomplishmentsAlias" size="15" placeholder="Alias"></input>
-        <br>
-        <button type="button" id="AddAccomplishment">+</button>
-        <button type="button" id="RemoveAccomplishment">-</button>
-        <ul>
-            <div id="accomplishmentsDropdown" \>
-        </ul>
-        <br>
-
-        <input type="submit" value="Submit" id="Submit">
+        </div> 
+        <div class="profilePanel medTopSpacing medBottomSpacing XLLeftPadding XLRightPadding">
+            <div class="flexHorizontal medGap">
+                <div class="profileFieldGroup">
+                    <div class="rowAlignCentered">
+                        <div class="profileFieldLabel medMarginBottom">Unclassified Skills</div>
+                    </div>
+                    <div class="profileDropdown smallWidth" id="unclassifiedSkillsDropdown"></div>
+                    <div class="line"></div>
+                    <div class="rowAlignCentered">
+                        <button class="smallerButton greyBackground" type="button" id="AddUnclassifiedSkill">
+                            Add New <div>+</div></button>
+                    </div>
+                </div>
+                <div class="profileFieldGroup">
+                    <div class="rowAlignCentered">
+                        <div class="profileFieldLabel medMarginBottom">Accomplishments</div>
+                    </div>
+                    <div class="profileDropdown extraWide" id="accomplishmentsDropdown"></div>
+                    <div class="line"></div>
+                    <div class="rowAlignCentered">
+                        <button class="smallerButton greyBackground" type="button" id="AddAccomplishment">Add New <div>+
+                            </div></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="categorizedSkillsDropdown"></div>
+        <div class="rowAlignCentered medTopSpacing">
+            <button class="button largeFont" type="button" id="AddCategorizedSkill">Add Category<div>+</div></button>
+        </div>
+        <div class="rowAlignCentered lgTopSpacing medBottomSpacing">
+            <button class="button XXLFont" type="submit" id="Submit">
+                Submit
+                <img class="largeImage" src="{{url_for('static', filename='images/Submit.svg')}}">
+            </button>
+        </div>
     </form>
     <script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
     <script src="{{url_for('static', filename='saveFormData.js')}}"></script>

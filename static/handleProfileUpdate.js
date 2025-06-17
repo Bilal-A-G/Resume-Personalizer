@@ -98,7 +98,7 @@ function StartNewSection(parent){
     return listChild
 }
 
-function CreateTextFieldGroup(parent, id, labelText){
+function CreateTextFieldGroup(parent, id, labelText, sizeCSS){
     const groupParent = document.createElement("div")
     groupParent.className = "profileFieldGroup"
     const label = document.createElement("label")
@@ -107,7 +107,7 @@ function CreateTextFieldGroup(parent, id, labelText){
     label.textContent = labelText
 
     const inputField = document.createElement("input")
-    inputField.className = "profileTextField"
+    inputField.className = "profileTextField " + sizeCSS
     inputField.type = "text"
     inputField.id = id
 
@@ -173,7 +173,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     parent.appendChild(endDateGroup)
 }
 
-function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder){
+function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS){
     const descriptionsGroup = document.createElement("div")
     descriptionsGroup.className = "profileFieldGroup"
     const labelGroup = document.createElement("div")
@@ -183,10 +183,10 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
     descriptionsLabel.className = "profileFieldLabel"
     labelGroup.appendChild(descriptionsLabel)
     const dropdown = document.createElement("div")
-    dropdown.className = "profileDropdown"
+    dropdown.className = "profileDropdown " + sizeCSS
     dropdown.id = dropdownID + `${index}`
     const line = document.createElement("div")
-    line.className = "line extraWide"
+    line.className = "line"
     const addButtonRow = document.createElement("div")
     addButtonRow.className = "rowAlignCentered"
     const addButton = document.createElement("button")
@@ -201,7 +201,7 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
 
     addButton.addEventListener("click", (e) => {
         e.preventDefault()
-        CreateFormTextField(fieldID +`${index}`, fieldID +`${index}`, "50", true, fieldPlaceholder, dropdown)
+        CreateFormTextField(fieldID +`${index}`, fieldID +`${index}`, size, true, fieldPlaceholder, dropdown)
     })
 
     descriptionsGroup.appendChild(labelGroup)
@@ -214,7 +214,7 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
 
 function EducationSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing"
+    offWhitePanel.className = "offWhiteBackground medTopSpacing medLeftSpacing medRightSpacing medBottomSpacing"
     const insetPanel = document.createElement("div")
     insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
     offWhitePanel.appendChild(insetPanel)
@@ -237,12 +237,12 @@ function EducationSection(parent, index){
     const firstContentRow = document.createElement("div")
     firstContentRow.className = "flexHorizontal medGap"
 
-    CreateTextFieldGroup(firstContentRow, "institutionName", "Institution Name")
-    CreateTextFieldGroup(firstContentRow, "degree", "Degree")
-    CreateTextFieldGroup(firstContentRow, "institutionLocation", "Location")
+    CreateTextFieldGroup(firstContentRow, "institutionName", "Institution Name", "wide")
+    CreateTextFieldGroup(firstContentRow, "degree", "Degree", "wide")
+    CreateTextFieldGroup(firstContentRow, "institutionLocation", "Location", "wide")
 
     const secondContentRow = document.createElement("div")
-    secondContentRow.className = "flexHorizontal lgGap"
+    secondContentRow.className = "flexHorizontal medGap"
     const dateRangeColumn = document.createElement("div")
     dateRangeColumn.className = "flexVertical medGap"
 
@@ -250,7 +250,7 @@ function EducationSection(parent, index){
     secondContentRow.appendChild(dateRangeColumn)
 
     CreateTextFieldList(secondContentRow, index, "Descriptions", 
-        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description")
+        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description", "47", "extraWide")
 
     insetPanel.appendChild(firstContentRow)
     insetPanel.appendChild(secondContentRow)
@@ -259,7 +259,7 @@ function EducationSection(parent, index){
 
 function ExperienceSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing"
+    offWhitePanel.className = "offWhiteBackground medTopSpacing medLeftSpacing medRightSpacing medBottomSpacing"
     const insetPanel = document.createElement("div")
     insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
 
@@ -279,23 +279,23 @@ function ExperienceSection(parent, index){
     removeButtonRow.appendChild(removeButton)
 
     const firstContentRow = document.createElement("div")
-    firstContentRow.className = "flexHorizontal lgGap medBottomSpacing"
+    firstContentRow.className = "flexHorizontal medGap medBottomSpacing"
     const secondContentRow = document.createElement("div")
-    secondContentRow.className = "flexHorizontal lgGap"
+    secondContentRow.className = "flexHorizontal medGap"
     const nameDateColumn = document.createElement("div")
     nameDateColumn.className = "flexVertical medGap"
     const tagsDescriptionsRow = document.createElement("div")
     tagsDescriptionsRow.className = "flexHorizontal medGap alignItemsEnd"
 
-    CreateTextFieldGroup(firstContentRow, "companyName", "Company Name")
-    CreateTextFieldGroup(firstContentRow, "jobTitle", "Title")
-    CreateTextFieldGroup(firstContentRow, "jobLocation", "Location")
+    CreateTextFieldGroup(firstContentRow, "companyName", "Company Name", "wide")
+    CreateTextFieldGroup(firstContentRow, "jobTitle", "Title", "wide")
+    CreateTextFieldGroup(firstContentRow, "jobLocation", "Location", "wide")
     CreateDateRangeFields(nameDateColumn, "jobStart", "jobEnd", "presentJob", index)
 
     CreateTextFieldList(tagsDescriptionsRow, index, "Descriptions", 
-        "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description")
+        "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description", "47", "extraWide")
     CreateTextFieldList(tagsDescriptionsRow, index, "Tags", 
-        "tagDropdown", "AddTag", "jobTag", "Tag")
+        "tagDropdown", "AddTag", "jobTag", "Tag", "24", "smallWidth")
 
     secondContentRow.appendChild(nameDateColumn)
     secondContentRow.appendChild(tagsDescriptionsRow)
@@ -308,7 +308,54 @@ function ExperienceSection(parent, index){
 
 function ProjectSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground medTopSpacing smallLeftSpacing smallRightSpacing medBottomSpacing"
+    offWhitePanel.className = "offWhiteBackground medTopSpacing medLeftSpacing medRightSpacing medBottomSpacing"
+    const insetPanel = document.createElement("div")
+    insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
+
+    const removeButtonRow = document.createElement("div")
+    removeButtonRow.className = "flexHorizontal rightAlign"
+    const removeButton = document.createElement("button")
+    removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
+    removeButton.type = "button"
+    removeButton.id = `RemoveProject${index}`
+    removeButton.textContent = "-"
+
+    removeButton.addEventListener("click", (e)=>{
+        e.preventDefault()
+        parent.removeChild(offWhitePanel)
+    })
+    insetPanel.appendChild(removeButtonRow)
+    removeButtonRow.appendChild(removeButton)
+
+    const firstContentRow = document.createElement("div")
+    firstContentRow.className = "flexHorizontal medGap"
+    const secondContentRow = document.createElement("div")
+    secondContentRow.className = "flexHorizontal medGap"
+    const nameDateColumn = document.createElement("div")
+    nameDateColumn.className = "flexVertical medGap"
+    const tagsDescriptionsRow = document.createElement("div")
+    tagsDescriptionsRow.className = "flexHorizontal medGap alignItemsEnd"
+
+    CreateTextFieldGroup(firstContentRow, "projectName", "Project Name", "wide")
+    CreateDateRangeFields(nameDateColumn, "projectStart", "projectEnd", "presentProject", index)
+
+    CreateTextFieldList(tagsDescriptionsRow, index, "Descriptions", 
+        "projectsDescriptionDropdown", "AddProjectDescription", "projectDescription", "Description", "47", "extraWide")
+    CreateTextFieldList(tagsDescriptionsRow, index, "Tags", 
+        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag", "24", "smallWidth")
+
+    secondContentRow.appendChild(nameDateColumn)
+    secondContentRow.appendChild(tagsDescriptionsRow)
+    insetPanel.appendChild(firstContentRow)
+    insetPanel.appendChild(secondContentRow)
+
+    offWhitePanel.appendChild(insetPanel)
+    parent.appendChild(offWhitePanel)
+}
+
+function CategorizedSkillsSection(parent, index){
+    const offWhitePanel = document.createElement("div")
+    offWhitePanel.className = "offWhiteBackground medTopSpacing medLeftSpacing medRightSpacing medBottomSpacing"
     const insetPanel = document.createElement("div")
     insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
 
@@ -329,21 +376,11 @@ function ProjectSection(parent, index){
 
     const firstContentRow = document.createElement("div")
     firstContentRow.className = "flexHorizontal lgGap"
-    const nameDateColumn = document.createElement("div")
-    nameDateColumn.className = "flexVertical medGap"
-    const tagsDescriptionsRow = document.createElement("div")
-    tagsDescriptionsRow.className = "flexHorizontal medGap alignItemsEnd"
 
-    CreateTextFieldGroup(nameDateColumn, "projectName", "Project Name")
-    CreateDateRangeFields(nameDateColumn, "projectStart", "projectEnd", "presentProject", index)
-
-    CreateTextFieldList(tagsDescriptionsRow, index, "Descriptions", 
-        "projectsDescriptionDropdown", "AddProjectDescription", "projectDescription", "Description")
-    CreateTextFieldList(tagsDescriptionsRow, index, "Tags", 
-        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag")
-
-    firstContentRow.appendChild(nameDateColumn)
-    firstContentRow.appendChild(tagsDescriptionsRow)
+    CreateTextFieldGroup(firstContentRow, "categoryName", "Category Name", "wide")
+    CreateTextFieldList(firstContentRow, index, "Skills", 
+        "skillsDropdown", "AddCategorizedSkill", "categorizedSkill", "Skill", "47", "extraWide")
+    
     insetPanel.appendChild(firstContentRow)
 
     offWhitePanel.appendChild(insetPanel)
@@ -351,7 +388,7 @@ function ProjectSection(parent, index){
 }
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
-    CreateFormTextField("personalTitle", "personalTitle", "50", true, "Title", document.getElementById("titlesDropdown"))
+    CreateFormTextField("personalTitle", "personalTitle", "47", true, "Title", document.getElementById("titlesDropdown"))
 })
 
 educationIndex = 0
@@ -376,31 +413,18 @@ document.getElementById("AddProject").addEventListener("click", () => {
 })
 
 categoryIndex = 0
-document.getElementById("AddCategory").addEventListener("click", () => {
+document.getElementById("AddCategorizedSkill").addEventListener("click", () => {
     categoryIndex++
     const categoryCpy = categoryIndex
-    const subSectionParent = StartNewSection(document.getElementById("categorizedSkillsDropdown"))
-    CreateFormTextField("categoryName", "categoryName", 50, true, "Category Name", subSectionParent)
-    CreateExpandableSection(`AddSkillToCategory${categoryCpy}`, "+", `RemoveSkillFromCategory${categoryCpy}`, "-", 
-        `categorySkillsDropdown${categoryCpy}`, `categorizedSkill${categoryCpy}`, 50, "Skill", subSectionParent)
-})
-document.getElementById("RemoveCategory").addEventListener("click", () => {
-    RemoveLastChildInDOM("categorizedSkillsDropdown")
-    projectIndex--
+    CategorizedSkillsSection(document.getElementById("categorizedSkillsDropdown"), categoryCpy)
 })
 
-document.getElementById("AddSkill").addEventListener("click", () => {
-    const subSectionParent = StartNewSection(document.getElementById("skillsDropdown"))
-    CreateFormTextField("skill", "skill", 50, true, "Skill", subSectionParent)
-})
-document.getElementById("RemoveSkill").addEventListener("click", () => {
-    RemoveLastChildInDOM("skillsDropdown")
+document.getElementById("AddUnclassifiedSkill").addEventListener("click", () => {
+    CreateFormTextField("unclassifiedSkill", "unclassifiedSkill", "24", true, 
+        "Skill", document.getElementById("unclassifiedSkillsDropdown"))
 })
 
 document.getElementById("AddAccomplishment").addEventListener("click", () => {
-    const subSectionParent = StartNewSection(document.getElementById("accomplishmentsDropdown"))
-    CreateFormTextField("accomplishment", "accomplishment", 80, true, "Accomplishment", subSectionParent)
-})
-document.getElementById("RemoveAccomplishment").addEventListener("click", () => {
-    RemoveLastChildInDOM("accomplishmentsDropdown")
+    CreateFormTextField("accomplishment", "accomplishment", "47", true, 
+        "Accomplishment", document.getElementById("accomplishmentsDropdown"))
 })
