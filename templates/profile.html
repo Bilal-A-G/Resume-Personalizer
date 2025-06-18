@@ -42,7 +42,7 @@
     <form id="profileForm">
         <div class="centerAlignedRow">
             <div class="profileFieldLabelCentered">Profile Name</div>
-            <input class="profileTextField wide" type="text" id="profileName">
+            <input class="profileTextField wide" type="text" id="profileName" name="profileName">
         </div>
         <div class="profileRow">
             Header
@@ -53,15 +53,15 @@
                 <div class="grid">
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="name">Full Name</label>
-                        <input class="profileTextField wide" type="text" id="name">
+                        <input class="profileTextField wide" type="text" id="name" name="name">
                     </div>
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="email">Email</label>
-                        <input class="profileTextField wide" type="text" id="email">
+                        <input class="profileTextField wide" type="text" id="email" name="email">
                     </div>
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="website">Website</label>
-                        <input class="profileTextField wide" type="text" id="website">
+                        <input class="profileTextField wide" type="text" id="website" name="website">
                     </div>
                 </div>
                 <div class="profileFieldGroup">
@@ -146,5 +146,4 @@
     <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
     <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
 </body>
-
 </html>

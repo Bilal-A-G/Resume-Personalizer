@@ -1,10 +1,12 @@
 document.getElementById("profileForm").addEventListener("submit", (e) => {
     e.preventDefault()
 
+
     jsonString = '{'
     formData = new FormData(document.getElementById("profileForm"))
     const personalTitles = formData.getAll("personalTitle")
 
+    jsonString += `"profileName": "${formData.get("profileName")}", `
     jsonString += `"name": "${formData.get("name")}", `
     jsonString += `"email": "${formData.get("email")}", `
     jsonString += `"personalTitles": [`
@@ -49,15 +51,15 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     jsonString += `"workExperience": {"alias": "${workExperienceAlias}", "data": [`
 
     const companyNames = formData.getAll("companyName")
-    const titles = formData.getAll("title")
-    const jobLocations = formData.getAll("companyLocation")
+    const titles = formData.getAll("jobTitle")
+    const jobLocations = formData.getAll("jobLocation")
     const jobStartDates = formData.getAll("jobStart")
     const jobEndDates = formData.getAll("jobEnd")
 
     for (i = 0; i < companyNames.length; i++) {
         const present = formData.get(`presentJob${i + 1}`)
         jsonString += `{"companyName": "${companyNames[i]}", "jobLocation": "${jobLocations[i]}",
-                    "title": "${titles[i]}", "jobStartDate": "${jobStartDates[i]}", "jobEndDate": "${jobEndDates[i]}",
+                    "jobTitles": "${titles[i]}", "jobStartDate": "${jobStartDates[i]}", "jobEndDate": "${jobEndDates[i]}",
                     "presentJob": "${present}", "descriptions": [`
 
         const descriptions = formData.getAll(`responsibility${i + 1}`)
@@ -118,7 +120,7 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     }
 
     jsonString += ']}, '
-    const skills = formData.getAll("skill")
+    const skills = formData.getAll("unclassifiedSkill")
     const categories = formData.getAll("categoryName")
 
     jsonString += `"categorizedSkills": [`
@@ -139,7 +141,7 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     jsonString += '], '
 
     const skillsAlias = formData.get("skillsAlias")
-    jsonString += `"skills": {"alias": "${skillsAlias}", "data": [`
+    jsonString += `"unclassifiedSkills": {"alias": "${skillsAlias}", "data": [`
     for (i = 0; i < skills.length; i++) {
         jsonString += `"${skills[i]}"`
         if (i != skills.length - 1)
@@ -158,5 +160,5 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     jsonString += ']}}'
 
     localStorage.setItem("profile", jsonString)
-    window.location.href = "/ceProfile"
+    window.location.href = "/profiles"
 })

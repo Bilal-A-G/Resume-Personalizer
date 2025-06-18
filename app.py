@@ -32,10 +32,6 @@ def profiles():
 def resumes():
     return render_template("resumes.html")
 
-@app.route("/ceProfile")
-def createEditProfile():
-    return render_template("submitted.html")
-
 def computeKeywordSimilarity(jobKeywords, descriptionKeywords, jobLength):
     jobSet = dict(jobKeywords)
     descriptionSet = set(descriptionKeywords)

@@ -109,6 +109,7 @@ function CreateTextFieldGroup(parent, id, labelText, sizeCSS){
     const inputField = document.createElement("input")
     inputField.className = "profileTextField " + sizeCSS
     inputField.type = "text"
+    inputField.name = id
     inputField.id = id
 
     groupParent.appendChild(label)
@@ -127,6 +128,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     startDateField.className = "profileDateField"
     startDateField.type = "month"
     startDateField.id = startID
+    startDateField.name = startID
     startDateGroup.appendChild(startDateLabel)
     startDateGroup.appendChild(startDateField)
     parent.appendChild(startDateGroup)
@@ -143,12 +145,14 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     endDateInput.className = "profileDateField"
     endDateInput.type = "month"
     endDateInput.id = endID
+    endDateInput.name = endID
     const isPresentGroup = document.createElement("div")
     isPresentGroup.className = "flexHorizontal smGap"
     const presentCheckbox = document.createElement("input")
     presentCheckbox.className = "profileCheckboxField"
     presentCheckbox.type = "checkbox"
     presentCheckbox.id = presentID + `${index}`
+    presentCheckbox.name = presentID + `${index}`
     const presentLabel = document.createElement("label")
     presentLabel.className = "profileFieldLabel textCenter"
     presentLabel.for = presentID + `${index}`
@@ -279,7 +283,7 @@ function ExperienceSection(parent, index){
     removeButtonRow.appendChild(removeButton)
 
     const firstContentRow = document.createElement("div")
-    firstContentRow.className = "flexHorizontal medGap medBottomSpacing"
+    firstContentRow.className = "flexHorizontal medGap"
     const secondContentRow = document.createElement("div")
     secondContentRow.className = "flexHorizontal medGap"
     const nameDateColumn = document.createElement("div")

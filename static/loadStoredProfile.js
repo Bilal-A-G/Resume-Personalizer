@@ -15,6 +15,7 @@ function SetDomElementsBySection(items, addSecondButtonID, elementNames, element
     presentDateElementName = "", endDateElementName = "", presentDateElementValueName = "", endDateElementValueName = "")
 {
     for(let i = 0; i < items.length; i++){
+        console.log(addSecondButtonID + " add button id " + items.length)
         document.getElementById(addSecondButtonID).click()
 
         for(let v = 0; v < subSectionElementNames.length; v++){
@@ -29,7 +30,7 @@ function SetDomElementsBySection(items, addSecondButtonID, elementNames, element
 
         if(presentDateElementName == "" || endDateElementName == "" ||
             presentDateElementValueName == "" || endDateElementValueName == "")
-            return
+            continue
 
         const allPresents = document.getElementsByName(presentDateElementName + `${i + 1}`)
         const allEnds = document.getElementsByName(endDateElementName)
@@ -48,30 +49,30 @@ profileJson = localStorage.getItem("profile")
 if (profileJson != "" && profileJson != null){
     const obj = JSON.parse(profileJson)
     SetDOMElementByIDValue("name", obj.name)
+    SetDOMElementByIDValue("profileName", obj.profileName)
     SetDOMElementByIDValue("email", obj.email)
     SetDOMElementByIDValue("website", obj.website)
 
     SetDomElementsByName("AddPersonalTitle", "personalTitle", obj.personalTitles)
 
-    // const education = obj.education.data
-    // SetDomElementsBySection(education, "AddEducation",
-    //     ["institutionName", "degree", "institutionLocation", "enrollmentDate"],
-    //     ["institutionName", "degree", "institutionLocation", "enrollment"],
-    //     ["AddEducationDescription"], ["educationDescriptions"], ["descriptions"],
-    //     "presentEducation", "graduationDate", "present", "graduation"
-    // )
+    const education = obj.education.data
+    SetDomElementsBySection(education, "AddEducation",
+        ["institutionName", "degree", "institutionLocation", "enrollmentDate"],
+        ["institutionName", "degree", "institutionLocation", "enrollment"],
+        ["AddEducationDescription"], ["educationDescription"], ["descriptions"],
+        "presentEducation", "graduationDate", "present", "graduation"
+    )
 
     const experience = obj.workExperience.data
-    document.getElementById("experienceAlias").value = obj.workExperience.alias
+    console.log(obj.workExperience.data)
     SetDomElementsBySection(experience, "AddExperience",
-        ["companyName", "title", "jobStart", "companyLocation"],
-        ["companyName", "title", "jobStartDate", "jobLocation"],
-        ["AddDescription", "AddTag"], ["responsibility", "jobTag"], ["descriptions", "jobTags"],
+        ["companyName", "jobTitle", "jobStart", "jobLocation"],
+        ["companyName", "jobTitles", "jobStartDate", "jobLocation"],
+        ["AddJobDescription", "AddTag"], ["responsibility", "jobTag"], ["descriptions", "jobTags"],
         "presentJob", "jobEnd", "presentJob", "jobEndDate"
     )
 
     const projects = obj.projects.data
-    document.getElementById("projectsAlias").value = obj.projects.alias
     SetDomElementsBySection(projects, "AddProject",
         ["projectName", "projectStart"],
         ["projectName", "projectStartDate"],
@@ -79,17 +80,16 @@ if (profileJson != "" && profileJson != null){
         "presentProject", "projectEnd", "presentProject", "projectEndDate"
     )
 
-    const skills = obj.skills.data
-    document.getElementById("skillsAlias").value = obj.skills.alias
-    SetDomElementsByName("AddSkill", "skill", skills)
+    const skills = obj.unclassifiedSkills.data
+    SetDomElementsByName("AddUnclassifiedSkill", "unclassifiedSkill", skills)
 
     const skillCategories = obj.categorizedSkills
-    SetDomElementsBySection(skillCategories, "AddCategory", ["categoryName"], ["categoryName"],
-        ["AddSkillToCategory"], ["categorizedSkill"], ["categorizedSkills"]
+    console.log(skillCategories)
+    SetDomElementsBySection(skillCategories, "AddCategorizedSkill", ["categoryName"], ["categoryName"],
+        ["AddCategorizedSkill"], ["categorizedSkill"], ["categorizedSkills"]
     )
 
     const accomplishments = obj.accomplishments.data
-    document.getElementById("accomplishmentsAlias").value = obj.accomplishments.alias
     SetDomElementsByName("AddAccomplishment", "accomplishment", accomplishments)
 }
 
