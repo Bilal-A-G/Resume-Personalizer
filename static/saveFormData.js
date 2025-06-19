@@ -159,6 +159,14 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     }
     jsonString += ']}}'
 
-    localStorage.setItem("profile", jsonString)
+    const profileName = formData.get("profileName")
+    for(i = 0; i < localStorage.length; i++){
+        let key = localStorage.key(i)
+        key = key.split(',')[0]
+        if(key == profileName)
+            localStorage.removeItem(localStorage.key(i))
+    }
+
+    localStorage.setItem((profileName + "," + Date.now()), jsonString)
     window.location.href = "/profiles"
 })

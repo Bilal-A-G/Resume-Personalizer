@@ -40,7 +40,6 @@ body{
 .listContainer{
     height: 400px;
     width: 800px;
-    margin-bottom: 10vh;
     margin-left: auto;
     margin-right: auto;
     margin-top: 6vh;
@@ -456,6 +455,14 @@ body{
     margin-top: auto;
     margin-bottom: auto;
     width: 200px;
+}
+
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: flex;
 }
 
 .profileRow{

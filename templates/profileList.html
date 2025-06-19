@@ -42,7 +42,7 @@
     <div class="sectionHeader">Created Profiles</div>
     <div class="subTitle">Add new or edit profiles here</div>
     <div class="listContainer">
-        <div class="holder">
+        <div class="holder hidden" id="noProfiles">
             <div class="majorText">No Profiles created yet!</div>
             <div class="subTitle">Create a profile to generate a resume!</div>
             <div class="buttonHolder">
@@ -55,7 +55,18 @@
                     <img class="buttonImage" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
                 </button>
             </div>
+            <div id="profilesDropdown"></div>
         </div>
+    </div>
+    <div id="profilesFound" class="visible buttonHolder medBottomSpacing">
+        <button class="button">
+            Create new Profile
+            <img class="buttonImage" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
+        </button>
+        <button class="button">
+            Import from LinkedIn
+            <img class="buttonImage" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
+        </button>
     </div>
 </body>
 <script>
