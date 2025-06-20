@@ -57,6 +57,18 @@
             </div>
             <div id="profilesDropdown"></div>
         </div>
+        <div class="profilesListEntryBG flexHorizontal">
+            <div class="profileListText">Profile Name</div>
+            <div class="profileListDate">09-01-2003</div>
+            <div class="profileListButtonsHolder smGap">
+                <button class="navButton">
+                    <img class="buttonImage" src="{{url_for('static', filename='images/EditProfile.svg')}}">
+                </button>
+                <button class="navButton">
+                    <img class="buttonImage" src="{{url_for('static', filename='images/TrashProfile.svg')}}">
+                </button>
+            </div>
+        </div>
     </div>
     <div id="profilesFound" class="visible buttonHolder medBottomSpacing">
         <button class="button">
