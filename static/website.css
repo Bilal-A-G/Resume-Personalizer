@@ -637,6 +637,12 @@ body{
     margin-bottom: 20px;
 }
 
+.fullWidth{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .profileListButtonsHolder{
     display: flex;
     flex-direction: row;

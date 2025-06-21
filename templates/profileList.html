@@ -46,43 +46,48 @@
             <div class="majorText">No Profiles created yet!</div>
             <div class="subTitle">Create a profile to generate a resume!</div>
             <div class="buttonHolder">
-                <button class="listButton" id="CreateNewResume">
+                <button class="listButton" id="CreateProfileUpper">
                     Create new Profile
                     <img class="buttonImage" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
                 </button>
-                <button class="listButton" id="ImportProfile">
+                <button class="listButton" id="ImportProfileUpper">
                     Import from LinkedIn
                     <img class="buttonImage" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
                 </button>
             </div>
-            <div id="profilesDropdown"></div>
         </div>
-        <div class="profilesListEntryBG flexHorizontal">
-            <div class="profileListText">Profile Name</div>
-            <div class="profileListDate">09-01-2003</div>
-            <div class="profileListButtonsHolder smGap">
-                <button class="navButton">
-                    <img class="buttonImage" src="{{url_for('static', filename='images/EditProfile.svg')}}">
-                </button>
-                <button class="navButton">
-                    <img class="buttonImage" src="{{url_for('static', filename='images/TrashProfile.svg')}}">
-                </button>
-            </div>
+        <div class="fullWidth" id="profilesDropdown">
+            <!-- <div class="profilesListEntryBG flexHorizontal">
+                <div class="profileListText">Profile Name</div>
+                <div class="profileListDate">09-01-2003</div>
+                <div class="profileListButtonsHolder smGap">
+                    <button class="navButton">
+                        <img class="buttonImage" src="{{url_for('static', filename='images/EditProfile.svg')}}">
+                    </button>
+                    <button class="navButton">
+                        <img class="buttonImage" src="{{url_for('static', filename='images/TrashProfile.svg')}}">
+                    </button>
+                </div>
+            </div> -->
         </div>
     </div>
     <div id="profilesFound" class="visible buttonHolder medBottomSpacing">
-        <button class="button">
+        <button class="button" id="CreateProfileLower">
             Create new Profile
             <img class="buttonImage" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
         </button>
-        <button class="button">
+        <button class="button" id="ImportProfileLower">
             Import from LinkedIn
             <img class="buttonImage" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
         </button>
     </div>
 </body>
+<script type="text/javascript" src="{{url_for('static', filename='loadProfileList.js')}}"></script>
 <script>
-    document.getElementById("CreateNewResume").addEventListener("click", ()=>{
+    document.getElementById("CreateProfileUpper").addEventListener("click", ()=>{
+        location.href = "/profile"
+    })
+    document.getElementById("CreateProfileLower").addEventListener("click", ()=>{
         location.href = "/profile"
     })
 </script>

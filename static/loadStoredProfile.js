@@ -44,8 +44,8 @@ function SetDomElementsBySection(items, addSecondButtonID, elementNames, element
     }
 }
 
-
-profileJson = localStorage.getItem("profile")
+console.log(new URLSearchParams(window.location.search).get("name"))
+profileJson = localStorage.getItem(new URLSearchParams(window.location.search).get("name"))
 if (profileJson != "" && profileJson != null){
     const obj = JSON.parse(profileJson)
     SetDOMElementByIDValue("name", obj.name)

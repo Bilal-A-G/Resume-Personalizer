@@ -162,11 +162,18 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     const profileName = formData.get("profileName")
     for(i = 0; i < localStorage.length; i++){
         let key = localStorage.key(i)
-        key = key.split(',')[0]
+        key = key.split('|')[0]
         if(key == profileName)
             localStorage.removeItem(localStorage.key(i))
     }
 
-    localStorage.setItem((profileName + "," + Date.now()), jsonString)
+    const dateOptions = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+    }
+    localStorage.setItem((profileName + "|" + new Date().toLocaleDateString("en-US", dateOptions)), jsonString)
     window.location.href = "/profiles"
 })
