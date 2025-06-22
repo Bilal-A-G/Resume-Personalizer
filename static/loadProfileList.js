@@ -21,7 +21,6 @@ function CreateProfileListEntry(parent, index, name){
     editButtonImage.src = "static/images/EditProfile.svg"
     editButton.addEventListener("click", (e)=> {
         e.preventDefault()
-        console.log("Editing")
         window.location.href = `/profile?name=${name}`
     })
     editButton.appendChild(editButtonImage)
@@ -33,7 +32,8 @@ function CreateProfileListEntry(parent, index, name){
     deleteButtonImage.src = "static/images/TrashProfile.svg"
     deleteButton.addEventListener("click", (e)=> {
         e.preventDefault()
-        console.log("Deleting")
+        localStorage.removeItem(name)
+        parent.removeChild(backgroundRow)
     })
     deleteButton.appendChild(deleteButtonImage)
 
