@@ -1,3 +1,21 @@
+function RecalculateNoprofiles(){
+    const profilesFoundDiv = document.getElementById("profilesFound")
+    const noProfilesDiv = document.getElementById("noProfiles")
+
+    if(localStorage.length > 0){
+        noProfilesDiv.classList.remove("visible")
+        noProfilesDiv.classList.add("hidden")
+        profilesFoundDiv.classList.remove("hidden")
+        profilesFoundDiv.classList.add("visibleFlex")
+    }
+    else{
+        profilesFoundDiv.classList.remove("visibleFlex")
+        profilesFoundDiv.classList.add("hidden")
+        noProfilesDiv.classList.remove("hidden")
+        noProfilesDiv.classList.add("visible")
+    }
+}
+
 function CreateProfileListEntry(parent, index, name){
     const actualName = name.split('|')[0]
     const date = name.split('|')[1]
@@ -34,6 +52,7 @@ function CreateProfileListEntry(parent, index, name){
         e.preventDefault()
         localStorage.removeItem(name)
         parent.removeChild(backgroundRow)
+        RecalculateNoprofiles()
     })
     deleteButton.appendChild(deleteButtonImage)
 
@@ -51,3 +70,5 @@ const numItems = localStorage.length
 for(let i = 0; i < numItems; i++){
     CreateProfileListEntry(document.getElementById("profilesDropdown"), i, localStorage.key(i))
 }
+
+RecalculateNoprofiles()

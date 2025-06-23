@@ -42,7 +42,7 @@
     <div class="sectionHeader">Created Profiles</div>
     <div class="subTitle">Add new or edit profiles here</div>
     <div class="listContainer">
-        <div class="holder hidden" id="noProfiles">
+        <div class="holder" id="noProfiles">
             <div class="majorText">No Profiles created yet!</div>
             <div class="subTitle">Create a profile to generate a resume!</div>
             <div class="buttonHolder">
@@ -57,21 +57,9 @@
             </div>
         </div>
         <div class="fullWidth" id="profilesDropdown">
-            <!-- <div class="profilesListEntryBG flexHorizontal">
-                <div class="profileListText">Profile Name</div>
-                <div class="profileListDate">09-01-2003</div>
-                <div class="profileListButtonsHolder smGap">
-                    <button class="navButton">
-                        <img class="buttonImage" src="{{url_for('static', filename='images/EditProfile.svg')}}">
-                    </button>
-                    <button class="navButton">
-                        <img class="buttonImage" src="{{url_for('static', filename='images/TrashProfile.svg')}}">
-                    </button>
-                </div>
-            </div> -->
         </div>
     </div>
-    <div id="profilesFound" class="visible buttonHolder medBottomSpacing">
+    <div id="profilesFound" class="buttonHolder medBottomSpacing">
         <button class="button" id="CreateProfileLower">
             Create new Profile
             <img class="buttonImage" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>

@@ -491,8 +491,12 @@ body{
     display: none;
 }
 
-.visible{
+.visibleFlex{
     display: flex;
+}
+
+.visible{
+    display: block;
 }
 
 .profileRow{
