@@ -39,13 +39,25 @@
                     </button>
                 </div>
                 <div class="majorHeading"> Select a Profile</div>
-                <div>
+                <div id = "noProfiles" class="hidden">
                     <div class="subHeadingLight">No Profiles Created Yet</div>
                     <div class="subTitle">Create a Profile to generate a resume</div>
                     <div class="buttonHolder">
                         <button class="listButton" id="CreateProfile">
                             Create New Profile
                             <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+                        </button>
+                    </div>
+                </div>
+                <div id="profiles">
+                    <select class="lgBottomSpacing medTopSpacing">
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                    </select>
+                    <div class="buttonHolder">
+                        <button class="medButton" id="Continue">
+                            Continue
                         </button>
                     </div>
                 </div>
