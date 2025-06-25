@@ -49,7 +49,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="profiles">
+                <div id="profiles" class="hidden">
                     <select class="lgBottomSpacing medTopSpacing">
                         <option>A</option>
                         <option>B</option>
@@ -128,6 +128,22 @@
             hiddenOverlay.style.display = "none"
         }
     })
+
+    let numItems = localStorage.length
+    const noProfiles = document.getElementById("noProfiles")
+    const profiles = document.getElementById("profiles")
+    if (numItems > 0){
+        noProfiles.classList.remove("visible")
+        noProfiles.classList.add("hidden")
+        profiles.classList.remove("hidden")
+        profiles.classList.add("visible")
+    }
+    else{
+        noProfiles.classList.remove("hidden")
+        noProfiles.classList.add("visible")
+        profiles.classList.remove("visible")
+        profiles.classList.add("hidden")
+    }
 
     // document.getElementById("form").addEventListener("submit", (e)=>{
     //     e.preventDefault()
