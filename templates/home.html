@@ -50,10 +50,7 @@
                     </div>
                 </div>
                 <div id="profiles" class="hidden">
-                    <select class="lgBottomSpacing medTopSpacing">
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
+                    <select class="lgBottomSpacing medTopSpacing" id="profilesList">
                     </select>
                     <div class="buttonHolder">
                         <button class="medButton" id="Continue">
@@ -132,11 +129,19 @@
     let numItems = localStorage.length
     const noProfiles = document.getElementById("noProfiles")
     const profiles = document.getElementById("profiles")
+    var profilesList = document.getElementById("profilesList")
+
     if (numItems > 0){
         noProfiles.classList.remove("visible")
         noProfiles.classList.add("hidden")
         profiles.classList.remove("hidden")
         profiles.classList.add("visible")
+        for(let i = 0; i < numItems; i++){
+            let option = document.createElement("option")
+            let profileName = localStorage.key(i).split('|')[0]
+            option.textContent = profileName
+            profilesList.appendChild(option)
+        }
     }
     else{
         noProfiles.classList.remove("hidden")
@@ -144,6 +149,7 @@
         profiles.classList.remove("visible")
         profiles.classList.add("hidden")
     }
+
 
     // document.getElementById("form").addEventListener("submit", (e)=>{
     //     e.preventDefault()
