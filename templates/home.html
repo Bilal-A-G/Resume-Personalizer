@@ -30,11 +30,11 @@
                 </button>
             </div>
         </div>
-        <div class="hiddenOverlay" id="hiddenOverlay">
-            <div class="blurOverlay" id="blurOverlay"></div>
+        <div class="hiddenOverlay" id="hiddenOverlayProfile">
+            <div class="blurOverlay" id="blurOverlayProfile"></div>
             <div class="profileSelection" id="profileSelection">
                 <div class="smallButtonHolder tinyRightSpacing">
-                    <button class="smallButton" id="CloseOverlay">
+                    <button class="smallButton" id="CloseOverlayProfile">
                         <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
                 </div>
@@ -61,6 +61,27 @@
                 </div>
             </div>
         </div>
+        <div class="hiddenOverlay" id="hiddenOverlayJob">
+            <div class="blurOverlay" id="blurOverlayJob"></div>
+            <div class="jobDescSelection" id="jobDetails">
+                <div class="smallButtonHolder tinyRightSpacing">
+                    <button class="smallButton" id="CloseOverlayJob">
+                        <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
+                    </button>
+                </div>
+                <div class="majorHeading"> Job Details</div>
+                <div class="subTitle">Enter full job description with requirements here</div>
+                <form id="form" class="medTopSpacing">
+                    <textarea name="jobDesc", id="jobDesc" class="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
+                    <div class="buttonHolder">
+                        <button class="medButton" id="Submit">
+                            Submit
+                            <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <!-- <div class="line"\>
             <div class="profile">
@@ -78,52 +99,87 @@
             </div> -->
 </body>
 <script text="text/javascript">
-    var hiddenOverlay = document.getElementById("hiddenOverlay")
-    var profileSelection = document.getElementById("profileSelection")
-    var blurOverlay = document.getElementById("blurOverlay")
-
+    
     document.getElementById("CreateProfile").addEventListener("click", () => {
         location.href = "/profiles"
     })
-
+    
     document.getElementById("BrowseResumes").addEventListener("click", () => {
         location.href = "/resumes"
     })
     document.getElementById("BrowseProfiles").addEventListener("click", () => {
         location.href = "/profiles"
     })
+
+    var hiddenOverlayJob = document.getElementById("hiddenOverlayJob")
+    var jobDetails = document.getElementById("jobDetails")
+    var blurOverlayJob = document.getElementById("blurOverlayJob")
+
+    document.getElementById("Continue").addEventListener("click", ()=>{
+        hiddenOverlayProfile.style.display = "none"
+
+        hiddenOverlayJob.classList.remove("fadeBackgroundOut")
+        jobDetails.classList.remove("fadeOpacityOut")
+        blurOverlayJob.classList.remove("fadeBlurOut")
+
+        hiddenOverlayJob.style.display = "flex"
+    })
+
+    document.getElementById("CloseOverlayJob").addEventListener("click", ()=>{
+        hiddenOverlayJob.classList.remove("fadeBackgroundIn")
+        jobDetails.classList.remove("fadeOpacityIn")
+        blurOverlayJob.classList.remove("fadeBlurIn")
+
+        void blurOverlayJob.offsetWidth
+        void jobDetails.offsetWidth
+        void hiddenOverlayJob.offsetWidth
+
+        hiddenOverlayJob.classList.add("fadeBackgroundOut")
+        jobDetails.classList.add("fadeOpacityOut")
+        blurOverlayJob.classList.add("fadeBlurOut")
+    })
+    hiddenOverlayJob.addEventListener("animationend", (event) => {
+        if (hiddenOverlayJob.classList.contains("fadeBackgroundOut")) {
+            hiddenOverlayJob.style.display = "none"
+        }
+    })
+
+    var hiddenOverlayProfile = document.getElementById("hiddenOverlayProfile")
+    var profileSelection = document.getElementById("profileSelection")
+    var blurOverlayProfile = document.getElementById("blurOverlayProfile")
+
     document.getElementById("NewResume").addEventListener("click", () => {
-        hiddenOverlay.classList.remove("fadeBackgroundOut")
+        hiddenOverlayProfile.classList.remove("fadeBackgroundOut")
         profileSelection.classList.remove("fadeOpacityOut")
-        blurOverlay.classList.remove("fadeBlurOut")
+        blurOverlayProfile.classList.remove("fadeBlurOut")
 
-        void blurOverlay.offsetWidth
+        void blurOverlayProfile.offsetWidth
         void profileSelection.offsetWidth
-        void hiddenOverlay.offsetWidth
+        void hiddenOverlayProfile.offsetWidth
 
-        hiddenOverlay.classList.add("fadeBackgroundIn")
+        hiddenOverlayProfile.classList.add("fadeBackgroundIn")
         profileSelection.classList.add("fadeOpacityIn")
-        blurOverlay.classList.add("fadeBlurIn")
+        blurOverlayProfile.classList.add("fadeBlurIn")
 
-        document.getElementById("hiddenOverlay").style.display = "flex"
+        hiddenOverlayProfile.style.display = "flex"
     })
-    document.getElementById("CloseOverlay").addEventListener("click", () => {
-        hiddenOverlay.classList.remove("fadeBackgroundIn")
+    document.getElementById("CloseOverlayProfile").addEventListener("click", () => {
+        hiddenOverlayProfile.classList.remove("fadeBackgroundIn")
         profileSelection.classList.remove("fadeOpacityIn")
-        blurOverlay.classList.remove("fadeBlurIn")
+        blurOverlayProfile.classList.remove("fadeBlurIn")
 
-        void blurOverlay.offsetWidth
+        void blurOverlayProfile.offsetWidth
         void profileSelection.offsetWidth
-        void hiddenOverlay.offsetWidth
+        void hiddenOverlayProfile.offsetWidth
 
-        hiddenOverlay.classList.add("fadeBackgroundOut")
+        hiddenOverlayProfile.classList.add("fadeBackgroundOut")
         profileSelection.classList.add("fadeOpacityOut")
-        blurOverlay.classList.add("fadeBlurOut")
+        blurOverlayProfile.classList.add("fadeBlurOut")
     })
 
-    hiddenOverlay.addEventListener("animationend", (event) => {
-        if (hiddenOverlay.classList.contains("fadeBackgroundOut")) {
-            hiddenOverlay.style.display = "none"
+    hiddenOverlayProfile.addEventListener("animationend", (event) => {
+        if (hiddenOverlayProfile.classList.contains("fadeBackgroundOut")) {
+            hiddenOverlayProfile.style.display = "none"
         }
     })
 

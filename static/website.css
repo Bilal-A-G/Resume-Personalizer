@@ -213,6 +213,20 @@ body{
     opacity: 100%
 }
 
+.jobDescSelection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 525px;
+    height: 550px;
+    border-radius: 10px;
+    background-color: #cbcbcb;
+    margin-top: 50px;
+    opacity: 100%
+}
+
 .buttonImage{
     width: 30px;
     margin-top: 5px;
@@ -732,6 +746,15 @@ body{
 .textCenter{
     display: flex;
     align-items: center;
+}
+
+.jobDesc{
+    resize: none;
+    border: none;
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .medTopSpacing{
