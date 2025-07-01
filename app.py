@@ -163,7 +163,7 @@ def getStringListKeywordSimilarity(stringList, rankedKeywordList, keywordListLen
     return weightedStrings
 
 def formatFormDate(date):
-    if date == '':
+    if date == '' or date == "undefined":
         return ''
     
     timeFormat = '%Y-%m'
@@ -172,8 +172,9 @@ def formatFormDate(date):
     return strDate
 
 def getRecencyOfDate(date, timeFormat):
-    if date == "":
+    if date == "" or date == "undefined":
         return 0
+    print("date = " + date)
     dts = datetime.datetime.strptime(date, timeFormat)
     delta = (datetime.datetime.now() - dts)
     #1826 is the number of days in 5 years, we want to only start drastically decreasing our score if the items is older than this
@@ -251,7 +252,7 @@ def submitted():
         relevantProjects[i]["projectStartDate"] = formatFormDate(relevantProjects[i]["projectStartDate"])
         relevantProjects[i]["projectEndDate"] = formatFormDate(relevantProjects[i]["projectEndDate"])
     
-    relevantExperience = getTopSimilarEntriesByFields([("descriptions", True), ("title", True), ("jobTags", False)], 
+    relevantExperience = getTopSimilarEntriesByFields([("descriptions", True), ("jobTitles", True), ("jobTags", False)], 
                                                       jsonData["workExperience"]["data"], 
                                                       rankedKeywords, descriptionLength, endDateKey="jobEndDate")
     
@@ -259,7 +260,7 @@ def submitted():
         relevantExperience[i]["jobStartDate"] = formatFormDate(relevantExperience[i]["jobStartDate"])
         relevantExperience[i]["jobEndDate"] = formatFormDate(relevantExperience[i]["jobEndDate"])
     
-    relevantSkills = getStringListKeywordSimilarity(jsonData["skills"]["data"], rankedKeywords, descriptionLength, False)
+    relevantSkills = getStringListKeywordSimilarity(jsonData["unclassifiedSkills"]["data"], rankedKeywords, descriptionLength, False)
     relevantSkills = getTopNElemsInListAndWeight(relevantSkills, 5)[1]
 
     relevantCategorizedSkills = getTopSimilarEntriesByFields([("categorizedSkills", False)], jsonData["categorizedSkills"],
@@ -289,7 +290,7 @@ def submitted():
                                projects=relevantProjects,
                                projectsAlias = jsonData["projects"]["alias"],
                                skills=relevantSkills, 
-                               skillsAlias = jsonData["skills"]["alias"],
+                               skillsAlias = jsonData["unclassifiedSkills"]["alias"],
                                title=relevantTitle,
                                categorizedSkills=relevantCategorizedSkills,
                                accomplishments=relevantAccomplishments,
