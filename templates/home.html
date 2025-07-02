@@ -16,10 +16,6 @@
             <div class="mainText">Resume Personalizer</div>
             <div class="subTitle">Generate a personalized resume today</div>
             <div class="buttonHolder">
-                <button class="button" id="BrowseResumes">
-                    Resumes
-                    <img class="buttonImage" src="{{url_for('static', filename='images/Resumes.svg')}}" \>
-                </button>
                 <button class="button" id="NewResume">
                     New Resume
                     <img class="buttonImage" src="{{url_for('static', filename='images/NewResume.svg')}}" \>
@@ -85,14 +81,6 @@
     </div>
 </body>
 <script text="text/javascript">
-    
-    document.getElementById("CreateProfile").addEventListener("click", () => {
-        location.href = "/profiles"
-    })
-    
-    document.getElementById("BrowseResumes").addEventListener("click", () => {
-        location.href = "/resumes"
-    })
     document.getElementById("BrowseProfiles").addEventListener("click", () => {
         location.href = "/profiles"
     })

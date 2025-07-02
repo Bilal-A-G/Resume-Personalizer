@@ -13,7 +13,7 @@
         </div>
         {% if education | length > 0 %}
             <div class="subHeading"> 
-                {% if educationAlias != "" %}
+                {% if educationAlias != "" and educationAlias != "null" %}
                     {{educationAlias}}
                 {% else %}
                     Education
@@ -51,7 +51,7 @@
         {% endif %}
         {% if workExperience | length > 0 %}
             <div class="subHeading">
-                {% if workExperienceAlias != "" %}
+                {% if workExperienceAlias != "" and workExperienceAlias != "null" %}
                     {{workExperienceAlias}}
                 {% else %}
                     Experience
@@ -62,7 +62,7 @@
                 {% for work in workExperience %}
                 <div class="fullSpan">
                     <div class="mainText">
-                        {{work["title"]}}
+                        {{work["jobTitles"]}}
                         <div class="tag">
                             |
                             {% for jobTag in work["jobTags"] %}
@@ -99,7 +99,7 @@
         {% endif %}
         {% if projects | length > 0 %}
             <div class="subHeading"> 
-                {% if projectsAlias != "" %}
+                {% if projectsAlias != "" and projectsAlias != "null" %}
                     {{projectsAlias}}
                 {% else %}
                     Projects
@@ -141,7 +141,7 @@
         {% endif %}
         {% if skills | length > 0 or categorizedSkills | length > 0 %}
             <div class="subHeading"> 
-                {% if skillsAlias != "" %}
+                {% if skillsAlias != "" and skillsAlias != "null" %}
                     {{skillsAlias}}
                 {% else %}
                     Skills
@@ -171,7 +171,7 @@
         {% endif %}
         {% if accomplishments | length > 0 %}
             <div class="subHeading">
-                {% if accomplishmentsAlias != "" %}
+                {% if accomplishmentsAlias != "" and accomplishmentsAlias != "null" %}
                     {{accomplishmentsAlias}}
                 {% else %}
                     Accomplishments
