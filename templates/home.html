@@ -60,7 +60,10 @@
         <div class="hiddenOverlay" id="hiddenOverlayJob">
             <div class="blurOverlay" id="blurOverlayJob"></div>
             <div class="jobDescSelection" id="jobDetails">
-                <div class="smallButtonHolder tinyRightSpacing">
+                <div class="smallButtonHolder tinyRightSpacing smGap">
+                    <button class="smallButton" id="GoBack">
+                        <img class="centeredButtonImage" src="{{url_for('static', filename='images/Back.svg')}}">
+                    </button>
                     <button class="smallButton" id="CloseOverlayJob">
                         <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
@@ -85,29 +88,30 @@
         location.href = "/profiles"
     })
 
+    
     var hiddenOverlayJob = document.getElementById("hiddenOverlayJob")
     var jobDetails = document.getElementById("jobDetails")
     var blurOverlayJob = document.getElementById("blurOverlayJob")
-
+    
     document.getElementById("Continue").addEventListener("click", ()=>{
         hiddenOverlayProfile.style.display = "none"
-
+        
         hiddenOverlayJob.classList.remove("fadeBackgroundOut")
         jobDetails.classList.remove("fadeOpacityOut")
         blurOverlayJob.classList.remove("fadeBlurOut")
-
+        
         hiddenOverlayJob.style.display = "flex"
     })
-
+    
     document.getElementById("CloseOverlayJob").addEventListener("click", ()=>{
         hiddenOverlayJob.classList.remove("fadeBackgroundIn")
         jobDetails.classList.remove("fadeOpacityIn")
         blurOverlayJob.classList.remove("fadeBlurIn")
-
+        
         void blurOverlayJob.offsetWidth
         void jobDetails.offsetWidth
         void hiddenOverlayJob.offsetWidth
-
+        
         hiddenOverlayJob.classList.add("fadeBackgroundOut")
         jobDetails.classList.add("fadeOpacityOut")
         blurOverlayJob.classList.add("fadeBlurOut")
@@ -117,35 +121,58 @@
             hiddenOverlayJob.style.display = "none"
         }
     })
-
+    
     var hiddenOverlayProfile = document.getElementById("hiddenOverlayProfile")
     var profileSelection = document.getElementById("profileSelection")
     var blurOverlayProfile = document.getElementById("blurOverlayProfile")
-
+    
     document.getElementById("NewResume").addEventListener("click", () => {
         hiddenOverlayProfile.classList.remove("fadeBackgroundOut")
         profileSelection.classList.remove("fadeOpacityOut")
         blurOverlayProfile.classList.remove("fadeBlurOut")
-
+        
         void blurOverlayProfile.offsetWidth
         void profileSelection.offsetWidth
         void hiddenOverlayProfile.offsetWidth
-
+        
         hiddenOverlayProfile.classList.add("fadeBackgroundIn")
         profileSelection.classList.add("fadeOpacityIn")
         blurOverlayProfile.classList.add("fadeBlurIn")
+        
+        hiddenOverlayProfile.style.display = "flex"
+    })
+    var goBack = document.getElementById("GoBack")
+    goBack.addEventListener("click", (e)=>{
+        e.preventDefault()
 
+        hiddenOverlayJob.classList.remove("fadeBackgroundIn")
+        jobDetails.classList.remove("fadeOpacityIn")
+        blurOverlayJob.classList.remove("fadeBlurIn")
+
+        hiddenOverlayJob.classList.add("fadeBackgroundOut")
+        jobDetails.classList.add("fadeOpacityOut")
+        blurOverlayJob.classList.add("fadeBlurOut")
+        hiddenOverlayJob.style.display = "none"
+
+        hiddenOverlayProfile.classList.remove("fadeBackgroundOut")
+        profileSelection.classList.remove("fadeOpacityOut")
+        blurOverlayProfile.classList.remove("fadeBlurOut")
+
+        hiddenOverlayProfile.classList.remove("fadeBackgroundIn")
+        profileSelection.classList.remove("fadeOpacityIn")
+        blurOverlayProfile.classList.remove("fadeBlurIn")
+        
         hiddenOverlayProfile.style.display = "flex"
     })
     document.getElementById("CloseOverlayProfile").addEventListener("click", () => {
         hiddenOverlayProfile.classList.remove("fadeBackgroundIn")
         profileSelection.classList.remove("fadeOpacityIn")
         blurOverlayProfile.classList.remove("fadeBlurIn")
-
+        
         void blurOverlayProfile.offsetWidth
         void profileSelection.offsetWidth
         void hiddenOverlayProfile.offsetWidth
-
+        
         hiddenOverlayProfile.classList.add("fadeBackgroundOut")
         profileSelection.classList.add("fadeOpacityOut")
         blurOverlayProfile.classList.add("fadeBlurOut")

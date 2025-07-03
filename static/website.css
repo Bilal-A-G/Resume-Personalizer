@@ -411,15 +411,15 @@ body{
 
 .navbarPanel{
     gap: 40px;
-    border-bottom-left-radius: 20px;
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 5px;
     padding-bottom: 5px;
+    width: 100%;
     justify-content: center;
     display: flex;
     flex-direction: row;
-    background-color: rgba(183, 183, 183, 0.95)
+    background-color: rgb(198, 198, 198, 0.9f)
 }
 
 .medButton{
