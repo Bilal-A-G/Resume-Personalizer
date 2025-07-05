@@ -50,9 +50,9 @@ function CreateProfileListEntry(parent, index, name){
     deleteButtonImage.src = "static/images/TrashProfile.svg"
     deleteButton.addEventListener("click", (e)=> {
         e.preventDefault()
-        localStorage.removeItem(name)
-        parent.removeChild(backgroundRow)
-        RecalculateNoprofiles()
+        //localStorage.removeItem(name)
+        //parent.removeChild(backgroundRow)
+        //RecalculateNoprofiles()
     })
     deleteButton.appendChild(deleteButtonImage)
 

@@ -163,7 +163,7 @@ def getStringListKeywordSimilarity(stringList, rankedKeywordList, keywordListLen
     return weightedStrings
 
 def formatFormDate(date):
-    if date == '' or date == "undefined":
+    if date == '' or date == "undefined" or date == "null":
         return ''
     
     timeFormat = '%Y-%m'
@@ -172,7 +172,7 @@ def formatFormDate(date):
     return strDate
 
 def getRecencyOfDate(date, timeFormat):
-    if date == "" or date == "undefined":
+    if date == "" or date == "undefined" or date == "null":
         return 0
     print("date = " + date)
     dts = datetime.datetime.strptime(date, timeFormat)

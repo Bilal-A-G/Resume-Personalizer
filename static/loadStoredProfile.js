@@ -33,7 +33,7 @@ function SetDomElementsBySection(items, addSecondButtonID, elementNames, element
             continue
 
         const allPresents = document.getElementsByName(presentDateElementName + `${i + 1}`)
-        const allEnds = document.getElementsByName(endDateElementName)
+        const allEnds = document.getElementsByName(endDateElementName  + `${i + 1}`)
         const presentValue = items[i][presentDateElementValueName]
         if( presentValue != undefined && presentValue != "null"){
             allPresents[allPresents.length - 1].click()

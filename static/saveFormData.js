@@ -23,13 +23,14 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     const institutionNames = formData.getAll("institutionName")
     const degrees = formData.getAll("degree")
     const locations = formData.getAll("institutionLocation")
-    const graduationDates = formData.getAll("graduationDate")
     const enrollmentDates = formData.getAll("enrollmentDate")
 
     for (i = 0; i < institutionNames.length; i++) {
         const present = formData.get(`presentEducation${i + 1}`)
+        const graduationDate = formData.get(`graduationDate${i + 1}`)
+
         jsonString += `{"institutionName": "${institutionNames[i]}", "degree": "${degrees[i]}",
-                    "institutionLocation": "${locations[i]}", "graduation": "${graduationDates[i]}", "present": "${present}",
+                    "institutionLocation": "${locations[i]}", "graduation": "${graduationDate}", "present": "${present}",
                     "enrollment": "${enrollmentDates[i]}", "descriptions": [`
 
         const descriptions = formData.getAll(`educationDescription${i + 1}`)
@@ -54,12 +55,13 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
     const titles = formData.getAll("jobTitle")
     const jobLocations = formData.getAll("jobLocation")
     const jobStartDates = formData.getAll("jobStart")
-    const jobEndDates = formData.getAll("jobEnd")
-
     for (i = 0; i < companyNames.length; i++) {
         const present = formData.get(`presentJob${i + 1}`)
+        const jobEndDate = formData.get(`jobEnd${i + 1}`)
+
+        console.log(jobLocations[i] + " " + companyNames[i] + " " + jobEndDate)
         jsonString += `{"companyName": "${companyNames[i]}", "jobLocation": "${jobLocations[i]}",
-                    "jobTitles": "${titles[i]}", "jobStartDate": "${jobStartDates[i]}", "jobEndDate": "${jobEndDates[i]}",
+                    "jobTitles": "${titles[i]}", "jobStartDate": "${jobStartDates[i]}", "jobEndDate": "${jobEndDate}",
                     "presentJob": "${present}", "descriptions": [`
 
         const descriptions = formData.getAll(`responsibility${i + 1}`)
@@ -90,13 +92,13 @@ document.getElementById("profileForm").addEventListener("submit", (e) => {
 
     const projectNames = formData.getAll("projectName")
     const projectStartDates = formData.getAll("projectStart")
-    const projectEndDates = formData.getAll("projectEnd")
 
     for (i = 0; i < projectNames.length; i++) {
         const present = formData.get(`presentProject${i + 1}`)
+        const projectEndDate = formData.get(`projectEnd${i + 1}`)
 
         jsonString += `{"projectName": "${projectNames[i]}", "projectStartDate": "${projectStartDates[i]}",
-                    "projectEndDate": "${projectEndDates[i]}", "presentProject": "${present}", "projectDescriptions": [`
+                    "projectEndDate": "${projectEndDate}", "presentProject": "${present}", "projectDescriptions": [`
 
         const projectDescriptions = formData.getAll(`projectDescription${i + 1}`)
         for (v = 0; v < projectDescriptions.length; v++) {

@@ -140,12 +140,12 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     const endDateLabel = document.createElement("label")
     endDateLabel.textContent = "End Date"
     endDateLabel.className = "profileFieldLabel medMarginBottom"
-    endDateLabel.for = endID
+    endDateLabel.for = endID + `${index}`
     const endDateInput = document.createElement("input")
     endDateInput.className = "profileDateField"
     endDateInput.type = "month"
-    endDateInput.id = endID
-    endDateInput.name = endID
+    endDateInput.id = endID + `${index}`
+    endDateInput.name = endID + `${index}`
     const isPresentGroup = document.createElement("div")
     isPresentGroup.className = "flexHorizontal smGap"
     const presentCheckbox = document.createElement("input")
