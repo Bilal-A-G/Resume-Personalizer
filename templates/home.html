@@ -39,7 +39,7 @@
                 <div id = "noProfiles" class="hidden">
                     <div class="subHeadingLight">No Profiles Created Yet</div>
                     <div class="subTitle">Create a Profile to generate a resume</div>
-                    <div class="buttonHolder">
+                    <div class="buttonHolderTopSpacing lgBottomMargin">
                         <button class="medButton" id="CreateProfile">
                             Create New Profile
                             <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
@@ -73,7 +73,7 @@
                 <div class="subTitle">Enter full job description with requirements here</div>
                 <form id="form" class="medTopSpacing">
                     <textarea name="jobDesc", id="jobDesc" class="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
-                    <div class="buttonHolder">
+                    <div class="buttonHolderTopSpacing lgBottomMargin">
                         <button class="medButton" id="Submit">
                             Submit
                             <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">

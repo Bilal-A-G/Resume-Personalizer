@@ -2,9 +2,19 @@ body{
     background-color: #d9d9d9;
 }
 
+html{
+    font-size: 16px;
+}
+
+@media (max-width: 900px) {
+    html{
+        font-size: 13px;
+    }
+}
+
 .mainText{
-    padding-top: 85px;
-    font-size: 100px;
+    padding-top: 1em;
+    font-size: 7rem;
     text-align: center;
     font-weight: 350;
     font-family: "Josefin Sans", sans-serif;
@@ -93,9 +103,9 @@ body{
 .holder{
     height: fit-content;
     width: fit-content;
-    padding: 60px;
-    padding-top: 0px;
-    border-radius: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    box-sizing: border-box;
 }
 
 .buttonHolder{
@@ -107,7 +117,7 @@ body{
 }
 
 .buttonHolderTopSpacing{
-    margin-top: 10vh;
+    margin-top: 5em;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
@@ -115,7 +125,7 @@ body{
 }
 
 .smallButtonHolder{
-    margin-top: 1vh;
+    margin-top: 1em;
     margin-left: auto;
     width: fit-content;
     display: flex;
@@ -193,10 +203,9 @@ body{
 
 .majorHeading{
     font-size: 3rem;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    margin-top: 20px;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 0.5em;
 }
 
 .profileSelection{
@@ -205,8 +214,8 @@ body{
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    min-width: 300px;
-    min-height: 400px;
+    min-width: 250px;
+    min-height: 300px;
     width: 30vw;
     border-radius: 10px;
     background-color: #cbcbcb;
@@ -219,17 +228,16 @@ body{
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    width: 525px;
-    height: 550px;
+    min-width: 350px;
+    width: 30vw;
     border-radius: 10px;
     background-color: #cbcbcb;
-    margin-top: 50px;
     opacity: 100%
 }
 
 .buttonImage{
-    width: 30px;
-    margin-top: 5px;
+    width: 2.5em;
+    margin-top: 0.4em;
 }
 
 .navButtonImage{
@@ -238,7 +246,7 @@ body{
 }
 
 .centeredButtonImage{
-    width: 30px;
+    width: 2em;
 }
 
 .button{
@@ -307,20 +315,16 @@ body{
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    font-size: small;
+    font-size: 0.8rem;
     align-items: center;
     text-align: center;
     border-radius: 10px;
     border: none;
     justify-content: center;
-    
+
+    padding: 0.5em 0.5em;
+
     transition: 0.15s;
-    width: 40px;
-    height: 40px;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .centeredText{
@@ -399,13 +403,13 @@ body{
 .listDropdown{
     background-color: rgb(217, 217, 217);
     width: 50%;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
     border: none;
     text-align: center;
     font-weight: 500;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    border-top-right-radius: 0.1em;
+    border-top-left-radius: 0.1em;
     font-family: "Josefin Sans", sans-serif;
     font-size: 0.9rem;
 }
@@ -506,7 +510,6 @@ body{
 
 .smallButton:hover{
     background-color: #EAE7E7;
-    padding-bottom: 12px;
 }
 
 .smallButton:active{
@@ -749,13 +752,15 @@ body{
     border: none;
     background-color: #d9d9d9;
     border-radius: 10px;
-    padding: 10px;
+    padding: 1em;
     font-size: 0.8rem;
     font-family: "Josefin Sans", sans-serif;
+    width: 70%;
+    max-width: 300px;
 }
 
 .medTopSpacing{
-    margin-top: 40px;
+    margin-top: 4em;
 }
 
 .lgTopSpacing{
@@ -777,7 +782,7 @@ body{
 }
 
 .lgBottomMargin{
-    margin-bottom: 2vw;
+    margin-bottom: 1em;
 }
 
 .lgBottomSpacing{
@@ -823,7 +828,7 @@ body{
 }
 
 .tinyRightSpacing{
-    margin-right: 10px;
+    margin-right: 1em;
 }
 
 .medRightSpacing{
@@ -878,7 +883,7 @@ body{
     margin-right: auto;
     margin-left: auto;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 3em;
 }
 
 .profile{
