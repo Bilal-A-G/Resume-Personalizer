@@ -33,7 +33,7 @@ function CreateProfileListEntry(parent, index, name){
     buttonHolder.className = "profileListButtonsHolder smGap"
     
     const editButton = document.createElement("button")
-    editButton.className = "navButton"
+    editButton.className = "smallButton"
     const editButtonImage = document.createElement("img")
     editButtonImage.className = "buttonImage"
     editButtonImage.src = "static/images/EditProfile.svg"
@@ -44,7 +44,7 @@ function CreateProfileListEntry(parent, index, name){
     editButton.appendChild(editButtonImage)
 
     const deleteButton = document.createElement("button")
-    deleteButton.className = "navButton"
+    deleteButton.className = "smallButton"
     const deleteButtonImage = document.createElement("img")
     deleteButtonImage.className = "buttonImage"
     deleteButtonImage.src = "static/images/TrashProfile.svg"
