@@ -34,38 +34,38 @@
     <div class="mainText">Profile</div>
     <form id="profileForm">
         <div class="centerAlignedRow">
-            <div class="profileFieldLabelCentered">Profile Name</div>
-            <input class="profileTextField wide" type="text" id="profileName" name="profileName" required>
+            <div class="profileFieldLabel">Profile Name</div>
+            <input class="profileTextField" type="text" id="profileName" name="profileName" required>
         </div>
         <div class="profileRow">
             Header
             <img class="largeImage" src="{{url_for('static', filename='images/Profile.svg')}}">
         </div>
-        <div class="profilePanel medTopSpacing medBottomSpacing XLLeftPadding XLRightPadding">
-            <div class="flexHorizontal medGap">
+        <div class="profilePanel medTopSpacing medBottomSpacing">
+            <div class="flexHorizontal medGap centered">
                 <div class="grid">
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="name">Full Name</label>
-                        <input class="profileTextField wide" type="text" id="name" name="name">
+                        <input class="profileTextField" type="text" id="name" name="name">
                     </div>
                     <div class="profileFieldGroup">
                         <label class="profileFieldLabel medMarginBottom" for="email">Email</label>
-                        <input class="profileTextField wide" type="text" id="email" name="email">
+                        <input class="profileTextField" type="text" id="email" name="email">
                     </div>
-                    <div class="profileFieldGroup">
+                    <div class="profileFieldGroup doubleWide medMaxWidth">
+                        <div class="rowAlignCentered">
+                            <div class="profileFieldLabel medMarginBottom">Job Titles</div>
+                        </div>
+                        <div class="profileDropdown" id="titlesDropdown"></div>
+                        <div class="line"></div>
+                        <div class="rowAlignCentered">
+                            <button class="smallerButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+
+                                </div></button>
+                        </div>
+                    </div>
+                    <div class="profileFieldGroup websiteGridField">
                         <label class="profileFieldLabel medMarginBottom" for="website">Website</label>
-                        <input class="profileTextField wide" type="text" id="website" name="website">
-                    </div>
-                </div>
-                <div class="profileFieldGroup">
-                    <div class="rowAlignCentered">
-                        <div class="profileFieldLabel medMarginBottom">Job Titles</div>
-                    </div>
-                    <div class="profileDropdown extraWide" id="titlesDropdown"></div>
-                    <div class="line"></div>
-                    <div class="rowAlignCentered">
-                        <button class="smallerButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+
-                            </div></button>
+                        <input class="profileTextField" type="text" id="website" name="website">
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
             <img class="largeImage" src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}">
         </div> 
         <div class="profilePanel medTopSpacing medBottomSpacing XLLeftPadding XLRightPadding">
-            <div class="flexHorizontal medGap">
+            <div class="flexHorizontal medGap centered">
                 <div class="profileFieldGroup">
                     <div class="rowAlignCentered">
                         <div class="profileFieldLabel medMarginBottom">Unclassified Skills</div>
