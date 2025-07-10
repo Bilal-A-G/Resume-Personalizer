@@ -59,7 +59,7 @@
                         <div class="profileDropdown" id="titlesDropdown"></div>
                         <div class="line"></div>
                         <div class="rowAlignCentered">
-                            <button class="smallerButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+
+                            <button class="smallButton greyBackground" type="button" id="AddPersonalTitle">Add New <div>+
                                 </div></button>
                         </div>
                     </div>
@@ -74,8 +74,8 @@
             Education
             <img class="largeImage" src="{{url_for('static', filename='images/Education.svg')}}">
         </div>
-        <div id="educationDropdown"></div>
-        <div class="rowAlignCentered medTopSpacing">
+        <div id="educationDropdown" class="maxWidth"></div>
+        <div class="rowAlignCentered medTopSpacing medBottomSpacing">
             <button class="button largeFont" type="button" id="AddEducation">Add Education <div>+</div></button>
         </div>
         <div class="profileRow">
@@ -135,6 +135,9 @@
             </button>
         </div>
     </form>
+    <script>
+        const REMOVE_IMG_SOURCE = "{{url_for('static', filename='images/Remove.svg')}}"
+    </script>
     <script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
     <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
     <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>

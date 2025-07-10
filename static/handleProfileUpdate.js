@@ -98,7 +98,7 @@ function StartNewSection(parent){
     return listChild
 }
 
-function CreateTextFieldGroup(parent, id, labelText, sizeCSS){
+function CreateTextFieldGroup(parent, id, labelText){
     const groupParent = document.createElement("div")
     groupParent.className = "profileFieldGroup"
     const label = document.createElement("label")
@@ -107,7 +107,7 @@ function CreateTextFieldGroup(parent, id, labelText, sizeCSS){
     label.textContent = labelText
 
     const inputField = document.createElement("input")
-    inputField.className = "profileTextField " + sizeCSS
+    inputField.className = "profileTextField"
     inputField.type = "text"
     inputField.name = id
     inputField.id = id
@@ -119,7 +119,7 @@ function CreateTextFieldGroup(parent, id, labelText, sizeCSS){
 
 function CreateDateRangeFields(parent, startID, endID, presentID, index){
     const startDateGroup = document.createElement("div")
-    startDateGroup.className = "profileFieldGroup"
+    startDateGroup.className = "profileFieldGroup spanHalf"
     const startDateLabel = document.createElement("label")
     startDateLabel.className = "profileFieldLabel medMarginBottom"
     startDateLabel.for = startID
@@ -134,7 +134,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     parent.appendChild(startDateGroup)
 
     const endDateGroup = document.createElement("div")
-    endDateGroup.className = "profileFieldGroup smGap"
+    endDateGroup.className = "profileFieldGroup smGap spanHalf positionUnder"
     const dateFieldGroup = document.createElement("div")
     dateFieldGroup.className = "flexVertical"
     const endDateLabel = document.createElement("label")
@@ -147,7 +147,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     endDateInput.id = endID + `${index}`
     endDateInput.name = endID + `${index}`
     const isPresentGroup = document.createElement("div")
-    isPresentGroup.className = "flexHorizontal smGap"
+    isPresentGroup.className = "flexHorizontal smGap smTopSpacing"
     const presentCheckbox = document.createElement("input")
     presentCheckbox.className = "profileCheckboxField"
     presentCheckbox.type = "checkbox"
@@ -179,22 +179,22 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
 
 function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS){
     const descriptionsGroup = document.createElement("div")
-    descriptionsGroup.className = "profileFieldGroup"
+    descriptionsGroup.className = "profileFieldGroup " + sizeCSS
     const labelGroup = document.createElement("div")
     labelGroup.className = "rowAlignCentered"
     const descriptionsLabel = document.createElement("div")
     descriptionsLabel.textContent = listName
-    descriptionsLabel.className = "profileFieldLabel"
+    descriptionsLabel.className = "profileFieldLabel medMarginBottom"
     labelGroup.appendChild(descriptionsLabel)
     const dropdown = document.createElement("div")
-    dropdown.className = "profileDropdown " + sizeCSS
+    dropdown.className = "profileDropdown"
     dropdown.id = dropdownID + `${index}`
     const line = document.createElement("div")
     line.className = "line"
     const addButtonRow = document.createElement("div")
     addButtonRow.className = "rowAlignCentered"
     const addButton = document.createElement("button")
-    addButton.className = "smallerButton offWhiteBackground"
+    addButton.className = "smallButton offWhiteBackground"
     addButton.textContent = "Add New"
     addButton.type = "button"
     addButton.id = addButtonID + `${index}`
@@ -218,18 +218,23 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
 
 function EducationSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground medTopSpacing medLeftSpacing medRightSpacing medBottomSpacing"
+    offWhitePanel.className = "offWhiteBackground centeredWidth medTopSpacing medBottomSpacing"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
-    offWhitePanel.appendChild(insetPanel)
+    insetPanel.className = "profilePanel topSpacing bottomSpacing"
 
     const removeButtonRow = document.createElement("div")
-    removeButtonRow.className = "flexHorizontal rightAlign"
+    removeButtonRow.className = "flexHorizontal rightAlign remButtonRow"
     const removeButton = document.createElement("button")
-    removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
+    removeButton.className = "smallButton offWhiteBackground"
     removeButton.type = "button"
     removeButton.id = `RemoveEducation${index}`
-    removeButton.textContent = "-"
+    removeButton.textContent = "Remove Item"
+
+    const removeImage = document.createElement("div")
+    removeImage.textContent = "-"
+    removeImage.className = "medFont"
+
+    removeButton.appendChild(removeImage)
 
     removeButton.addEventListener("click", (e)=>{
         e.preventDefault()
@@ -238,26 +243,19 @@ function EducationSection(parent, index){
     insetPanel.appendChild(removeButtonRow)
     removeButtonRow.appendChild(removeButton)
 
-    const firstContentRow = document.createElement("div")
-    firstContentRow.className = "flexHorizontal medGap"
+    const gridRow = document.createElement("div")
+    gridRow.className = "educationGrid"
 
-    CreateTextFieldGroup(firstContentRow, "institutionName", "Institution Name", "wide")
-    CreateTextFieldGroup(firstContentRow, "degree", "Degree", "wide")
-    CreateTextFieldGroup(firstContentRow, "institutionLocation", "Location", "wide")
+    CreateTextFieldGroup(gridRow, "institutionName", "Institution Name")
+    CreateTextFieldGroup(gridRow, "degree", "Degree")
+    CreateTextFieldGroup(gridRow, "institutionLocation", "Location")
 
-    const secondContentRow = document.createElement("div")
-    secondContentRow.className = "flexHorizontal medGap"
-    const dateRangeColumn = document.createElement("div")
-    dateRangeColumn.className = "flexVertical medGap"
+    CreateDateRangeFields(gridRow, "enrollmentDate", "graduationDate", "presentEducation", index)
+    CreateTextFieldList(gridRow, index, "Descriptions", 
+        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description", "47", "tripleWide")
 
-    CreateDateRangeFields(dateRangeColumn, "enrollmentDate", "graduationDate", "presentEducation", index)
-    secondContentRow.appendChild(dateRangeColumn)
-
-    CreateTextFieldList(secondContentRow, index, "Descriptions", 
-        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description", "47", "extraWide")
-
-    insetPanel.appendChild(firstContentRow)
-    insetPanel.appendChild(secondContentRow)
+    insetPanel.appendChild(gridRow)
+    offWhitePanel.appendChild(insetPanel)
     parent.appendChild(offWhitePanel)
 }
 
