@@ -49,9 +49,22 @@ html{
     column-gap: 2em;
 }
 
+.experienceGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 2em;
+}
+
 .doubleWide{
     grid-row: span 3;
     grid-column: span 2;
+}
+
+.normal{
+    grid-row: span 2;
+    grid-column: span 1;
+    width: 100%;
 }
 
 .websiteGridField{
@@ -69,6 +82,11 @@ html{
 
 .tripleWide{
     grid-column: span 5;
+    grid-row: span 2;
+}
+
+.extraWide{
+    grid-column: span 3;
     grid-row: span 2;
 }
 
@@ -111,9 +129,25 @@ html{
         row-gap: 1em;
         justify-items: center;
     }
+    .experienceGrid{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        column-gap: 1em;
+        row-gap: 1em;
+        justify-items: center;
+    }
     .tripleWide{
         grid-column: span 4;
         grid-row: span 2;
+    }
+    .extraWide{
+        grid-column: span 4;
+        grid-row: span 2;
+    }
+    .normal{
+        grid-column: span 4;
+        grid-row: span 2;
+        width: 100%;
     }
     .positionUnder{
         grid-row-start: auto;
@@ -146,7 +180,6 @@ html{
     justify-content: center;
     display: flex;
 }
-
 .profileListDate{
     font-size: 0.9rem;
     font-weight: 320;
