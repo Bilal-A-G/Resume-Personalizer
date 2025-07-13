@@ -56,6 +56,13 @@ html{
     column-gap: 2em;
 }
 
+.projectGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 2em;
+}
+
 .doubleWide{
     grid-row: span 3;
     grid-column: span 2;
@@ -90,6 +97,10 @@ html{
     grid-row: span 2;
 }
 
+.wide {
+    grid-column: span 6;
+}
+
 .positionUnder{
     grid-row-start: 3;
 }
@@ -102,15 +113,12 @@ html{
     html{
         font-size: 13px;
     }
-
     .medMaxWidth{
         max-width: 300px;
     }   
-
     .listContainer{
         min-height: 0px;
     }
-
     .profileRow{
         justify-content: center;
         padding-left: 0em;
@@ -132,6 +140,14 @@ html{
     .experienceGrid{
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
+        column-gap: 1em;
+        row-gap: 1em;
+        justify-items: center;
+    }
+    .projectGrid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
         column-gap: 1em;
         row-gap: 1em;
         justify-items: center;
