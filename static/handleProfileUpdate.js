@@ -281,7 +281,7 @@ function ExperienceSection(parent, index){
     CreateDateRangeFields(gridRow, "jobStart", "jobEnd", "presentJob", index)
     
     CreateTextFieldList(gridRow, index, "Tags", 
-        "tagDropdown", "AddTag", "jobTag", "Tag", "24", "normal")
+        "tagDropdown", "AddTag", "jobTag", "Tag", "24", "spanHalfList")
     CreateTextFieldList(gridRow, index, "Descriptions", 
         "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description", "47", "extraWide")
 
@@ -305,7 +305,7 @@ function ProjectSection(parent, index){
     CreateDateRangeFields(gridRow, "projectStart", "projectEnd", "presentProject", index)
 
     CreateTextFieldList(gridRow, index, "Tags", 
-        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag", "24", "normal")
+        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag", "24", "spanHalfList")
     CreateTextFieldList(gridRow, index, "Descriptions", 
         "projectsDescriptionDropdown", "AddProjectDescription", "projectDescription", "Description", "47", "extraWide")
 
@@ -317,33 +317,20 @@ function ProjectSection(parent, index){
 
 function CategorizedSkillsSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground medTopSpacing medLeftSpacing medRightSpacing medBottomSpacing"
+    offWhitePanel.className = "offWhiteBackground centeredWidth topSpacing bottomSpacing"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "profilePanel largeLeftPadding medRightPadding"
+    insetPanel.className = "profilePanel topSpacing bottomSpacing"
 
-    const removeButtonRow = document.createElement("div")
-    removeButtonRow.className = "flexHorizontal rightAlign"
-    const removeButton = document.createElement("button")
-    removeButton.className = "smallerButton extraLargeFont offWhiteBackground"
-    removeButton.type = "button"
-    removeButton.id = `RemoveProject${index}`
-    removeButton.textContent = "-"
+    CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
-    removeButton.addEventListener("click", (e)=>{
-        e.preventDefault()
-        parent.removeChild(offWhitePanel)
-    })
-    insetPanel.appendChild(removeButtonRow)
-    removeButtonRow.appendChild(removeButton)
+    const gridRow = document.createElement("div")
+    gridRow.className = "skillsGrid"
 
-    const firstContentRow = document.createElement("div")
-    firstContentRow.className = "flexHorizontal lgGap"
-
-    CreateTextFieldGroup(firstContentRow, "categoryName", "Category Name", "wide")
-    CreateTextFieldList(firstContentRow, index, "Skills", 
-        "skillsDropdown", "AddCategorizedSkill", "categorizedSkill", "Skill", "47", "extraWide")
+    CreateTextFieldGroup(gridRow, "categoryName", "Category Name", "")
+    CreateTextFieldList(gridRow, index, "Skills", 
+        "skillsDropdown", "AddCategorizedSkill", "categorizedSkill", "Skill", "47", "wide")
     
-    insetPanel.appendChild(firstContentRow)
+    insetPanel.appendChild(gridRow)
 
     offWhitePanel.appendChild(insetPanel)
     parent.appendChild(offWhitePanel)
