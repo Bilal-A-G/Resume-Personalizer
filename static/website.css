@@ -825,6 +825,8 @@ html{
     flex-direction: column;
 }
 
+
+
 .profileListButtonsHolder{
     display: flex;
     flex-direction: row;
@@ -836,6 +838,10 @@ html{
 
 .smGap{
     gap: 0.1em
+}
+
+.modGap{
+    gap: 0.9em;
 }
 
 .medGap{
