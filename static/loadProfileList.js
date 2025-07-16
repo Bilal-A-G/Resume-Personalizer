@@ -1,14 +1,14 @@
-function RecalculateNoprofiles(){
+function RecalculateNoprofiles() {
     const profilesFoundDiv = document.getElementById("profilesFound")
     const noProfilesDiv = document.getElementById("noProfiles")
 
-    if(localStorage.length > 0){
+    if (localStorage.length > 0) {
         noProfilesDiv.classList.remove("visible")
         noProfilesDiv.classList.add("hidden")
         profilesFoundDiv.classList.remove("hidden")
         profilesFoundDiv.classList.add("visibleFlex")
     }
-    else{
+    else {
         profilesFoundDiv.classList.remove("visibleFlex")
         profilesFoundDiv.classList.add("hidden")
         noProfilesDiv.classList.remove("hidden")
@@ -16,7 +16,46 @@ function RecalculateNoprofiles(){
     }
 }
 
-function CreateProfileListEntry(parent, index, name){
+const hiddenOverlay = document.getElementById("hiddenOverlayConfirm")
+const blurOverlay = document.getElementById("blurOverlayConfirm")
+const contents = document.getElementById("deleteProfileContents")
+
+function FadeElementsOut() {
+    console.log("Fading")
+    hiddenOverlay.classList.remove("fadeBackgroundIn")
+    contents.classList.remove("fadeOpacityIn")
+    blurOverlay.classList.remove("fadeBlurIn")
+
+    void blurOverlay.offsetWidth
+    void contents.offsetWidth
+    void hiddenOverlay.offsetWidth
+
+    hiddenOverlay.classList.add("fadeBackgroundOut")
+    contents.classList.add("fadeOpacityOut")
+    blurOverlay.classList.add("fadeBlurOut")
+}
+
+function FadeElementsIn() {
+    hiddenOverlay.classList.remove("fadeBackgroundOut")
+    contents.classList.remove("fadeOpacityOut")
+    blurOverlay.classList.remove("fadeBlurOut")
+
+    void blurOverlay.offsetWidth
+    void contents.offsetWidth
+    void hiddenOverlay.offsetWidth
+
+    hiddenOverlay.classList.add("fadeBackgroundIn")
+    contents.classList.add("fadeOpacityIn")
+    blurOverlay.classList.add("fadeBlurIn")
+
+    hiddenOverlay.style.display = "flex"
+
+}
+
+const cancelButton = document.getElementById("Cancel")
+const confirmButton = document.getElementById("Confirm")
+
+function CreateProfileListEntry(parent, index, name) {
     const actualName = name.split('|')[0]
     const date = name.split('|')[1]
 
@@ -31,13 +70,13 @@ function CreateProfileListEntry(parent, index, name){
 
     const buttonHolder = document.createElement("div")
     buttonHolder.className = "profileListButtonsHolder smGap"
-    
+
     const editButton = document.createElement("button")
     editButton.className = "smallButton"
     const editButtonImage = document.createElement("img")
     editButtonImage.className = "buttonImage"
     editButtonImage.src = "static/images/EditProfile.svg"
-    editButton.addEventListener("click", (e)=> {
+    editButton.addEventListener("click", (e) => {
         e.preventDefault()
         window.location.href = `/profile?name=${name}`
     })
@@ -48,11 +87,19 @@ function CreateProfileListEntry(parent, index, name){
     const deleteButtonImage = document.createElement("img")
     deleteButtonImage.className = "buttonImage"
     deleteButtonImage.src = "static/images/TrashProfile.svg"
-    deleteButton.addEventListener("click", (e)=> {
+    deleteButton.addEventListener("click", (e) => {
         e.preventDefault()
-        //localStorage.removeItem(name)
-        //parent.removeChild(backgroundRow)
-        //RecalculateNoprofiles()
+        FadeElementsIn()
+        const text = document.getElementById("deleteText")
+        text.textContent = `Attempted to delete profile : ${actualName}`
+        
+        cancelButton.addEventListener("click", FadeElementsOut)
+        confirmButton.onclick = function(){
+            localStorage.removeItem(name)
+            parent.removeChild(backgroundRow)
+            RecalculateNoprofiles()
+            FadeElementsOut()
+        }
     })
     deleteButton.appendChild(deleteButtonImage)
 
@@ -67,8 +114,14 @@ function CreateProfileListEntry(parent, index, name){
 }
 
 const numItems = localStorage.length
-for(let i = 0; i < numItems; i++){
+for (let i = 0; i < numItems; i++) {
     CreateProfileListEntry(document.getElementById("profilesDropdown"), i, localStorage.key(i))
 }
+
+hiddenOverlay.addEventListener("animationend", (event) => {
+    if (hiddenOverlay.classList.contains("fadeBackgroundOut")) {
+        hiddenOverlay.style.display = "none"
+    }
+})
 
 RecalculateNoprofiles()
