@@ -1,9 +1,12 @@
 body{
     background-color: #d9d9d9;
+    height: 100%;
+    margin: 0px;
 }
 
 html{
     font-size: 16px;
+    height: 100%;
 }
 
 .profileDropdown{
@@ -247,12 +250,12 @@ html{
 
 .centerOnScreen{
     display: flex;
+    box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     text-align: center;
-    min-height: 80vh;
+    height: 100%;
 }
 
 .profilesListEntryBG{
@@ -274,6 +277,7 @@ html{
     width: fit-content;
     padding-left: 2em;
     padding-right: 2em;
+    padding-top: 9em;
     box-sizing: border-box;
 }
 
@@ -358,7 +362,7 @@ html{
     display: none;
     position: fixed;
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     align-items: center;
     justify-items: center;
     background-color: rgba(0, 0, 0, 0.5)
