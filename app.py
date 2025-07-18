@@ -47,53 +47,6 @@ def computeKeywordSimilarity(jobKeywords, descriptionKeywords, jobLength):
     
     return (jaccardScore + totalIntersectScore)/2
 
-#Use when you want to preserve as many words as possible
-def getRawKeywords(originalText):
-    punctuation = ".,!&'?;:/()-[]@" + '"'
-    modifiedText = originalText
-
-    #Remove all punctuation
-    for char in punctuation:
-        modifiedText = modifiedText.replace(char, " ")
-
-    #Replace all non ascii characters with a space
-    modifiedText = re.sub(r'[^\x00-\x7f]', r' ', modifiedText)
-
-    #Break the text into individual words
-    tokens = nlp.word_tokenize(modifiedText)
-    taggedTokens = pos_tag(tokens)
-
-    lower = []
-    #Convert everything to lowercase
-    for token in taggedTokens:
-        lower.append((token[0].lower(), token[1]))
-
-    #Remove all stop words, ie things like the, I, me, my, etc.
-    allStopWords = set(stopwords.words("english"))
-    filtered = []
-
-    for token in lower:
-        if token[0] not in allStopWords:
-            filtered.append(token)
-
-    #Ensure we remove all punctuation
-    stripped = []
-    for token in filtered:
-        if token[1] == ".":
-            continue
-
-        stripped.append(token)
-
-    #Lematize word, reduce all words to their root dictionary form, ie running -> run
-    lemmatized = []
-    for token in stripped:
-        if token[1] == "NNP" or token[1] == "NNPS":
-            lemmatized.append(token[0])
-            continue
-        lemmatized.append(wordnet.lemmatize(token[0]))
-
-    return lemmatized
-
 def toLower(stringList):
     lower = []
     for string in stringList:
@@ -126,17 +79,17 @@ def getLemmatizedKeywords(originalText):
         if token[0] not in allStopWords:
             filtered.append(token)
 
-    #Remove anything that isn't a noun or punctuation
-    nouns = []
+    #Ensure we remove all punctuation
+    stripped = []
     for token in filtered:
-        if token[1] != "NN" and token[1] != "NNS" and token[1] != "NNP" and token[1] != "NNPS" and token[1] != "#":
+        if token[1] == ".":
             continue
 
-        nouns.append(token)
+        stripped.append(token)
 
     #Lematize word, reduce all words to their root dictionary form, ie running -> run
     lemmatized = []
-    for token in nouns:
+    for token in stripped:
         if token[1] == "NNP" or token[1] == "NNPS":
             lemmatized.append(token[0])
             continue
@@ -241,7 +194,7 @@ def submitted():
     jinjaEnv = Environment(loader=FileSystemLoader("./resumeTemplates"))
     template = jinjaEnv.get_template("template.html")
 
-    jobKeywords = getRawKeywords(jobDesc)
+    jobKeywords = getLemmatizedKeywords(jobDesc)
     descriptionLength = len(jobKeywords)
     rankedKeywords = Counter(jobKeywords).items()
     print(rankedKeywords)
