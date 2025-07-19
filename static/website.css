@@ -987,7 +987,7 @@ html{
 }
 
 .removeButton{
-    flex: 1;
+    display: flex;
     background-color: white;
     border-top: black;
     border-right: none;
@@ -997,7 +997,7 @@ html{
     font-family: "Josefin Sans", sans-serif;
     padding-left: 0.5em;
     padding-right: 0.5em;
-    margin-right: 1%;
+    width: 4%;
 }
 
 .removeButton:hover{

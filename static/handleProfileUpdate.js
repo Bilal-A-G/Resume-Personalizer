@@ -6,7 +6,7 @@ function RemoveLastChildInDOM(parentName) {
     parent.removeChild(parent.lastChild)
 }
 
-function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholder, parent){
+function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholder, parent, favourite = false){
     const div = document.createElement("div")
     const remove = document.createElement("button")
     const input = document.createElement("input")
@@ -19,10 +19,21 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
 
     remove.textContent = "-"
     div.classList.add("profileRemoveField")
-    input.classList.add("profileTextField")
     remove.classList.add("removeButton")
-
+    
     div.appendChild(input)
+    input.classList.add("profileTextField")
+    if (favourite){
+        const favourite = document.createElement("button")
+        favourite.classList.add("removeButton")
+        favourite.textContent = "+"
+        div.appendChild(favourite)
+
+        favourite.addEventListener("click", (e)=>{
+            e.preventDefault()
+            console.log("Favourited")
+        })
+    }
     div.appendChild(remove)
     remove.addEventListener("click", (e) => {
         e.preventDefault()
@@ -177,7 +188,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     parent.appendChild(endDateGroup)
 }
 
-function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS){
+function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS, favourite = false){
     const descriptionsGroup = document.createElement("div")
     descriptionsGroup.className = "profileFieldGroup " + sizeCSS
     const labelGroup = document.createElement("div")
@@ -205,7 +216,7 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
 
     addButton.addEventListener("click", (e) => {
         e.preventDefault()
-        CreateFormTextField(fieldID +`${index}`, fieldID +`${index}`, size, true, fieldPlaceholder, dropdown)
+        CreateFormTextField(fieldID +`${index}`, fieldID +`${index}`, size, true, fieldPlaceholder, dropdown, favourite)
     })
 
     descriptionsGroup.appendChild(labelGroup)
@@ -257,7 +268,7 @@ function EducationSection(parent, index){
 
     CreateDateRangeFields(gridRow, "enrollmentDate", "graduationDate", "presentEducation", index)
     CreateTextFieldList(gridRow, index, "Descriptions", 
-        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description", "47", "tripleWide")
+        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description", "47", "tripleWide", true)
 
     insetPanel.appendChild(gridRow)
     offWhitePanel.appendChild(insetPanel)
