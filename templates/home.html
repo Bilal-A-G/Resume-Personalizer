@@ -17,11 +17,11 @@
             <div class="mainText">Resume Personalizer</div>
             <div class="subTitle">Generate a personalized resume today</div>
             <div class="buttonHolder">
-                <button class="medButton" id="NewResume">
+                <button class="button" id="NewResume">
                     New Resume
                     <img class="buttonImage" src="{{url_for('static', filename='images/NewResume.svg')}}" \>
                 </button>
-                <button class="medButton" id="BrowseProfiles">
+                <button class="button" id="BrowseProfiles">
                     Profiles
                     <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}" \>
                 </button>
@@ -40,7 +40,7 @@
                     <div class="subHeadingLight">No Profiles Created Yet</div>
                     <div class="subTitle">Create a Profile to generate a resume</div>
                     <div class="buttonHolderTopSpacing lgBottomMargin">
-                        <button class="medButton" id="CreateProfile">
+                        <button class="button" id="CreateProfile">
                             Create New Profile
                             <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
                         </button>
@@ -50,7 +50,7 @@
                     <select class="medTopSpacing listDropdown" name="profileName" id="profilesList" form="form">
                     </select>
                     <div class="buttonHolderTopSpacing lgBottomMargin">
-                        <button class="medButton" id="Continue">
+                        <button class="button" id="Continue">
                             Continue
                             <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
                         </button>
@@ -74,7 +74,7 @@
                 <form id="form" class="medTopSpacing">
                     <textarea name="jobDesc", id="jobDesc" class="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
                     <div class="buttonHolderTopSpacing lgBottomMargin">
-                        <button class="medButton" id="Submit">
+                        <button class="button" id="Submit">
                             Submit
                             <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
                         </button>
