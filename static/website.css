@@ -734,7 +734,8 @@ html{
 }
 
 .alignItemsEnd{
-    align-items: end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .centerItems{
