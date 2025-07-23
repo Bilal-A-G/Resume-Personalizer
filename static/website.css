@@ -491,8 +491,21 @@ html{
     background-color: rgba(190, 190, 190, 0.95)
 }
 
-.button{
-    background-color: rgba(203, 203, 203, 0.0);
+/* ---------------------------------------------- Start of Alignment --------------------------------------------------------*/
+.aIE{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mt-1e{
+    margin-top: 1em;
+}
+/* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
+
+
+/* ---------------------------------------------- Start of Buttons --------------------------------------------------------*/
+.btn{
+    background-color: rgba(0, 0, 0, 0.0);
     font-weight: 700;
     display: flex;
     flex-direction: column;
@@ -511,14 +524,24 @@ html{
     transition: 0.15s;
 }
 
-.button:hover{
+.btn:hover{
     background-color: #EAE7E7;
 }
 
-.button:active{
+.btn:active{
     background-color: white;
     scale: 1.1;
 }
+
+.btn-Bg{
+    background-color: #d9d9d9;
+    border-radius: 3px;
+} 
+
+.btn-Sm{
+    max-width: 20px;
+}
+/* ------------------------------------------------- End of Buttons --------------------------------------------------------*/
 
 .navbarActive{
     background-color: #EAE7E7;
@@ -731,11 +754,6 @@ html{
 
 .lgTopSpacing{
     margin-top: 150px;
-}
-
-.alignItemsEnd{
-    display: flex;
-    justify-content: flex-end;
 }
 
 .centerItems{
