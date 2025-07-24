@@ -30,7 +30,7 @@
         <div class="hiddenOverlay" id="hiddenOverlayProfile">
             <div class="blurOverlay" id="blurOverlayProfile"></div>
             <div class="profileSelection" id="profileSelection">
-                <div class="aIE">
+                <div class="aIE mr-1e">
                     <button class="btn btn-Bg btn-Sm mt-1e" id="CloseOverlayProfile">
                         <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
@@ -39,7 +39,7 @@
                 <div id = "noProfiles" class="hidden">
                     <div class="subHeadingLight">No Profiles Created Yet</div>
                     <div class="subTitle">Create a Profile to generate a resume</div>
-                    <div class="buttonHolderTopSpacing lgBottomMargin">
+                    <div class="aIC mt-3e mb-2e">
                         <button class="btn" id="CreateProfile">
                             Create New Profile
                             <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
@@ -49,7 +49,7 @@
                 <div id="profiles" class="hidden">
                     <select class="medTopSpacing listDropdown" name="profileName" id="profilesList" form="form">
                     </select>
-                    <div class="buttonHolderTopSpacing lgBottomMargin">
+                    <div class="aIC mt-3e mb-2e">
                         <button class="btn" id="Continue">
                             Continue
                             <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
@@ -61,7 +61,7 @@
         <div class="hiddenOverlay" id="hiddenOverlayJob">
             <div class="blurOverlay" id="blurOverlayJob"></div>
             <div class="jobDescSelection" id="jobDetails">
-                <div class="aIE">
+                <div class="aIE mr-1e">
                     <button class="btn btn-Bg btn-Sm mt-1e" id="GoBack">
                         <img class="centeredButtonImage" src="{{url_for('static', filename='images/Back.svg')}}">
                     </button>
@@ -73,7 +73,7 @@
                 <div class="subTitle">Enter full job description with requirements here</div>
                 <form id="form" class="medTopSpacing">
                     <textarea name="jobDesc", id="jobDesc" class="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
-                    <div class="buttonHolderTopSpacing lgBottomMargin">
+                    <div class="aIC mt-3e mb-2e">
                         <button class="btn" id="Submit">
                             Submit
                             <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">

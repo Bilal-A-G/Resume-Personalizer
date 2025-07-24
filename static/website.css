@@ -497,8 +497,25 @@ html{
     justify-content: flex-end;
 }
 
+.aIC{
+    display: flex;
+    justify-content: center;
+}
+
 .mt-1e{
     margin-top: 1em;
+}
+
+.mt-3e{
+    margin-top: 3em;
+}
+
+.mr-1e{
+    margin-right: 1em;
+}
+
+.mb-2e{
+    margin-bottom: 2em;
 }
 /* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
 
@@ -517,8 +534,7 @@ html{
     border: none;
     justify-content: center;
 
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: 0.5em;
     padding: 0.5em 1.5em;
 
     transition: 0.15s;
