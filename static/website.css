@@ -204,14 +204,6 @@ html{
     }
 }
 
-.mainText{
-    padding-top: 1em;
-    font-size: 7rem;
-    text-align: center;
-    font-weight: 350;
-    font-family: "Josefin Sans", sans-serif;
-}
-
 .profileListText{
     font-size: 1.75rem;
     text-align: center;
@@ -238,14 +230,6 @@ html{
     font-weight: 350;
     font-family: "Josefin Sans", sans-serif;
     padding-top: 1em;
-}
-
-.subTitle{
-    font-size: 0.8rem;
-    font-weight: 300;
-    text-align: center;
-    margin-top: 1em;
-    font-family: "Josefin Sans", sans-serif;
 }
 
 .profilesListEntryBG{
@@ -388,12 +372,6 @@ html{
     font-size: 1.5rem;
 }
 
-.XXLFont{
-    font-size: 50px;
-    height: 120px;
-    width: 250px;
-}
-
 .extraLargeFont{
     font-size: 35px;
     min-width: 45px;
@@ -505,6 +483,10 @@ html{
     margin-top: 3em;
 }
 
+.mt-4e{
+    margin-top: 4em;
+}
+
 .mr-1e{
     margin-right: 1em;
 }
@@ -514,11 +496,31 @@ html{
 }
 /* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
 
+
+
 /*----------------------------------------------- Start of Sizing ---------------------------------------------------------*/
 .h-100{
     height: 100%;
 }
 /*----------------------------------------------- End of Sizing -----------------------------------------------------------*/
+
+
+
+/*------------------------------------------------ Start of Text Styles ---------------------------------------------------*/ 
+.t-XL{
+    font-size: 7rem;
+    font-weight: 350;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.t-XS{
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-family: "Josefin Sans", sans-serif;
+}
+/*------------------------------------------------ End of Text Styles -----------------------------------------------------*/
+
+
 
 /* ---------------------------------------------- Start of Buttons --------------------------------------------------------*/
 .btn{
