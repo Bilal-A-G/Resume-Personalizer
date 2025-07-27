@@ -15,14 +15,14 @@
     <div class="aIRC aICC bB h-100">
         <div class="t-XL">Resume Personalizer</div>
         <div class="t-XS mt-1e">Generate a personalized resume today</div>
-        <div class="buttonHolder">
+        <div class="btn-hold">
             <button class="btn" id="NewResume">
                 New Resume
-                <img class="buttonImage" src="{{url_for('static', filename='images/NewResume.svg')}}" \>
+                <img class="w-2-5em" src="{{url_for('static', filename='images/NewResume.svg')}}" \>
             </button>
             <button class="btn" id="BrowseProfiles">
                 Profiles
-                <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}" \>
+                <img class="w-2-5em" src="{{url_for('static', filename='images/Profile.svg')}}" \>
             </button>
         </div>
         <div class="hiddenOverlay" id="hiddenOverlayProfile">
@@ -30,17 +30,17 @@
             <div class="profileSelection" id="profileSelection">
                 <div class="aIRE mr-1e">
                     <button class="btn btn-Bg btn-Sm mt-1e" id="CloseOverlayProfile">
-                        <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
+                        <img class="w-2em" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
                 </div>
-                <div class="majorHeading bAICC"> Select a Profile</div>
+                <div class="t-L bAICC"> Select a Profile</div>
                 <div id = "noProfiles" class="hidden">
                     <div class="subHeadingLight">No Profiles Created Yet</div>
                     <div class="t-XS">Create a Profile to generate a resume</div>
                     <div class="aIRC mt-3e mb-2e">
                         <button class="btn" id="CreateProfile">
                             Create New Profile
-                            <img class="buttonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+                            <img class="w-2-5em" src="{{url_for('static', filename='images/Profile.svg')}}">
                         </button>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     <div class="aIRC mt-4e mb-2e">
                         <button class="btn" id="Continue">
                             Continue
-                            <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
+                            <img class="w-2-5em" src="{{url_for('static', filename='images/Submit.svg')}}">
                         </button>
                     </div>
                 </div>
@@ -61,20 +61,20 @@
             <div class="jobDescSelection" id="jobDetails">
                 <div class="aIRE mr-1e">
                     <button class="btn btn-Bg btn-Sm mt-1e" id="GoBack">
-                        <img class="centeredButtonImage" src="{{url_for('static', filename='images/Back.svg')}}">
+                        <img class="w-2em" src="{{url_for('static', filename='images/Back.svg')}}">
                     </button>
                     <button class="btn btn-Bg btn-Sm mt-1e" id="CloseOverlayJob">
-                        <img class="centeredButtonImage" src="{{url_for('static', filename='images/Close.svg')}}">
+                        <img class="w-2em" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
                 </div>
-                <div class="majorHeading bAICC"> Job Details</div>
+                <div class="t-L bAICC"> Job Details</div>
                 <div class="bAICC t-XS mt-1e">Enter full job description with requirements here</div>
                 <form id="form" class="medTopSpacing bAICC">
                     <textarea name="jobDesc", id="jobDesc" class="jobDesc" cols="50", rows="10">Paste Job Description & Requirements here</textarea>
                     <div class="aIRC mt-3e mb-2e">
                         <button class="btn" id="Submit">
                             Submit
-                            <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
+                            <img class="w-2-5em" src="{{url_for('static', filename='images/Submit.svg')}}">
                         </button>
                     </div>
                 </form>

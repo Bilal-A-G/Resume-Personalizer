@@ -246,14 +246,6 @@ html{
     font-weight: 350;
 }
 
-.buttonHolder{
-    margin-top: 5vh;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    display: flex;
-}
-
 @keyframes overlayFade {
     from {background-color: rgba(0, 0, 0, 0.0);}
     to {background-color: rgba(0, 0, 0, 0.5);}
@@ -325,13 +317,6 @@ html{
     backdrop-filter: blur(5px)
 }
 
-.majorHeading{
-    font-size: 3rem;
-    margin-left: 1em;
-    margin-right: 1em;
-    margin-top: 0.5em;
-}
-
 .profileSelection{
     position: relative;
     display: flex;
@@ -357,10 +342,6 @@ html{
     border-radius: 10px;
     background-color: #cbcbcb;
     opacity: 100%
-}
-
-.buttonImage{
-    width: 2.5em;
 }
 
 .largeFont{
@@ -494,6 +475,14 @@ html{
 .mb-2e{
     margin-bottom: 2em;
 }
+
+.btn-hold{
+    margin-top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    display: flex;
+}
 /* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
 
 
@@ -501,6 +490,14 @@ html{
 /*----------------------------------------------- Start of Sizing ---------------------------------------------------------*/
 .h-100{
     height: 100%;
+}
+
+.w-2-5em{
+    width: 2.5em;
+}
+
+.w-2em{
+    width: 2em;
 }
 /*----------------------------------------------- End of Sizing -----------------------------------------------------------*/
 
@@ -510,6 +507,11 @@ html{
 .t-XL{
     font-size: 7rem;
     font-weight: 350;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.t-L{
+    font-size: 3rem;
     font-family: "Josefin Sans", sans-serif;
 }
 
@@ -705,10 +707,6 @@ html{
     flex-direction: row;
     width: 100%;
     height: fit-content;
-}
-
-.centered{
-    justify-content: center;
 }
 
 .fullWidth{
