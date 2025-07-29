@@ -13,12 +13,12 @@
 <body>
     <div class="stickyElement">
         <div class="navbarPanel">
-            <button class="medButton" id="HomePage">
-                <img class="smallButtonImage" src="{{url_for('static', filename='images/Home.svg')}}">
+            <button class="btn" id="HomePage">
+                <img class="w-2-5em" src="{{url_for('static', filename='images/Home.svg')}}">
                 Home
             </button>
-            <button class="medButton" id="ProfilePage">
-                <img class="smallButtonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+            <button class="btn" id="ProfilePage">
+                <img class="w-2-5em" src="{{url_for('static', filename='images/Profile.svg')}}">
                 Profiles
             </button>
         </div>
@@ -35,23 +35,23 @@
         <div class="hiddenOverlay" id="hiddenOverlayConfirm">
             <div class="blurOverlay" id="blurOverlayConfirm"></div>
             <div class="profileSelection" id="deleteProfileContents">
-                <div class="majorHeading"> Delete Profile?</div>
-                <div class="subTitle" id="deleteText">Attempted to delete :  </div>
-                <div class="subTitle"> This action cannot be undone! </div>
+                <div class="t-L"> Delete Profile?</div>
+                <div class="t-XS" id="deleteText">Attempted to delete :  </div>
+                <div class="t-XS"> This action cannot be undone! </div>
                 <div class="buttonHolderTopSpacing lgBottomMargin">
-                    <button class="medButton" id="Confirm">
+                    <button class="btn" id="Confirm">
                         Confirm
-                        <img class="buttonImage" src="{{url_for('static', filename='images/Submit.svg')}}">
+                        <img class="w-2-5em" src="{{url_for('static', filename='images/Submit.svg')}}">
                     </button>
-                    <button class="medButton" id="Cancel">
+                    <button class="btn" id="Cancel">
                         Cancel
-                        <img class="buttonImage" src="{{url_for('static', filename='images/Close.svg')}}">
+                        <img class="w-2-5em" src="{{url_for('static', filename='images/Close.svg')}}">
                     </button>
                 </div>
             </div>
         </div>
-        <div class="sectionHeader">Created Profiles</div>
-        <div class="subTitle">Add new or edit profiles here</div>
+        <div class="t-L aICC">Created Profiles</div>
+        <div class="t-XS aICC">Add new or edit profiles here</div>
         <div class="listContainer">
             <div class="holder" id="noProfiles">
                 <div class="majorText">No Profiles created yet!</div>
