@@ -515,6 +515,12 @@ html{
     font-family: "Josefin Sans", sans-serif;
 }
 
+.t-M{
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Josefin Sans", sans-serif;
+}
+
 .t-XS{
     font-size: 0.8rem;
     font-weight: 300;
@@ -566,15 +572,6 @@ html{
 .navbarActive{
     background-color: #EAE7E7;
     padding-bottom: 6px;
-}
-
-.subHeading{
-    font-size: large;
-    font-weight: bold;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    margin-top: 20px;
 }
 
 .profileSubHeading{
@@ -854,15 +851,6 @@ html{
 
 .centeredWidth{
     width: 95%;
-}
-
-.subHeadingLight{
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    margin-top: 3em;
 }
 
 .profile{
