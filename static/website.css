@@ -375,6 +375,10 @@ html{
     margin-top: 1em;
 }
 
+.mt-2e{
+    margin-top: 2em;
+}
+
 .mt-3e{
     margin-top: 3em;
 }
@@ -518,9 +522,14 @@ html{
 
 
 /*------------------------------------------------ Start of Text Styles ---------------------------------------------------*/ 
-.t-XL{
+.t-XXL{
     font-size: 7rem;
     font-weight: 350;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.t-XL{
+    font-size: 4rem;
     font-family: "Josefin Sans", sans-serif;
 }
 
@@ -530,8 +539,14 @@ html{
 }
 
 .t-M{
-    font-size: 1rem;
+    font-size: 3rem;
     font-weight: 400;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.t-S{
+    font-size: 2rem;
+    font-weight: 300;
     font-family: "Josefin Sans", sans-serif;
 }
 

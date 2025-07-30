@@ -50,34 +50,34 @@
                 </div>
             </div>
         </div>
-        <div class="t-L aICC">Created Profiles</div>
+        <div class="t-XL aICC mt-2e">Created Profiles</div>
         <div class="t-XS aICC">Add new or edit profiles here</div>
         <div class="listContainer">
             <div class="holder" id="noProfiles">
-                <div class="majorText">No Profiles created yet!</div>
-                <div class="subTitle">Create a profile to generate a resume!</div>
-                <div class="buttonHolder">
-                    <button class="listButton" id="CreateProfileUpper">
+                <div class="t-S bAICC">No Profiles created yet!</div>
+                <div class="t-XS bAICC">Create a profile to generate a resume!</div>
+                <div class="aIRC mt-2e">
+                    <button class="btn" id="CreateProfileUpper">
                         Create new Profile
-                        <img class="buttonImage" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
+                        <img class="w-2-5em" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
                     </button>
-                    <button class="listButton" id="ImportProfileUpper">
+                    <button class="btn" id="ImportProfileUpper">
                         Import from LinkedIn
-                        <img class="buttonImage" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
+                        <img class="w-2-5em" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
                     </button>
                 </div>
             </div>
             <div class="fullWidth modGap" id="profilesDropdown">
             </div>
         </div>
-        <div id="profilesFound" class="buttonHolder medBottomSpacing">
-            <button class="medButton" id="CreateProfileLower">
+        <div id="profilesFound" class="aIRC mt-1e">
+            <button class="btn" id="CreateProfileLower">
                 Create new Profile
-                <img class="buttonImage" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
+                <img class="w-2-5em" src="{{url_for('static', filename='images/NewProfile.svg')}}" \>
             </button>
-            <button class="medButton" id="ImportProfileLower">
+            <button class="btn" id="ImportProfileLower">
                 Import from LinkedIn
-                <img class="buttonImage" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
+                <img class="w-2-5em" , src="{{url_for('static', filename='images/LinkedIn.svg')}}">
             </button>
         </div>
     </div>
