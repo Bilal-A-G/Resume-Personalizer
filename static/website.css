@@ -246,33 +246,6 @@ html{
     font-weight: 350;
 }
 
-.profileSelection{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 250px;
-    min-height: 300px;
-    width: 30vw;
-    border-radius: 10px;
-    background-color: #cbcbcb;
-    opacity: 100%
-}
-
-.jobDescSelection{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 350px;
-    width: 30vw;
-    border-radius: 10px;
-    background-color: #cbcbcb;
-    opacity: 100%
-}
-
 .largeFont{
     font-size: 20px;
 }
@@ -352,6 +325,12 @@ html{
     justify-content: flex-end;
 }
 
+.lCG-1e{
+    gap: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
 .aIRC{
     display: flex;
     justify-content: center;
@@ -419,6 +398,33 @@ html{
 @keyframes blurOverlayFade{
     from {backdrop-filter: blur(0px);}
     to {backdrop-filter: blur(5px);}
+}
+
+.profileSelection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 250px;
+    min-height: 300px;
+    width: 30vw;
+    border-radius: 10px;
+    background-color: #cbcbcb;
+    opacity: 100%
+}
+
+.jobDescSelection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 350px;
+    width: 30vw;
+    border-radius: 10px;
+    background-color: #cbcbcb;
+    opacity: 100%
 }
 
 .fadeBlurIn{
@@ -516,6 +522,10 @@ html{
 
 .w-2em{
     width: 2em;
+}
+
+.w-100{
+    width: 100%;
 }
 /*----------------------------------------------- End of Sizing -----------------------------------------------------------*/
 
@@ -731,10 +741,6 @@ html{
 
 .smGap{
     gap: 0.1em
-}
-
-.modGap{
-    gap: 0.9em;
 }
 
 .medGap{
