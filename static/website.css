@@ -31,12 +31,12 @@ html{
     padding: 3em;
     border-radius: 0.3em;
     background-color: #cbcbcb;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     justify-content: start;
     align-items: center;
 }
-
+           
 .grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -204,25 +204,7 @@ html{
     }
 }
 
-.profileListText{
-    font-size: 1.75rem;
-    text-align: center;
-    font-weight: 400;
-    font-family: "Josefin Sans", sans-serif;
-    width: 45%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-.profileListDate{
-    font-size: 0.9rem;
-    font-weight: 320;
-    font-family: "Josefin Sans", sans-serif;
-    width: 25%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
+
 
 .sectionHeader{
     font-size: 5rem;
@@ -230,13 +212,6 @@ html{
     font-weight: 350;
     font-family: "Josefin Sans", sans-serif;
     padding-top: 1em;
-}
-
-.profilesListEntryBG{
-    width: 100%;
-    height: 3em;
-    background-color: #d9d9d9;
-    border-radius: 1em;
 }
 
 .majorText{
@@ -299,30 +274,29 @@ html{
     background-color: black;
 }
 
-.stickyElement{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-}
-
-.navbarPanel{
-    gap: 0.5em;
-    padding-left: auto;
-    padding-right: auto;
-    padding-top: 0.1em;
-    padding-bottom: 0.1em;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(190, 190, 190, 0.95)
-}
 
 /* ---------------------------------------------- Start of Alignment --------------------------------------------------------*/
 .aIRE{
     display: flex;
     justify-content: flex-end;
+}
+
+.st-t{
+    position: fixed;
+    top: 0;
+}
+
+.fx-h{
+    display: flex;
+    flex-direction: row;
+}
+
+.pL-a{
+    padding-left: auto;
+}
+
+.pR-a{
+    padding-right: auto;
 }
 
 .lCG-1e{
@@ -509,11 +483,31 @@ html{
     font-size: 0.9rem;
 }
 
+.bg-g{
+    background-color: #d9d9d9;
+}
+
+.bg-dg{
+    background-color: rgba(190, 190, 190, 0.95)
+}
+
+.bor-sm{
+    border-radius: 1em;
+}
+
 /* ----------------------------------------------- End of One Off ---------------------------------------------------------*/
 
 /*----------------------------------------------- Start of Sizing ---------------------------------------------------------*/
 .h-100{
     height: 100%;
+}
+
+.w-50p{
+    width: 50%;
+}
+
+.w-25p{
+    width: 25%;
 }
 
 .w-2-5em{
@@ -555,9 +549,13 @@ html{
 }
 
 .t-S{
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 300;
     font-family: "Josefin Sans", sans-serif;
+}
+
+.t-bol{
+    font-weight: 400;
 }
 
 .t-XS{
@@ -726,12 +724,6 @@ html{
     height: 100%;
 }
 
-.flexHorizontal{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: fit-content;
-}
 
 .fullWidth{
     width: 100%;

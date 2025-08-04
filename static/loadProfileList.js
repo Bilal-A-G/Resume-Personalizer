@@ -60,21 +60,21 @@ function CreateProfileListEntry(parent, index, name) {
     const date = name.split('|')[1]
 
     const backgroundRow = document.createElement("div")
-    backgroundRow.className = "profilesListEntryBG flexHorizontal"
+    backgroundRow.className = "bg-g bor-sm fx-h"
     const profileName = document.createElement("div")
     profileName.textContent = actualName
-    profileName.className = "profileListText"
+    profileName.className = "t-S t-bol aICC aIRC w-50p"
     const dateCreated = document.createElement("div")
-    dateCreated.className = "profileListDate"
+    dateCreated.className = "t-XS aICC aIRC w-25p"
     dateCreated.textContent = date
 
     const buttonHolder = document.createElement("div")
-    buttonHolder.className = "profileListButtonsHolder smGap"
+    buttonHolder.className = "aIRC w-25p"
 
     const editButton = document.createElement("button")
-    editButton.className = "smallButton"
+    editButton.className = "btn"
     const editButtonImage = document.createElement("img")
-    editButtonImage.className = "buttonImage"
+    editButtonImage.className = "w-2em"
     editButtonImage.src = "static/images/EditProfile.svg"
     editButton.addEventListener("click", (e) => {
         e.preventDefault()
@@ -83,9 +83,9 @@ function CreateProfileListEntry(parent, index, name) {
     editButton.appendChild(editButtonImage)
 
     const deleteButton = document.createElement("button")
-    deleteButton.className = "smallButton"
+    deleteButton.className = "btn"
     const deleteButtonImage = document.createElement("img")
-    deleteButtonImage.className = "buttonImage"
+    deleteButtonImage.className = "w-2em"
     deleteButtonImage.src = "static/images/TrashProfile.svg"
     deleteButton.addEventListener("click", (e) => {
         e.preventDefault()
