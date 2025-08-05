@@ -60,10 +60,10 @@ function CreateProfileListEntry(parent, index, name) {
     const date = name.split('|')[1]
 
     const backgroundRow = document.createElement("div")
-    backgroundRow.className = "bg-g bor-sm fx-h"
+    backgroundRow.className = "bg-g bor-sm aIRC"
     const profileName = document.createElement("div")
     profileName.textContent = actualName
-    profileName.className = "t-S t-bol aICC aIRC w-50p"
+    profileName.className = "t-S t-bol aICC aIRC w-25p"
     const dateCreated = document.createElement("div")
     dateCreated.className = "t-XS aICC aIRC w-25p"
     dateCreated.textContent = date

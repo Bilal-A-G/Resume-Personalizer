@@ -21,22 +21,6 @@ html{
     gap: 0.5em;
 }
 
-.listContainer{
-    width: 80%;
-    max-width: 800px;
-    min-height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 6vh;
-    padding: 3em;
-    border-radius: 0.3em;
-    background-color: #cbcbcb;
-    display: flex; 
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-}
-           
 .grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -286,17 +270,20 @@ html{
     top: 0;
 }
 
-.fx-h{
-    display: flex;
-    flex-direction: row;
-}
-
 .pL-a{
     padding-left: auto;
 }
 
 .pR-a{
     padding-right: auto;
+}
+
+.mL-a{
+    margin-left: auto;
+}
+
+.mR-a{
+    margin-right: auto;
 }
 
 .lCG-1e{
@@ -487,6 +474,10 @@ html{
     background-color: #d9d9d9;
 }
 
+.bg-lg{
+    background-color: #cbcbcb;
+}
+
 .bg-dg{
     background-color: rgba(190, 190, 190, 0.95)
 }
@@ -506,6 +497,14 @@ html{
     width: 50%;
 }
 
+.mW-800px{
+    max-width: 800px;
+}
+
+.minH-300px{
+    min-height: 300px;
+}
+
 .w-25p{
     width: 25%;
 }
@@ -516,6 +515,14 @@ html{
 
 .w-2em{
     width: 2em;
+}
+
+.w-80p{
+    width: 80%;
+}
+
+.pA-2em{
+    padding: 2em;
 }
 
 .w-100{
@@ -724,25 +731,6 @@ html{
     height: 100%;
 }
 
-
-.fullWidth{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.smGap{
-    gap: 0.1em
-}
-
-.medGap{
-    gap: 2em;
-}
-
-.lgGap{
-    gap: 80px;
-}
-
 .flexVertical{
     display: flex;
     flex-direction: column;
@@ -770,39 +758,6 @@ html{
     justify-content: center;
     display: flex;
 }
-
-.medBottomSpacing{
-    margin-bottom: 4em;
-}
-
-.lgBottomMargin{
-    margin-bottom: 1em;
-}
-
-.lgBottomSpacing{
-    margin-bottom: 20px;
-}
-
-.largeLeftPadding{
-    padding-left: 60px;
-}
-
-.largeRightPadding{
-    padding-right: 60px;
-}
-
-.XLLeftPadding{
-    padding-left: auto
-}
-
-.XLRightPadding{
-    padding-right: auto
-}
-
-.medRightPadding{
-    padding-right: 2em;
-}
-
 .profilePanel{
     box-sizing: border-box;
     width: 95%;
@@ -812,26 +767,6 @@ html{
     margin-right: auto;
 }
 
-.smallLeftSpacing{
-    margin-left: 20px;
-}
-
-.medLeftSpacing{
-    margin-left: 160px;
-}
-
-.smallRightSpacing{
-    margin-right: 20px;
-}
-
-.tinyRightSpacing{
-    margin-right: 1em;
-}
-
-.medRightSpacing{
-    margin-right: 160px;
-}
-
 .offWhiteBackground{
     display: flex;
     background-color: #e0e0e0;
@@ -839,14 +774,6 @@ html{
     max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.maxWidth{
-    width: 100%;
-}
-
-.centeredWidth{
-    width: 95%;
 }
 
 .profile{
