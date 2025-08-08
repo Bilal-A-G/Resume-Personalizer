@@ -219,11 +219,6 @@ html{
     min-width: 45px;
 }
 
-.centeredText{
-    margin-top: 10px;
-    align-items: center;
-}
-
 .largeImage{
     width: 45px;
     height: 45px;
@@ -563,6 +558,10 @@ html{
 
 .t-bol{
     font-weight: 400;
+}
+
+.t-cen{
+    text-align: center;
 }
 
 .t-XS{
