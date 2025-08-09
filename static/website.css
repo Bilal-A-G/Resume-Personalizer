@@ -252,12 +252,36 @@ html{
     height: 2px;
     background-color: black;
 }
+/* ----------------------------------------------- Start of Display ---------------------------------------------------------*/
+.d-f{
+    display: flex;
+}
 
+.d-h{
+    display: none;
+}
+
+.d-b{
+    display: block;
+}
+
+.bBl-5px{
+    backdrop-filter: blur(5px);
+}
+
+/* ----------------------------------------------- End of Display -----------------------------------------------------------*/
 
 /* ---------------------------------------------- Start of Alignment --------------------------------------------------------*/
 .aIRE{
-    display: flex;
     justify-content: flex-end;
+}
+
+.p-f{
+    position: fixed
+}
+
+.p-abs{
+    position: absolute;
 }
 
 .st-t{
@@ -283,12 +307,10 @@ html{
 
 .lCG-1e{
     gap: 1em;
-    display: flex;
     flex-direction: column;
 }
 
 .aIRC{
-    display: flex;
     justify-content: center;
 }
 
@@ -297,7 +319,6 @@ html{
 }
 
 .aICC{
-    display: flex;
     align-items: center;
     flex-direction: column;
 }
@@ -335,7 +356,6 @@ html{
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
-    display: flex;
 }
 /* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
 
@@ -422,35 +442,6 @@ html{
     animation-fill-mode: forwards;
 }
 
-.hiddenOverlay{
-    display: none;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
-    justify-items: center;
-    background-color: rgba(0, 0, 0, 0.5)
-}
-
-.blurOverlay{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(5px)
-}
-
-.hidden{
-    display: none;
-}
-
-.visibleFlex{
-    display: flex;
-}
-
-.visible{
-    display: block;
-}
-
 .listDropdown{
     background-color: rgb(217, 217, 217);
     width: 50%;
@@ -467,6 +458,10 @@ html{
 
 .bg-g{
     background-color: #d9d9d9;
+}
+
+.bg-tb{
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .bg-lg{
@@ -506,6 +501,14 @@ html{
 
 .w-2-5em{
     width: 2.5em;
+}
+
+.w-100vw{
+    width: 100vw;
+}
+
+.h-100vh{
+    height: 100vh;
 }
 
 .w-2em{

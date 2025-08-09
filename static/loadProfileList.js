@@ -3,16 +3,16 @@ function RecalculateNoprofiles() {
     const noProfilesDiv = document.getElementById("noProfiles")
 
     if (localStorage.length > 0) {
-        noProfilesDiv.classList.remove("visible")
-        noProfilesDiv.classList.add("hidden")
-        profilesFoundDiv.classList.remove("hidden")
-        profilesFoundDiv.classList.add("visibleFlex")
+        noProfilesDiv.classList.remove("d-b")
+        noProfilesDiv.classList.add("d-h")
+        profilesFoundDiv.classList.remove("d-h")
+        profilesFoundDiv.classList.add("d-f")
     }
     else {
-        profilesFoundDiv.classList.remove("visibleFlex")
-        profilesFoundDiv.classList.add("hidden")
-        noProfilesDiv.classList.remove("hidden")
-        noProfilesDiv.classList.add("visible")
+        profilesFoundDiv.classList.remove("d-f")
+        profilesFoundDiv.classList.add("d-h")
+        noProfilesDiv.classList.remove("d-h")
+        noProfilesDiv.classList.add("d-b")
     }
 }
 
@@ -60,16 +60,16 @@ function CreateProfileListEntry(parent, index, name) {
     const date = name.split('|')[1]
 
     const backgroundRow = document.createElement("div")
-    backgroundRow.className = "bg-g bor-sm aIRC"
+    backgroundRow.className = "bg-g bor-sm aIRC d-f"
     const profileName = document.createElement("div")
     profileName.textContent = actualName
-    profileName.className = "t-S t-bol aICC aIRC w-25p"
+    profileName.className = "t-S t-bol aICC aIRC w-25p d-f"
     const dateCreated = document.createElement("div")
-    dateCreated.className = "t-XS aICC aIRC w-25p"
+    dateCreated.className = "t-XS aICC aIRC w-25p d-f"
     dateCreated.textContent = date
 
     const buttonHolder = document.createElement("div")
-    buttonHolder.className = "aIRC w-25p"
+    buttonHolder.className = "aIRC w-25p d-f"
 
     const editButton = document.createElement("button")
     editButton.className = "btn"

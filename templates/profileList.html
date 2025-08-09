@@ -12,7 +12,7 @@
 
 <body>
     <div class="st-t w-100">
-        <div class="pL-a pR-a aIRC bg-dg">
+        <div class="pL-a pR-a aIRC bg-dg d-f">
             <button class="btn" id="HomePage">
                 <img class="w-2-5em" src="{{url_for('static', filename='images/Home.svg')}}">
                 Home
@@ -31,14 +31,14 @@
             })
         </script>
     </div>
-    <div class="aIRC aICC bB h-100">
-        <div class="hiddenOverlay" id="hiddenOverlayConfirm">
-            <div class="blurOverlay" id="blurOverlayConfirm"></div>
+    <div class="aIRC aICC bB h-100 d-f">
+        <div class="aICC aIRC d-h bg-tb w-100vw h-100vh p-f" id="hiddenOverlayConfirm">
+            <div class="w-100 h-100 p-abs bBl-5px" id="blurOverlayConfirm"></div>
             <div class="profileSelection" id="deleteProfileContents">
                 <div class="t-L aIRC mt-1e t-cen"> Delete Profile?</div>
-                <div class="t-XS aIRC" id="deleteText">Attempted to delete :  </div>
-                <div class="t-XS aIRC mt-1e"> This action cannot be undone! </div>
-                <div class="aIRC mt-1e">
+                <div class="t-XS aIRC d-f" id="deleteText">Attempted to delete :  </div>
+                <div class="t-XS aIRC mt-1e d-f"> This action cannot be undone! </div>
+                <div class="aIRC mt-1e d-f">
                     <button class="btn" id="Confirm">
                         Confirm
                         <img class="w-2-5em" src="{{url_for('static', filename='images/Submit.svg')}}">
@@ -50,8 +50,8 @@
                 </div>
             </div>
         </div>
-        <div class="t-XL aICC mt-1e">Created Profiles</div>
-        <div class="t-XS aICC">Add new or edit profiles here</div>
+        <div class="t-XL aICC mt-1e d-f">Created Profiles</div>
+        <div class="t-XS aICC d-f">Add new or edit profiles here</div>
         <div class="pA-2em mt-2e w-80p mR-a mL-a aICC bg-lg bor-sm mW-800px minH-300px">
             <div id="noProfiles">
                 <div class="t-S bAICC">No Profiles created yet!</div>
@@ -67,7 +67,7 @@
                     </button>
                 </div>
             </div>
-            <div class="w-100 lCG-1e" id="profilesDropdown">
+            <div class="w-100 lCG-1e d-f" id="profilesDropdown">
             </div>
         </div>
         <div id="profilesFound" class="aIRC mt-1e">
