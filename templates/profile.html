@@ -11,14 +11,14 @@
 </head>
 
 <body>
-     <div class="stickyElement"> 
-        <div class="navbarPanel">
-            <button class="medButton" id="HomePage">
-                <img class="smallButtonImage" src="{{url_for('static', filename='images/Home.svg')}}">
+    <div class="st-t w-100">
+        <div class="pL-a pR-a aIRC bg-dg d-f">
+            <button class="btn" id="HomePage">
+                <img class="w-2-5em" src="{{url_for('static', filename='images/Home.svg')}}">
                 Home
             </button>
-            <button class="medButton" id="ProfilePage">
-                <img class="smallButtonImage" src="{{url_for('static', filename='images/Profile.svg')}}">
+            <button class="btn" id="ProfilePage">
+                <img class="w-2-5em" src="{{url_for('static', filename='images/Profile.svg')}}">
                 Profiles
             </button>
         </div>
@@ -31,9 +31,9 @@
             })
         </script>
     </div>
-    <div class="mainText">Profile</div>
+    <div class="mt-2em t-XL aICC aIRC d-f">Profile</div>
     <form id="profileForm">
-        <div class="centerAlignedRow">
+        <div class="mR-a mL-a aICC d-f mt-2em mb-2em mW-300px">
             <div class="profileFieldLabel">Profile Name</div>
             <input class="profileTextField" type="text" id="profileName" name="profileName" required>
         </div>
