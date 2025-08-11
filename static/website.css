@@ -183,9 +183,9 @@ html{
         grid-row-start: 3;
         grid-row-end: 4;
     }
-    .profileFieldLabel{
+    .t-B{
         text-align: center;
-    }
+    } 
 }
 
 
@@ -267,6 +267,14 @@ html{
 
 .bBl-5px{
     backdrop-filter: blur(5px);
+}
+
+.b-0px{
+    border: none;
+}
+
+.bR-02em{
+    border-radius: 0.2em;
 }
 
 /* ----------------------------------------------- End of Display -----------------------------------------------------------*/
@@ -527,6 +535,10 @@ html{
     padding: 2em;
 }
 
+.pA-05em{
+    padding: 0.5em;
+}
+
 .w-100{
     width: 100%;
 }
@@ -560,6 +572,12 @@ html{
 .t-S{
     font-size: 1.7rem;
     font-weight: 300;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.t-B{
+    font-size: 0.9rem;
+    width: 100%;
     font-family: "Josefin Sans", sans-serif;
 }
 
@@ -654,18 +672,6 @@ html{
     flex-direction: row;
 }
 
-.medMarginBottom{
-    margin-bottom: 10px;
-}
-
-.profileFieldLabel{
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 0.9em;
-    font-weight: 500;
-    display: block;
-    width: 100%;
-}
-
 .largerProfileFieldGroup{
     display: flex;
     flex-direction: column;
@@ -692,17 +698,6 @@ html{
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    width: 100%;
-}
-
-.profileTextField{
-    font-family: "Josefin Sans", sans-serif;
-    padding: 0.6em;
-    font-size: 0.9rem;
-    font-weight: 400;
-    border: none;
-    box-sizing: border-box;
-    border-radius: 0.1em;
     width: 100%;
 }
 
