@@ -13,7 +13,6 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
     input.type = "text"
     input.name = fieldName
     input.id = fieldID
-    input.size = fieldSize
     input.required = required
     input.placeholder = placeholder
 
@@ -22,7 +21,7 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
     remove.classList.add("removeButton")
     
     div.appendChild(input)
-    input.classList.add("profileTextField")
+    input.className = "t-B bB b-0px pA-05em bR-02em"
     if (favourite){
         const favourite = document.createElement("button")
         favourite.classList.add("removeButton")
