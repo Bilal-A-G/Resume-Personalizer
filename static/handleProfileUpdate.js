@@ -17,11 +17,11 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
     input.placeholder = placeholder
 
     remove.textContent = "-"
-    div.classList.add("profileRemoveField")
-    remove.classList.add("removeButton")
+    div.className = "w-100 aIRC d-f"
+    remove.className = "br-02em btn bg-w ml-01em pL-1em pR-1em" 
     
     div.appendChild(input)
-    input.className = "t-B bB b-0px pA-05em bR-02em"
+    input.className = "t-B bB b-0px pA-05em br-02em"
     if (favourite){
         const favourite = document.createElement("button")
         favourite.classList.add("removeButton")

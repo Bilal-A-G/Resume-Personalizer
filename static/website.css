@@ -263,9 +263,6 @@ html{
     border: none;
 }
 
-.bR-02em{
-    border-radius: 0.2em;
-}
 
 /* ----------------------------------------------- End of Display -----------------------------------------------------------*/
 
@@ -351,6 +348,14 @@ html{
 
 .mr-1em{
     margin-right: 1em;
+}
+
+.ml-1em{
+    margin-left: 1em;
+}
+
+.ml-01em{
+    margin-left: 0.1em;
 }
 
 .mb-2em{
@@ -460,30 +465,6 @@ html{
     border-top-left-radius: 0.1em;
     font-family: "Josefin Sans", sans-serif;
     font-size: 0.9rem;
-}
-
-.bg-g{
-    background-color: #d9d9d9;
-}
-
-.bg-b{
-    background-color: black;
-}
-
-.bg-tb{
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.bg-lg{
-    background-color: #cbcbcb;
-}
-
-.bg-dg{
-    background-color: rgba(190, 190, 190, 0.95)
-}
-
-.bor-sm{
-    border-radius: 1em;
 }
 
 /* ----------------------------------------------- End of One Off ---------------------------------------------------------*/
@@ -626,9 +607,6 @@ html{
     border: none;
     justify-content: center;
 
-    margin-left: 0.5em;
-    padding: 0.5em 1.5em;
-
     transition: 0.15s;
 }
 
@@ -641,15 +619,43 @@ html{
     scale: 1.1;
 }
 
-.btn-Bg{
-    background-color: #d9d9d9;
-    border-radius: 3px;
-} 
-
-.btn-Sm{
-    max-width: 20px;
-}
 /* ------------------------------------------------- End of Buttons --------------------------------------------------------*/
+
+
+
+/* ------------------------------------------------- Start of Display pt 2 (Only here so we can override button styles) --------------------------------------------------*/
+.bg-g{
+    background-color: #d9d9d9;
+}
+
+.br-05em{
+    border-radius: 0.5em;
+}
+
+.br-02em{
+    border-radius: 0.2em;
+}
+
+.bg-b{
+    background-color: black;
+}
+
+.bg-tb{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-lg{
+    background-color: #cbcbcb;
+}
+
+.bg-w{
+    background-color: white;
+}
+
+.bg-dg{
+    background-color: rgba(190, 190, 190, 0.95)
+}
+/* ------------------------------------------------- End of Display pt 2 -------------------------------------------------------*/
 
 .navbarActive{
     background-color: #EAE7E7;
@@ -706,13 +712,6 @@ html{
     flex-direction: row;
     width: 100%;
     justify-content: center;
-}
-
-.profileRemoveField{
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    width: 100%;
 }
 
 .profileDateField{
