@@ -60,7 +60,7 @@ function CreateProfileListEntry(parent, index, name) {
     const date = name.split('|')[1]
 
     const backgroundRow = document.createElement("div")
-    backgroundRow.className = "bg-g bor-sm aIRC d-f"
+    backgroundRow.className = "bg-g bor-sm aIRC d-f pT-02em pB-02em"
     const profileName = document.createElement("div")
     profileName.textContent = actualName
     profileName.className = "t-S t-bol aICC aIRC w-25p d-f"
@@ -72,7 +72,7 @@ function CreateProfileListEntry(parent, index, name) {
     buttonHolder.className = "aIRC w-25p d-f"
 
     const editButton = document.createElement("button")
-    editButton.className = "btn"
+    editButton.className = "btn mr-1em"
     const editButtonImage = document.createElement("img")
     editButtonImage.className = "w-2em"
     editButtonImage.src = "static/images/EditProfile.svg"

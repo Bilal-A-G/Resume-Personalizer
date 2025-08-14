@@ -296,6 +296,14 @@ html{
     padding-right: 1em;
 }
 
+.pT-02em{
+    padding-top: 0.2em;
+}
+
+.pB-02em{
+    padding-bottom: 0.2em;
+}
+
 .pR-a{
     padding-right: auto;
 }
