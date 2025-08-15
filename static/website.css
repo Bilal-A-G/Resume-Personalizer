@@ -76,12 +76,6 @@ html{
     grid-row-end: 2;
 }
 
-.profileFieldGroup{
-    grid-column: span 2;
-    width: 100%;
-    display: block;
-}
-
 .tripleWide{
     grid-column: span 5;
     grid-row: span 2;
@@ -113,9 +107,6 @@ html{
     html{
         font-size: 13px;
     }
-    .medMaxWidth{
-        max-width: 300px;
-    }   
     .listContainer{
         min-height: 0px;
     }
@@ -375,6 +366,10 @@ html{
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+}
+
+.s-2col{
+    grid-column: span 2;
 }
 /* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
 
