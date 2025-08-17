@@ -9,15 +9,6 @@ html{
     height: 100%;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    row-gap: 1em;
-    column-gap: 1em;
-    width: 90%;
-}
-
 .educationGrid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -91,6 +82,18 @@ html{
     grid-row: span 2;
 }
 
+/* Overrideables */
+
+.g-6c{
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.g-3r{
+    grid-template-rows: repeat(3, 1fr);
+}
+
+/* End of overidables */
+
 @media (max-width: 900px) {
     html{
         font-size: 13px;
@@ -102,13 +105,18 @@ html{
         justify-content: center;
         padding-left: 0em;
     }
-    .grid{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        justify-items: center;
-        row-gap: 1em;
-        column-gap: 1em;
+
+    .g-r4c{
+        grid-template-columns: repeat(4, 1fr);
     }
+    .g-r2r{
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .aIRC-r{
+        justify-content: center;
+    }
+
     .educationGrid{
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -230,6 +238,10 @@ html{
     display: none;
 }
 
+.d-g{
+    display: grid;
+}
+
 .d-b{
     display: block;
 }
@@ -303,6 +315,15 @@ html{
 .gp-03em{
     gap: 0.3em;
 }
+
+.grg-1em{
+    row-gap: 1em;
+}
+
+.gcg-1em{
+    column-gap: 1em;
+}
+
 
 .aIRC{
     justify-content: center;
