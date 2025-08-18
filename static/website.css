@@ -101,11 +101,6 @@ html{
     .listContainer{
         min-height: 0px;
     }
-    .profileRow{
-        justify-content: center;
-        padding-left: 0em;
-    }
-
     .g-r4c{
         grid-template-columns: repeat(4, 1fr);
     }
@@ -382,6 +377,10 @@ html{
     margin-left: 0.1em;
 }
 
+.ml-03em{
+    margin-left: 0.3em;
+}
+
 .mb-2em{
     margin-bottom: 2em;
 }
@@ -586,7 +585,7 @@ html{
 }
 
 .t-L{
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: "Josefin Sans", sans-serif;
 }
 
@@ -702,19 +701,6 @@ html{
     margin-top: auto;
     margin-bottom: auto;
     width: 200px;
-}
-
-.profileRow{
-    display: flex;
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 2.5rem;
-    background-color: #cbcbcb;
-    box-sizing: border-box;
-    align-items: center;
-    gap: 0.5em;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-    padding-left: 1em;
 }
 
 .rightAlignBlock{
