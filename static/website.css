@@ -37,22 +37,10 @@ html{
     column-gap: 2em;
 }
 
-.doubleWide{
-    grid-row: span 3;
-    grid-column: span 2;
-}
-
 .normal{
     grid-row: span 2;
     grid-column: span 1;
     width: 100%;
-}
-
-.websiteGridField{
-    grid-column-start: 0;
-    grid-column-end: 1;
-    grid-row-start: 2;
-    grid-row-end: 2;
 }
 
 .tripleWide{
@@ -88,6 +76,14 @@ html{
     grid-template-columns: repeat(6, 1fr);
 }
 
+.gcs-2{
+    grid-column: span 2;
+}
+
+.grs-3{
+    grid-row: span 3;
+}
+
 .g-3r{
     grid-template-rows: repeat(3, 1fr);
 }
@@ -106,6 +102,16 @@ html{
     }
     .g-r2r{
         grid-template-rows: repeat(2, 1fr);
+    }
+
+    .gcs-4r{
+        grid-column: span 4;
+    }
+    .grs-3r{
+        grid-row-start: 3;
+    }
+    .gre-4r{
+        grid-row-end: 4;
     }
 
     .aIRC-r{
@@ -159,11 +165,6 @@ html{
     .spanHalfList{
         grid-column: span 4;
         grid-row: span 2;
-    }
-    .doubleWide{
-        grid-column: span 4;
-        grid-row-start: 3;
-        grid-row-end: 4;
     }
     .t-B{
         text-align: center;
