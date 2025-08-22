@@ -81,16 +81,16 @@
             <img class="w-45px ml-03em" src="{{url_for('static', filename='images/WorkExperience.svg')}}">
         </div>
         <div id="experienceDropdown"  class="maxWidth"></div>
-        <div class="rowAlignCentered topSpacing bottomSpacing">
-            <button class="button largeFont" type="button" id="AddExperience">Add Experience <div>+</div></button>
+        <div class="d-f aIRC mt-1em mb-2em">
+            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddExperience">Add Experience <div>+</div></button>
         </div>
         <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
             Projects
             <img class="w-45px ml-03em" src="{{url_for('static', filename='images/Projects.svg')}}">
         </div>
         <div id="projectsDropdown"></div>
-        <div class="rowAlignCentered topSpacing bottomSpacing">
-            <button class="button largeFont" type="button" id="AddProject">Add Project <div>+</div></button>
+        <div class="d-f aIRC mt-1em mb-2em">
+            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddProject">Add Project <div>+</div></button>
         </div>
         <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
             Skills & Accomplishments
@@ -103,7 +103,7 @@
                         <div class="profileFieldLabel medMarginBottom">Unclassified Skills</div>
                     </div>
                     <div class="profileDropdown" id="unclassifiedSkillsDropdown"></div>
-                    <div class="line"></div>
+                    <div></div>
                     <div class="rowAlignCentered">
                         <button class="smallerButton greyBackground" type="button" id="AddUnclassifiedSkill">
                             Add New <div>+</div></button>
@@ -123,13 +123,13 @@
             </div>
         </div>
         <div id="categorizedSkillsDropdown"></div>
-        <div class="rowAlignCentered topSpacing bottomSpacing">
-            <button class="button largeFont" type="button" id="AddCategorizedSkill">Add Category<div>+</div></button>
+        <div class="d-f aIRC mt-1em mb-2em">
+            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddCategorizedSkill">Add Category<div>+</div></button>
         </div>
-        <div class="rowAlignCentered lgTopSpacing medBottomSpacing">
-            <button class="button XXLFont" type="submit" id="Submit">
+        <div class="d-f aIRC">
+            <button class="btn t-L pA-05em pB-02em mt-1em mb-1em" type="submit" id="Submit">
                 Submit
-                <img class="largeImage" src="{{url_for('static', filename='images/Submit.svg')}}">
+                <img class="w-45px" src="{{url_for('static', filename='images/Submit.svg')}}">
             </button>
         </div>
     </form>
