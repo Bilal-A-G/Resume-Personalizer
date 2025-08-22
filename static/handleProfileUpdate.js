@@ -228,9 +228,9 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
 
 function CreateRemoveButton(parent, root, panel, index){
     const removeButtonRow = document.createElement("div")
-    removeButtonRow.className = "flexHorizontal rightAlign remButtonRow"
+    removeButtonRow.className = "d-f rightAlign remButtonRow"
     const removeButton = document.createElement("button")
-    removeButton.className = "smallButton offWhiteBackground"
+    removeButton.className = "btn"
     removeButton.type = "button"
     removeButton.id = `RemoveExperience${index}`
     removeButton.textContent = "Remove Item"
@@ -252,9 +252,9 @@ function CreateRemoveButton(parent, root, panel, index){
 
 function EducationSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground centeredWidth topSpacing bottomSpacing"
+    offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1300px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "profilePanel topSpacing bottomSpacing"
+    insetPanel.className = "mt-1em mb-1em"
 
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 

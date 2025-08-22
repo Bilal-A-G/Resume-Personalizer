@@ -515,6 +515,10 @@ html{
     max-width: 800px;
 }
 
+.mW-1300px{
+    max-width: 1300px;
+}
+
 .mH-110px{
     max-height: 110px;
 }
@@ -681,6 +685,10 @@ html{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.bg-llg{
+    background-color: #e0e0e0;
+}
+
 .bg-lg{
     background-color: #cbcbcb;
 }
@@ -777,15 +785,6 @@ html{
     font-family: "Josefin Sans", sans-serif;
     width: 70%;
     max-width: 300px;
-}
-
-.offWhiteBackground{
-    display: flex;
-    background-color: #e0e0e0;
-    height: fit-content;
-    max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .profile{
