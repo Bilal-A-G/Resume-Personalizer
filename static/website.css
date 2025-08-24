@@ -367,8 +367,16 @@ html{
     margin-right: 1em;
 }
 
+.mr-2em{
+    margin-right: 2em;
+}
+
 .ml-1em{
     margin-left: 1em;
+}
+
+.ml-2em{
+    margin-left: 2em;
 }
 
 .ml-01em{

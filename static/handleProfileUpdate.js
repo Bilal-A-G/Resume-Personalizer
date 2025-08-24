@@ -108,16 +108,16 @@ function StartNewSection(parent){
     return listChild
 }
 
-function CreateTextFieldGroup(parent, id, labelText, sizeCSS = ""){
+function CreateTextFieldGroup(parent, id, labelText){
     const groupParent = document.createElement("div")
-    groupParent.className = "profileFieldGroup " + sizeCSS
+    groupParent.className = "s-2col w-100" 
     const label = document.createElement("label")
-    label.className = "profileFieldLabel medMarginBottom"
+    label.className = "t-B t-bol aIRC-r d-f"
     label.for = id
     label.textContent = labelText
 
     const inputField = document.createElement("input")
-    inputField.className = "profileTextField"
+    inputField.className = "t-B bB b-0px pA-05em bR-02em"
     inputField.type = "text"
     inputField.name = id
     inputField.id = id
@@ -254,7 +254,7 @@ function EducationSection(parent, index){
     const offWhitePanel = document.createElement("div")
     offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1300px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "mt-1em mb-1em"
+    insetPanel.className = "mt-1em mb-1em ml-2em mr-2em"
 
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
