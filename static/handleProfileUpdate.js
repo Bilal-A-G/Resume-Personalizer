@@ -129,13 +129,13 @@ function CreateTextFieldGroup(parent, id, labelText){
 
 function CreateDateRangeFields(parent, startID, endID, presentID, index){
     const startDateGroup = document.createElement("div")
-    startDateGroup.className = "profileFieldGroup spanHalf"
+    startDateGroup.className = "w-100"
     const startDateLabel = document.createElement("label")
-    startDateLabel.className = "profileFieldLabel medMarginBottom"
+    startDateLabel.className = "t-B t-bol aIRC-r d-f"
     startDateLabel.for = startID
     startDateLabel.textContent = "Start Date"
     const startDateField = document.createElement("input")
-    startDateField.className = "profileDateField"
+    startDateField.className = "bB t-B t-bol b-0px br-02em w-100 pA-05em"
     startDateField.type = "month"
     startDateField.id = startID
     startDateField.name = startID
@@ -144,27 +144,27 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     parent.appendChild(startDateGroup)
 
     const endDateGroup = document.createElement("div")
-    endDateGroup.className = "profileFieldGroup smGap spanHalf positionUnder"
+    endDateGroup.className = "w-100 grst-3"
     const dateFieldGroup = document.createElement("div")
-    dateFieldGroup.className = "flexVertical"
+    dateFieldGroup.className = "d-f aICC"
     const endDateLabel = document.createElement("label")
     endDateLabel.textContent = "End Date"
-    endDateLabel.className = "profileFieldLabel medMarginBottom"
+    endDateLabel.className = "t-B t-bol aIRC-r d-f"
     endDateLabel.for = endID + `${index}`
     const endDateInput = document.createElement("input")
-    endDateInput.className = "profileDateField"
+    endDateInput.className = "bB t-B t-bol b-0px br-02em w-100 pA-05em"
     endDateInput.type = "month"
     endDateInput.id = endID + `${index}`
     endDateInput.name = endID + `${index}`
     const isPresentGroup = document.createElement("div")
-    isPresentGroup.className = "flexHorizontal smGap smTopSpacing"
+    isPresentGroup.className = "d-f mt-05em"
     const presentCheckbox = document.createElement("input")
-    presentCheckbox.className = "profileCheckboxField"
+    presentCheckbox.className = "h-100 w-2em aIRS"
     presentCheckbox.type = "checkbox"
     presentCheckbox.id = presentID + `${index}`
     presentCheckbox.name = presentID + `${index}`
     const presentLabel = document.createElement("label")
-    presentLabel.className = "profileFieldLabel textCenter"
+    presentLabel.className = "t-B t-bol aIRC-r d-f"
     presentLabel.for = presentID + `${index}`
     presentLabel.textContent = "Present"
 

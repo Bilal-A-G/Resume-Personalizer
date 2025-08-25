@@ -57,10 +57,6 @@ html{
     grid-column: span 6;
 }
 
-.positionUnder{
-    grid-row-start: 3;
-}
-
 .spanHalf{
     grid-column: span 1;
 }
@@ -88,6 +84,10 @@ html{
     grid-template-rows: repeat(3, 1fr);
 }
 
+.grst-3{
+    grid-row-start: 3;
+}
+
 /* End of overidables */
 
 @media (max-width: 900px) {
@@ -107,7 +107,7 @@ html{
     .gcs-4r{
         grid-column: span 4;
     }
-    .grs-3r{
+    .grst-3r{
         grid-row-start: 3;
     }
     .gre-4r{
@@ -258,6 +258,10 @@ html{
     justify-content: flex-end;
 }
 
+.aIRS{
+    justify-items: start;
+}
+
 .p-f{
     position: fixed
 }
@@ -349,6 +353,10 @@ html{
 
 .mt-1em{
     margin-top: 1em;
+}
+
+.mt-05em{
+    margin-top: 0.5em;
 }
 
 .mt-2em{
@@ -752,30 +760,6 @@ html{
     flex-direction: row;
     width: 100%;
     justify-content: center;
-}
-
-.profileDateField{
-    box-sizing: border-box;
-    font-family: "Josefin Sans", sans-serif;
-    padding: 0.45em;
-    font-size: 0.9rem;
-    font-weight: 400;
-    border: none;
-    border-radius: 0.1em;
-    width: 100%;
-    min-width: 0;
-}
-
-.profileCheckboxField{
-    font-family: "Josefin Sans", sans-serif;
-    justify-items: start;
-    width: 2em;
-    height: 100%;
-}
-
-.flexVertical{
-    display: flex;
-    flex-direction: column;
 }
 
 .textCenter{
