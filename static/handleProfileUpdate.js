@@ -22,17 +22,6 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
     
     div.appendChild(input)
     input.className = "t-B bB b-0px pA-05em br-02em"
-    if (favourite){
-        const favourite = document.createElement("button")
-        favourite.classList.add("removeButton")
-        favourite.textContent = "+"
-        div.appendChild(favourite)
-
-        favourite.addEventListener("click", (e)=>{
-            e.preventDefault()
-            console.log("Favourited")
-        })
-    }
     div.appendChild(remove)
     remove.addEventListener("click", (e) => {
         e.preventDefault()
@@ -189,22 +178,22 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
 
 function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS, favourite = false){
     const descriptionsGroup = document.createElement("div")
-    descriptionsGroup.className = "profileFieldGroup " + sizeCSS
+    descriptionsGroup.className = "w-100 gcs-5 grs-3 mH-200px" 
     const labelGroup = document.createElement("div")
-    labelGroup.className = "rowAlignCentered"
+    labelGroup.className = "aIRC d-f"
     const descriptionsLabel = document.createElement("div")
     descriptionsLabel.textContent = listName
-    descriptionsLabel.className = "profileFieldLabel medMarginBottom"
+    descriptionsLabel.className = "t-bol t-B mb-1em aIRC-r d-f"
     labelGroup.appendChild(descriptionsLabel)
     const dropdown = document.createElement("div")
-    dropdown.className = "profileDropdown"
+    dropdown.className = "gp-03em d-f aICC mH-110px oy-a ox-h sb-s"
     dropdown.id = dropdownID + `${index}`
     const line = document.createElement("div")
-    line.className = "line"
+    line.className = "w-100 h-2px bg-b"
     const addButtonRow = document.createElement("div")
-    addButtonRow.className = "rowAlignCentered"
+    addButtonRow.className = "aIRC d-f mt-1em"
     const addButton = document.createElement("button")
-    addButton.className = "smallButton offWhiteBackground"
+    addButton.className = "btn pA-05em"
     addButton.textContent = "Add New"
     addButton.type = "button"
     addButton.id = addButtonID + `${index}`
@@ -230,7 +219,7 @@ function CreateRemoveButton(parent, root, panel, index){
     const removeButtonRow = document.createElement("div")
     removeButtonRow.className = "d-f rightAlign remButtonRow"
     const removeButton = document.createElement("button")
-    removeButton.className = "btn"
+    removeButton.className = "btn pA-05em"
     removeButton.type = "button"
     removeButton.id = `RemoveExperience${index}`
     removeButton.textContent = "Remove Item"
@@ -254,7 +243,7 @@ function EducationSection(parent, index){
     const offWhitePanel = document.createElement("div")
     offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1300px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "mt-1em mb-1em ml-2em mr-2em"
+    insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
 
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 

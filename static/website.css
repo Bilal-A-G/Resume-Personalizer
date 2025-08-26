@@ -76,6 +76,10 @@ html{
     grid-column: span 2;
 }
 
+.gcs-5{
+    grid-column: span 5;
+}
+
 .grs-3{
     grid-row: span 3;
 }
@@ -321,9 +325,16 @@ html{
     column-gap: 1em;
 }
 
-
 .aIRC{
     justify-content: center;
+}
+
+.dfd-r{
+    flex-direction: row;
+}
+
+.dfd-c{
+    flex-direction: column;
 }
 
 .bB{
@@ -533,6 +544,14 @@ html{
 
 .mW-1300px{
     max-width: 1300px;
+}
+
+.mH-100px{
+    max-height: 100px;
+}
+
+.mH-200px{
+    max-height: 200px;
 }
 
 .mH-110px{
