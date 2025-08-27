@@ -124,7 +124,7 @@ html{
 
     .educationGrid{
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         column-gap: 1em;
         row-gap: 1em;
         justify-items: center;
@@ -544,6 +544,10 @@ html{
 
 .mW-1300px{
     max-width: 1300px;
+}
+
+.mW-1500px{
+    max-width: 1500px;
 }
 
 .mH-100px{

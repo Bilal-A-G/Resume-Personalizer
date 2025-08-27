@@ -183,7 +183,7 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
     labelGroup.className = "aIRC d-f"
     const descriptionsLabel = document.createElement("div")
     descriptionsLabel.textContent = listName
-    descriptionsLabel.className = "t-bol t-B mb-1em aIRC-r d-f"
+    descriptionsLabel.className = "t-bol t-B aIRC-r d-f"
     labelGroup.appendChild(descriptionsLabel)
     const dropdown = document.createElement("div")
     dropdown.className = "gp-03em d-f aICC mH-110px oy-a ox-h sb-s"
@@ -241,7 +241,7 @@ function CreateRemoveButton(parent, root, panel, index){
 
 function EducationSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1300px mt-2em mb-2em"
+    offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1500px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
     insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
 
