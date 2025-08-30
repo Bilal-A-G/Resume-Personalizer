@@ -146,14 +146,14 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     endDateInput.id = endID + `${index}`
     endDateInput.name = endID + `${index}`
     const isPresentGroup = document.createElement("div")
-    isPresentGroup.className = "d-f mt-05em"
+    isPresentGroup.className = "d-f aIRC mt-05em"
     const presentCheckbox = document.createElement("input")
     presentCheckbox.className = "h-100 w-2em aIRS"
     presentCheckbox.type = "checkbox"
     presentCheckbox.id = presentID + `${index}`
     presentCheckbox.name = presentID + `${index}`
     const presentLabel = document.createElement("label")
-    presentLabel.className = "t-B t-bol aIRC-r d-f"
+    presentLabel.className = "t-B t-bol mt-03em d-f"
     presentLabel.for = presentID + `${index}`
     presentLabel.textContent = "Present"
 
