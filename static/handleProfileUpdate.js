@@ -265,9 +265,9 @@ function EducationSection(parent, index){
 
 function ExperienceSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground centeredWidth topSpacing bottomSpacing"
+    offWhitePanel.className = "d-f mR-a mL-a bg-llg mW-1500px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "profilePanel topSpacing bottomSpacing"
+    insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
 
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
@@ -291,9 +291,9 @@ function ExperienceSection(parent, index){
 
 function ProjectSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground centeredWidth topSpacing bottomSpacing"
+    offWhitePanel.className = "d-f mR-a mL-a bg-llg mW-1500px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "profilePanel topSpacing bottomSpacing"
+    insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
 
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
@@ -316,9 +316,9 @@ function ProjectSection(parent, index){
 
 function CategorizedSkillsSection(parent, index){
     const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "offWhiteBackground centeredWidth topSpacing bottomSpacing"
+    offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1500px mt-2em mb-2em"
     const insetPanel = document.createElement("div")
-    insetPanel.className = "profilePanel topSpacing bottomSpacing"
+    insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
 
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
