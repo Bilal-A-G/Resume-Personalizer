@@ -68,6 +68,14 @@ html{
 
 /* Overrideables */
 
+.w-50p{
+    width: 50%;
+}
+
+.d-f{
+    display: flex;
+}
+
 .g-6c{
     grid-template-columns: repeat(6, 1fr);
 }
@@ -97,6 +105,13 @@ html{
 @media (max-width: 900px) {
     html{
         font-size: 13px;
+    }
+    .w-95-r{
+        width: 95%;
+    }
+    .aICC-r{
+        align-items: center;
+        flex-direction: column;
     }
     .listContainer{
         min-height: 0px;
@@ -230,9 +245,6 @@ html{
 }
 
 /* ----------------------------------------------- Start of Display ---------------------------------------------------------*/
-.d-f{
-    display: flex;
-}
 
 .d-h{
     display: none;
@@ -315,6 +327,10 @@ html{
 
 .gp-03em{
     gap: 0.3em;
+}
+
+.gp-2em{
+    gap: 2em;
 }
 
 .grg-1em{
@@ -538,9 +554,6 @@ html{
     height: 2px;
 }
 
-.w-50p{
-    width: 50%;
-}
 
 .mW-800px{
     max-width: 800px;
