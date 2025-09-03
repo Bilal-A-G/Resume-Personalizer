@@ -41,7 +41,6 @@ function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, requi
     startDateInput.id = startFieldID
     startDateInput.size = fieldSize
     startDateInput.required = required
-
     startDateList.appendChild(startDateInput)
     const endDateList = document.createElement("div")
     const endDateInput = document.createElement("input")
@@ -51,7 +50,7 @@ function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, requi
     endDateInput.id = endFieldID
     endDateInput.size = fieldSize
     endDateInput.required = false
-
+    
     endDateList.appendChild(endDateInput)
     const checkbox = document.createElement("input")
     checkbox.type = "checkbox"
@@ -117,8 +116,11 @@ function CreateTextFieldGroup(parent, id, labelText){
 }
 
 function CreateDateRangeFields(parent, startID, endID, presentID, index){
+    const dateRangeGroup = document.createElement("div")
+    dateRangeGroup.className = "w-100 grs-2 gcs-2-r d-f gp-1em dfd-c dfd-r-r"
+
     const startDateGroup = document.createElement("div")
-    startDateGroup.className = "w-100"
+    startDateGroup.className = "gcs-1 w-50p-r"
     const startDateLabel = document.createElement("label")
     startDateLabel.className = "t-B t-bol aIRC-r d-f"
     startDateLabel.for = startID
@@ -130,10 +132,10 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     startDateField.name = startID
     startDateGroup.appendChild(startDateLabel)
     startDateGroup.appendChild(startDateField)
-    parent.appendChild(startDateGroup)
+    dateRangeGroup.appendChild(startDateGroup)
 
     const endDateGroup = document.createElement("div")
-    endDateGroup.className = "w-100 grst-3"
+    endDateGroup.className = "grst-3 w-50p-r"
     const dateFieldGroup = document.createElement("div")
     dateFieldGroup.className = "d-f aICC"
     const endDateLabel = document.createElement("label")
@@ -173,7 +175,8 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
     isPresentGroup.appendChild(presentCheckbox)
     isPresentGroup.appendChild(presentLabel)
 
-    parent.appendChild(endDateGroup)
+    dateRangeGroup.appendChild(endDateGroup)
+    parent.appendChild(dateRangeGroup)
 }
 
 function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS, favourite = false){

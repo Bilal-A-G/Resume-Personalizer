@@ -68,6 +68,14 @@ html{
 
 /* Overrideables */
 
+.dfd-r{
+    flex-direction: row;
+}
+
+.dfd-c{
+    flex-direction: column;
+}
+
 .w-50p{
     width: 50%;
 }
@@ -80,6 +88,10 @@ html{
     grid-template-columns: repeat(6, 1fr);
 }
 
+.gcs-1{
+    grid-column: span 1;
+}
+
 .gcs-2{
     grid-column: span 2;
 }
@@ -90,6 +102,10 @@ html{
 
 .grs-3{
     grid-row: span 3;
+}
+
+.grs-2{
+    grid-row: span 2;
 }
 
 .g-3r{
@@ -109,6 +125,9 @@ html{
     .w-95-r{
         width: 95%;
     }
+    .w-50p-r{
+        width: 50%;
+    }
     .aICC-r{
         align-items: center;
         flex-direction: column;
@@ -121,6 +140,13 @@ html{
     }
     .g-r2r{
         grid-template-rows: repeat(2, 1fr);
+    }
+
+    .gcs-2-r{
+        grid-column: span 2;
+    }
+    .dfd-r-r{
+        flex-direction: row;
     }
 
     .gcs-4r{
@@ -329,6 +355,10 @@ html{
     gap: 0.3em;
 }
 
+.gp-1em{
+    gap: 1em;
+}
+
 .gp-2em{
     gap: 2em;
 }
@@ -345,13 +375,6 @@ html{
     justify-content: center;
 }
 
-.dfd-r{
-    flex-direction: row;
-}
-
-.dfd-c{
-    flex-direction: column;
-}
 
 .bB{
   box-sizing: border-box;  
