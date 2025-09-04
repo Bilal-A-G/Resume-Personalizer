@@ -181,7 +181,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index){
 
 function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS, favourite = false){
     const descriptionsGroup = document.createElement("div")
-    descriptionsGroup.className = "w-100 gcs-5 grs-3 mH-200px" 
+    descriptionsGroup.className = "w-100 gcs-5 grs-3 h-200px" 
     const labelGroup = document.createElement("div")
     labelGroup.className = "aIRC d-f"
     const descriptionsLabel = document.createElement("div")
