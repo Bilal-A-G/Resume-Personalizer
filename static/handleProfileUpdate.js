@@ -31,8 +31,7 @@ function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholde
     parent.appendChild(div)
 }
 
-function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, required, dateType,
-    endFieldName, endFieldID, checkboxFieldID, parent){
+function CreateFormDateRangeField(startFieldName, startFieldID, fieldSize, required, dateType, endFieldName, endFieldID, checkboxFieldID, parent){
     const startDateList = document.createElement("div")
     const startDateInput = document.createElement("input")
 
@@ -115,9 +114,12 @@ function CreateTextFieldGroup(parent, id, labelText){
     parent.appendChild(groupParent)
 }
 
-function CreateDateRangeFields(parent, startID, endID, presentID, index){
+function CreateDateRangeFields(parent, startID, endID, presentID, index, horizontal = false){
     const dateRangeGroup = document.createElement("div")
     dateRangeGroup.className = "w-100 grs-2 gcs-2-r d-f gp-1em dfd-c dfd-r-r"
+  if(horizontal){
+    dateRangeGroup.className = "w-100 gcs-2 d-f gp-1em"
+  }
 
     const startDateGroup = document.createElement("div")
     startDateGroup.className = "gcs-1 w-50p-r"
@@ -304,7 +306,7 @@ function ProjectSection(parent, index){
     gridRow.className = "projectGrid"
 
     CreateTextFieldGroup(gridRow, "projectName", "Project Name", "wide")
-    CreateDateRangeFields(gridRow, "projectStart", "projectEnd", "presentProject", index)
+    CreateDateRangeFields(gridRow, "projectStart", "projectEnd", "presentProject", index, true)
 
     CreateTextFieldList(gridRow, index, "Tags", 
         "projectTagDropdown", "AddProjectTag", "projectTag", "Tag", "24", "spanHalfList")

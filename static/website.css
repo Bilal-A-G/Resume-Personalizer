@@ -19,7 +19,7 @@ html{
 .experienceGrid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     column-gap: 2em;
 }
 
@@ -118,7 +118,7 @@ html{
 
 /* End of overidables */
 
-@media (max width: 900px) {
+@media (max-width: 900px) {
     html{
         font-size: 13px;
     }
