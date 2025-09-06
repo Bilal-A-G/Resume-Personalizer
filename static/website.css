@@ -9,26 +9,6 @@ html{
     height: 100%;
 }
 
-.educationGrid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    column-gap: 2em;
-}
-
-.experienceGrid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    column-gap: 2em;
-}
-
-.projectGrid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    column-gap: 2em;
-}
 
 .skillsGrid{
     display: grid;
@@ -112,6 +92,14 @@ html{
     grid-template-rows: repeat(3, 1fr);
 }
 
+.g-4r{
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.g-4c{
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .grst-3{
     grid-row-start: 3;
 }
@@ -141,12 +129,22 @@ html{
     .g-r2r{
         grid-template-rows: repeat(2, 1fr);
     }
+    .g-r3r{
+      grid-template-rows: repeat(3, 1fr);
+    }
 
     .gcs-2-r{
         grid-column: span 2;
     }
     .dfd-r-r{
         flex-direction: row;
+    }
+
+    .gcg-r1em{
+      column-gap: 1em
+    }
+    .grg-r1em{
+      row-gap: 1em
     }
 
     .gcs-4r{
@@ -163,28 +161,6 @@ html{
         justify-content: center;
     }
 
-    .educationGrid{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        column-gap: 1em;
-        row-gap: 1em;
-        justify-items: center;
-    }
-    .experienceGrid{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        column-gap: 1em;
-        row-gap: 1em;
-        justify-items: center;
-    }
-    .projectGrid{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
-        column-gap: 1em;
-        row-gap: 1em;
-        justify-items: center;
-    }
     .skillsGrid{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -369,6 +345,10 @@ html{
 
 .gcg-1em{
     column-gap: 1em;
+}
+
+.gcg-2em{
+  column-gap: 2em;
 }
 
 .aIRC{

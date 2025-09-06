@@ -253,7 +253,7 @@ function EducationSection(parent, index){
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
     const gridRow = document.createElement("div")
-    gridRow.className = "educationGrid"
+    gridRow.className = "g-4r g-r3r g-6c g-r4c gcg-2em gcg-r1em grg-r1em d-g"
 
     CreateTextFieldGroup(gridRow, "institutionName", "Institution Name")
     CreateTextFieldGroup(gridRow, "degree", "Degree")
@@ -277,7 +277,7 @@ function ExperienceSection(parent, index){
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
     const gridRow = document.createElement("div")
-    gridRow.className = "experienceGrid"
+    gridRow.className = "g-4r g-r3r g-6c g-r4c gcg-2em gcg-r1em grg-r1em d-g"
 
     CreateTextFieldGroup(gridRow, "companyName", "Company Name")
     CreateTextFieldGroup(gridRow, "jobTitle", "Title")
@@ -303,7 +303,7 @@ function ProjectSection(parent, index){
     CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
     const gridRow = document.createElement("div")
-    gridRow.className = "projectGrid"
+    gridRow.className = "g-3r g-r3r g-6c g-r4c gcg-2em gcg-r1em grg-r1em d-g"
 
     CreateTextFieldGroup(gridRow, "projectName", "Project Name", "wide")
     CreateDateRangeFields(gridRow, "projectStart", "projectEnd", "presentProject", index, true)
