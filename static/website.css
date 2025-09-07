@@ -9,14 +9,6 @@ html{
     height: 100%;
 }
 
-
-.skillsGrid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr;
-    column-gap: 2em;
-}
-
 .normal{
     grid-row: span 2;
     grid-column: span 1;
@@ -66,6 +58,10 @@ html{
 
 .g-6c{
     grid-template-columns: repeat(6, 1fr);
+}
+
+.g-8c{
+  grid-template-columns: repeat(8, 1fr);
 }
 
 .gcs-1{
@@ -126,6 +122,9 @@ html{
     .g-r4c{
         grid-template-columns: repeat(4, 1fr);
     }
+    .g-r2c{
+      grid-template-columns: repeat(2, 1fr);
+    }
     .g-r2r{
         grid-template-rows: repeat(2, 1fr);
     }
@@ -161,12 +160,6 @@ html{
         justify-content: center;
     }
 
-    .skillsGrid{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 4fr;
-        row-gap: 1em;
-    }
     .tripleWide{
         grid-column: span 4;
         grid-row: span 2;
@@ -563,6 +556,10 @@ html{
 
 .h-100px{
   height: 100px;
+}
+
+.h-200px{
+  height: 200px;
 }
 
 .mW-800px{

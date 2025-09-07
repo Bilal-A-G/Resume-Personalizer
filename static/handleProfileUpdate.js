@@ -6,7 +6,7 @@ function RemoveLastChildInDOM(parentName) {
     parent.removeChild(parent.lastChild)
 }
 
-function CreateFormTextField(fieldName, fieldID, fieldSize, required, placeholder, parent, favourite = false){
+function CreateFormTextField(fieldName, fieldID, required, placeholder, parent){
     const div = document.createElement("div")
     const remove = document.createElement("button")
     const input = document.createElement("input")
@@ -82,7 +82,7 @@ function CreateExpandableSection(addButtonID, addButtonText, dropdownID, expande
 
     addButton.onclick = (e) => {
         e.preventDefault()
-        CreateFormTextField(expandedFieldID, expandedFieldID, expandedFieldSize, true, expandedFieldPlaceholder, dropdownDiv)
+        CreateFormTextField(expandedFieldID, expandedFieldID, expandedFieldPlaceholder, dropdownDiv)
     }
 }
 
@@ -181,7 +181,7 @@ function CreateDateRangeFields(parent, startID, endID, presentID, index, horizon
     parent.appendChild(dateRangeGroup)
 }
 
-function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder, size, sizeCSS, favourite = false){
+function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, fieldID, fieldPlaceholder){
     const descriptionsGroup = document.createElement("div")
     descriptionsGroup.className = "w-100 gcs-5 grs-3 h-200px" 
     const labelGroup = document.createElement("div")
@@ -209,7 +209,7 @@ function CreateTextFieldList(parent, index, listName, dropdownID, addButtonID, f
 
     addButton.addEventListener("click", (e) => {
         e.preventDefault()
-        CreateFormTextField(fieldID +`${index}`, fieldID +`${index}`, size, true, fieldPlaceholder, dropdown, favourite)
+        CreateFormTextField(fieldID +`${index}`, fieldID +`${index}`, true, fieldPlaceholder, dropdown)
     })
 
     descriptionsGroup.appendChild(labelGroup)
@@ -261,7 +261,7 @@ function EducationSection(parent, index){
 
     CreateDateRangeFields(gridRow, "enrollmentDate", "graduationDate", "presentEducation", index)
     CreateTextFieldList(gridRow, index, "Descriptions", 
-        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description", "47", "tripleWide", true)
+        "educationDescriptionDropdown", "AddEducationDescription", "educationDescription", "Description")
 
     insetPanel.appendChild(gridRow)
     offWhitePanel.appendChild(insetPanel)
@@ -285,9 +285,9 @@ function ExperienceSection(parent, index){
     CreateDateRangeFields(gridRow, "jobStart", "jobEnd", "presentJob", index)
     
     CreateTextFieldList(gridRow, index, "Tags", 
-        "tagDropdown", "AddTag", "jobTag", "Tag", "24", "spanHalfList")
+        "tagDropdown", "AddTag", "jobTag", "Tag")
     CreateTextFieldList(gridRow, index, "Descriptions", 
-        "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description", "47", "extraWide")
+        "jobDescriptionDropdown", "AddJobDescription", "responsibility", "Description")
 
     insetPanel.appendChild(gridRow)
     offWhitePanel.appendChild(insetPanel)
@@ -305,13 +305,13 @@ function ProjectSection(parent, index){
     const gridRow = document.createElement("div")
     gridRow.className = "g-3r g-r3r g-6c g-r4c gcg-2em gcg-r1em grg-r1em d-g"
 
-    CreateTextFieldGroup(gridRow, "projectName", "Project Name", "wide")
+    CreateTextFieldGroup(gridRow, "projectName", "Project Name")
     CreateDateRangeFields(gridRow, "projectStart", "projectEnd", "presentProject", index, true)
 
     CreateTextFieldList(gridRow, index, "Tags", 
-        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag", "24", "spanHalfList")
+        "projectTagDropdown", "AddProjectTag", "projectTag", "Tag")
     CreateTextFieldList(gridRow, index, "Descriptions", 
-        "projectsDescriptionDropdown", "AddProjectDescription", "projectDescription", "Description", "47", "extraWide")
+        "projectsDescriptionDropdown", "AddProjectDescription", "projectDescription", "Description")
 
     insetPanel.appendChild(gridRow)
 
@@ -320,28 +320,27 @@ function ProjectSection(parent, index){
 }
 
 function CategorizedSkillsSection(parent, index){
-    const offWhitePanel = document.createElement("div")
-    offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1500px mt-2em mb-2em"
-    const insetPanel = document.createElement("div")
-    insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
+  const offWhitePanel = document.createElement("div")
+  offWhitePanel.className = "d-f mL-a mR-a bg-llg mW-1500px mt-2em mb-2em"
+  const insetPanel = document.createElement("div")
+  insetPanel.className = "d-f dfd-c aIRC mt-1em mb-1em ml-2em mr-2em w-100"
 
-    CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
+  CreateRemoveButton(insetPanel, parent, offWhitePanel, index)
 
-    const gridRow = document.createElement("div")
-    gridRow.className = "skillsGrid"
+  const gridRow = document.createElement("div")
+  gridRow.className = "d-g g-8c gcg-2em grg-r1em g-r2c"
 
-    CreateTextFieldGroup(gridRow, "categoryName", "Category Name", "")
-    CreateTextFieldList(gridRow, index, "Skills", 
-        "skillsDropdown", "AddCategorizedSkill", "categorizedSkill", "Skill", "47", "wide")
-    
-    insetPanel.appendChild(gridRow)
+  CreateTextFieldGroup(gridRow, "categoryName", "Category Name")
+  CreateTextFieldList(gridRow, index, "Skills", 
+    "skillsDropdown", "AddCategorizedSkill", "categorizedSkill", "Skill")
 
-    offWhitePanel.appendChild(insetPanel)
-    parent.appendChild(offWhitePanel)
+  insetPanel.appendChild(gridRow)
+  offWhitePanel.appendChild(insetPanel)
+  parent.appendChild(offWhitePanel)
 }
 
 document.getElementById("AddPersonalTitle").addEventListener("click", () => {
-    CreateFormTextField("personalTitle", "personalTitle", "47", true, "Title", document.getElementById("titlesDropdown"))
+  CreateFormTextField("personalTitle", "personalTitle", true, "Title", document.getElementById("titlesDropdown"))
 })
 
 educationIndex = 0
@@ -373,11 +372,11 @@ document.getElementById("AddCategorizedSkill").addEventListener("click", () => {
 })
 
 document.getElementById("AddUnclassifiedSkill").addEventListener("click", () => {
-    CreateFormTextField("unclassifiedSkill", "unclassifiedSkill", "24", true, 
+    CreateFormTextField("unclassifiedSkill", "unclassifiedSkill", true,
         "Skill", document.getElementById("unclassifiedSkillsDropdown"))
 })
 
 document.getElementById("AddAccomplishment").addEventListener("click", () => {
-    CreateFormTextField("accomplishment", "accomplishment", "47", true, 
+    CreateFormTextField("accomplishment", "accomplishment", true,
         "Accomplishment", document.getElementById("accomplishmentsDropdown"))
 })
