@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, send_file
 import json
 from jinja2 import FileSystemLoader, Environment
+import nltk
 from weasyprint import HTML, CSS
 from io import BytesIO
 from collections import Counter
 import nltk as nlp
-import re
 import datetime
 from nltk.corpus import stopwords
 from nltk import WordNetLemmatizer, pos_tag
@@ -13,39 +13,45 @@ from timeit import default_timer
 
 app = Flask(__name__)
 wordnet = WordNetLemmatizer()
-#Initial lemmatization, to initialize wordnet so subsequent requests are fast
+# Initial lemmatization, to initialize wordnet so subsequent requests are fast
 wordnet.lemmatize("dogs")
+
 
 @app.route("/")
 def home():
     return render_template("home.html")
 
+
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
+
 
 @app.route("/profiles")
 def profiles():
     return render_template("profileList.html")
 
+
 @app.route("/resumes")
 def resumes():
     return render_template("resumes.html")
+
 
 def computeKeywordSimilarity(jobKeywords, descriptionKeywords, jobLength):
     jobSet = dict(jobKeywords)
     descriptionSet = set(descriptionKeywords)
     intersect = descriptionSet.intersection(jobSet.keys())
 
-    #Get score from matching more frequently occuring keywords
+    # Get score from matching more frequently occuring keywords
     totalIntersectScore = 0
     for key in intersect:
-        totalIntersectScore += jobSet[key]/jobLength
-    
-    #Score from how many keywords in the description exist in the job
-    jaccardScore = len(intersect)/(len(jobSet) + len(descriptionSet) - len(intersect))
-    
-    return (jaccardScore + totalIntersectScore)/2
+        totalIntersectScore += jobSet[key] / jobLength
+
+    # Score from how many keywords in the description exist in the job
+    jaccardScore = len(intersect) / (len(jobSet) + len(descriptionSet) - len(intersect))
+
+    return (jaccardScore + totalIntersectScore) / 2
+
 
 def toLower(stringList):
     lower = []
@@ -54,24 +60,25 @@ def toLower(stringList):
 
     return lower
 
+
 def getLemmatizedKeywords(originalText):
     punctuation = ".,!&'?;:/()-[]@" + '"'
     modifiedText = originalText
 
-    #Remove all punctuation
+    # Remove all punctuation
     for char in punctuation:
         modifiedText = modifiedText.replace(char, " ")
 
-    #Break the text into individual words
+    # Break the text into individual words
     tokens = nlp.word_tokenize(modifiedText)
     taggedTokens = pos_tag(tokens)
 
     lower = []
-    #Convert everything to lowercase
+    # Convert everything to lowercase
     for token in taggedTokens:
         lower.append((token[0].lower(), token[1]))
 
-    #Remove all stop words, ie things like the, I, me, my, etc.
+    # Remove all stop words, ie things like the, I, me, my, etc.
     allStopWords = set(stopwords.words("english"))
     filtered = []
 
@@ -79,7 +86,7 @@ def getLemmatizedKeywords(originalText):
         if token[0] not in allStopWords:
             filtered.append(token)
 
-    #Ensure we remove all punctuation
+    # Ensure we remove all punctuation
     stripped = []
     for token in filtered:
         if token[1] == ".":
@@ -87,7 +94,7 @@ def getLemmatizedKeywords(originalText):
 
         stripped.append(token)
 
-    #Lematize word, reduce all words to their root dictionary form, ie running -> run
+    # Lematize word, reduce all words to their root dictionary form, ie running -> run
     lemmatized = []
     for token in stripped:
         if token[1] == "NNP" or token[1] == "NNPS":
@@ -97,43 +104,58 @@ def getLemmatizedKeywords(originalText):
 
     return lemmatized
 
-def getStringKeywordsSimilarity(string, rankedKeywordList, keywordListLength, lemmatize):
-    stringKeywords = toLower(string.split(' '))
+
+def getStringKeywordsSimilarity(
+    string, rankedKeywordList, keywordListLength, lemmatize
+):
+    stringKeywords = toLower(string.split(" "))
     if lemmatize:
         stringKeywords = getLemmatizedKeywords(string)
     print(stringKeywords)
-    
-    similarity = computeKeywordSimilarity(rankedKeywordList, stringKeywords, keywordListLength)
+
+    similarity = computeKeywordSimilarity(
+        rankedKeywordList, stringKeywords, keywordListLength
+    )
     print(f"{similarity}, {stringKeywords}")
     return (similarity, string)
 
-def getStringListKeywordSimilarity(stringList, rankedKeywordList, keywordListLength, lemmatize):
+
+def getStringListKeywordSimilarity(
+    stringList, rankedKeywordList, keywordListLength, lemmatize
+):
     weightedStrings = []
     for string in stringList:
-        weightedStrings.append(getStringKeywordsSimilarity(string, rankedKeywordList, keywordListLength, lemmatize))
+        weightedStrings.append(
+            getStringKeywordsSimilarity(
+                string, rankedKeywordList, keywordListLength, lemmatize
+            )
+        )
 
-    weightedStrings.sort(key=lambda elem : 1 - elem[0])
+    weightedStrings.sort(key=lambda elem: 1 - elem[0])
     return weightedStrings
 
+
 def formatFormDate(date):
-    if date == '' or date == "undefined" or date == "null":
-        return ''
-    
-    timeFormat = '%Y-%m'
+    if date == "" or date == "undefined" or date == "null":
+        return ""
+
+    timeFormat = "%Y-%m"
     dts = datetime.datetime.strptime(date, timeFormat)
-    strDate = dts.strftime('%b %Y')
+    strDate = dts.strftime("%b %Y")
     return strDate
+
 
 def getRecencyOfDate(date, timeFormat):
     if date == "" or date == "undefined" or date == "null":
         return 0
     print("date = " + date)
     dts = datetime.datetime.strptime(date, timeFormat)
-    delta = (datetime.datetime.now() - dts)
-    #1826 is the number of days in 5 years, we want to only start drastically decreasing our score if the items is older than this
-    #We also want to decrease the score exponentially, so really old items are heavily penalized, 
-    # a heavy penalty is a around 0.1, so we divide the result by 10 to not penalize entries less than 5 years old as much 
-    return pow(delta.days/1826, 2)/10
+    delta = datetime.datetime.now() - dts
+    # 1826 is the number of days in 5 years, we want to only start drastically decreasing our score if the items is older than this
+    # We also want to decrease the score exponentially, so really old items are heavily penalized,
+    # a heavy penalty is a around 0.1, so we divide the result by 10 to not penalize entries less than 5 years old as much
+    return pow(delta.days / 1826, 2) / 10
+
 
 def getTopNElemsInListAndWeight(list, n):
     totalStringWeight = 0
@@ -141,51 +163,68 @@ def getTopNElemsInListAndWeight(list, n):
     for i in range(min(len(list), n)):
         topElems.append(list[i][1])
         totalStringWeight += list[i][0]
-    
+
     return (totalStringWeight, topElems)
 
-def getTopSimilarEntriesByFields(fieldTuples, json, rankedMatchKeywords, 
-                                 originalKeywordsLength, maxDescriptions = 3, maxEntires = 3, endDateKey = ""):
+
+def getTopSimilarEntriesByFields(
+    fieldTuples,
+    json,
+    rankedMatchKeywords,
+    originalKeywordsLength,
+    maxDescriptions=3,
+    maxEntires=3,
+    endDateKey="",
+):
     jsonCpy = json
     weightedEntries = []
     relevantEntries = []
 
     for entryIndex in range(len(json)):
         weightedAllConsideredFields = []
-        #Collect all fields
-        for (fieldName, lemmatize) in fieldTuples:
+        # Collect all fields
+        for fieldName, lemmatize in fieldTuples:
             fieldData = json[entryIndex][fieldName]
-            #If this is a list, we want to modify the JSON to only include the top maxDescriptions elements. Ie, if this is a description for a job
-            #we only want the most relevant entries to appear on the resume
+            # If this is a list, we want to modify the JSON to only include the top maxDescriptions elements. Ie, if this is a description for a job
+            # we only want the most relevant entries to appear on the resume
             if isinstance(fieldData, list):
-                weightedFields = getStringListKeywordSimilarity(fieldData, rankedMatchKeywords, originalKeywordsLength, lemmatize)
+                weightedFields = getStringListKeywordSimilarity(
+                    fieldData, rankedMatchKeywords, originalKeywordsLength, lemmatize
+                )
                 topFields = getTopNElemsInListAndWeight(weightedFields, maxDescriptions)
                 jsonCpy[entryIndex][fieldName] = topFields[1]
                 weightedAllConsideredFields.extend(weightedFields)
             else:
-                weightedField = getStringKeywordsSimilarity(fieldData, rankedMatchKeywords, originalKeywordsLength, lemmatize)
+                weightedField = getStringKeywordsSimilarity(
+                    fieldData, rankedMatchKeywords, originalKeywordsLength, lemmatize
+                )
                 weightedAllConsideredFields.append(weightedField)
-        #Get top 3 most similar fields and their cummulative weight
-        topAllConsideredFields = getTopNElemsInListAndWeight(weightedAllConsideredFields, 3)
+        # Get top 3 most similar fields and their cummulative weight
+        topAllConsideredFields = getTopNElemsInListAndWeight(
+            weightedAllConsideredFields, 3
+        )
 
         endDateContribution = 0
-        if endDateKey != '':
+        if endDateKey != "":
             endDate = jsonCpy[entryIndex][endDateKey]
             endDateContribution = getRecencyOfDate(endDate, "%Y-%m")
 
         print(f"Weight of entry = {topAllConsideredFields[0]}")
         print(f"Recency bias = {endDateContribution}")
-        weightedEntries.append((topAllConsideredFields[0] - endDateContribution, jsonCpy[entryIndex]))
-    
-    #Sort our weighted entries and only pick the top maxEntries, ie if we have 10 jobs in the jobs section, 
+        weightedEntries.append(
+            (topAllConsideredFields[0] - endDateContribution, jsonCpy[entryIndex])
+        )
+
+    # Sort our weighted entries and only pick the top maxEntries, ie if we have 10 jobs in the jobs section,
     # only pick the top maxEntries most relevant
-    weightedEntries.sort(key=lambda elem : 1 - elem[0])
+    weightedEntries.sort(key=lambda elem: 1 - elem[0])
     for i in range(min(len(weightedEntries), maxEntires)):
         relevantEntries.append(weightedEntries[i][1])
-    
+
     return relevantEntries
 
-@app.route("/submit", methods = ["POST", "GET"])
+
+@app.route("/submit", methods=["POST", "GET"])
 def submitted():
     jobDesc = request.form["jobDesc"]
     profile = request.form["profile"]
@@ -198,59 +237,106 @@ def submitted():
     descriptionLength = len(jobKeywords)
     rankedKeywords = Counter(jobKeywords).items()
     print(rankedKeywords)
-    relevantProjects = getTopSimilarEntriesByFields([("projectDescriptions", True), ("projectTags", False)], 
-                                                    jsonData["projects"]["data"], rankedKeywords, 
-                                                    descriptionLength, endDateKey="projectEndDate")
+    relevantProjects = getTopSimilarEntriesByFields(
+        [("projectDescriptions", True), ("projectTags", False)],
+        jsonData["projects"]["data"],
+        rankedKeywords,
+        descriptionLength,
+        endDateKey="projectEndDate",
+    )
     for i in range(0, len(relevantProjects)):
-        relevantProjects[i]["projectStartDate"] = formatFormDate(relevantProjects[i]["projectStartDate"])
-        relevantProjects[i]["projectEndDate"] = formatFormDate(relevantProjects[i]["projectEndDate"])
-    
-    relevantExperience = getTopSimilarEntriesByFields([("descriptions", True), ("jobTitles", True), ("jobTags", False)], 
-                                                      jsonData["workExperience"]["data"], 
-                                                      rankedKeywords, descriptionLength, endDateKey="jobEndDate")
-    
+        relevantProjects[i]["projectStartDate"] = formatFormDate(
+            relevantProjects[i]["projectStartDate"]
+        )
+        relevantProjects[i]["projectEndDate"] = formatFormDate(
+            relevantProjects[i]["projectEndDate"]
+        )
+
+    relevantExperience = getTopSimilarEntriesByFields(
+        [("descriptions", True), ("jobTitles", True), ("jobTags", False)],
+        jsonData["workExperience"]["data"],
+        rankedKeywords,
+        descriptionLength,
+        endDateKey="jobEndDate",
+    )
+
     for i in range(0, len(relevantExperience)):
-        relevantExperience[i]["jobStartDate"] = formatFormDate(relevantExperience[i]["jobStartDate"])
-        relevantExperience[i]["jobEndDate"] = formatFormDate(relevantExperience[i]["jobEndDate"])
-    
-    relevantSkills = getStringListKeywordSimilarity(jsonData["unclassifiedSkills"]["data"], rankedKeywords, descriptionLength, False)
+        relevantExperience[i]["jobStartDate"] = formatFormDate(
+            relevantExperience[i]["jobStartDate"]
+        )
+        relevantExperience[i]["jobEndDate"] = formatFormDate(
+            relevantExperience[i]["jobEndDate"]
+        )
+
+    relevantSkills = getStringListKeywordSimilarity(
+        jsonData["unclassifiedSkills"]["data"], rankedKeywords, descriptionLength, False
+    )
     relevantSkills = getTopNElemsInListAndWeight(relevantSkills, 5)[1]
 
-    relevantCategorizedSkills = getTopSimilarEntriesByFields([("categorizedSkills", False)], jsonData["categorizedSkills"],
-                                                              rankedKeywords, descriptionLength, 8, 3)
+    relevantCategorizedSkills = getTopSimilarEntriesByFields(
+        [("categorizedSkills", False)],
+        jsonData["categorizedSkills"],
+        rankedKeywords,
+        descriptionLength,
+        8,
+        3,
+    )
 
-    relevantAccomplishments = getStringListKeywordSimilarity(jsonData["accomplishments"]["data"], 
-                                                             rankedKeywords, descriptionLength, True)
+    relevantAccomplishments = getStringListKeywordSimilarity(
+        jsonData["accomplishments"]["data"], rankedKeywords, descriptionLength, True
+    )
     relevantAccomplishments = getTopNElemsInListAndWeight(relevantAccomplishments, 3)[1]
 
-    relevantEducation = getTopSimilarEntriesByFields([("degree", False), ("descriptions", True)], 
-                                                     jsonData["education"]["data"], rankedKeywords, 
-                                                     descriptionLength, endDateKey="graduation")
+    relevantEducation = getTopSimilarEntriesByFields(
+        [("degree", False), ("descriptions", True)],
+        jsonData["education"]["data"],
+        rankedKeywords,
+        descriptionLength,
+        endDateKey="graduation",
+    )
     for i in range(0, len(relevantEducation)):
-        relevantEducation[i]["graduation"] = formatFormDate(relevantEducation[i]["graduation"])
-        relevantEducation[i]["enrollment"] = formatFormDate(relevantEducation[i]["enrollment"])
-    
-    relevantTitle = getStringListKeywordSimilarity(jsonData["personalTitles"], rankedKeywords, descriptionLength, False)
+        relevantEducation[i]["graduation"] = formatFormDate(
+            relevantEducation[i]["graduation"]
+        )
+        relevantEducation[i]["enrollment"] = formatFormDate(
+            relevantEducation[i]["enrollment"]
+        )
+
+    relevantTitle = getStringListKeywordSimilarity(
+        jsonData["personalTitles"], rankedKeywords, descriptionLength, False
+    )
     relevantTitle = getTopNElemsInListAndWeight(relevantTitle, 1)[1]
 
-    fileInfo = template.render(name=jsonData["name"],
-                               education=relevantEducation,
-                               educationAlias=jsonData["education"]["alias"],
-                               email=jsonData["email"],
-                               website=jsonData["website"],
-                               workExperience=relevantExperience,
-                               workExperienceAlias=jsonData["workExperience"]["alias"],
-                               projects=relevantProjects,
-                               projectsAlias = jsonData["projects"]["alias"],
-                               skills=relevantSkills, 
-                               skillsAlias = jsonData["unclassifiedSkills"]["alias"],
-                               title=relevantTitle,
-                               categorizedSkills=relevantCategorizedSkills,
-                               accomplishments=relevantAccomplishments,
-                               accomplishmentsAlias=jsonData["accomplishments"]["alias"])
+    fileInfo = template.render(
+        name=jsonData["name"],
+        education=relevantEducation,
+        educationAlias=jsonData["education"]["alias"],
+        email=jsonData["email"],
+        website=jsonData["website"],
+        workExperience=relevantExperience,
+        workExperienceAlias=jsonData["workExperience"]["alias"],
+        projects=relevantProjects,
+        projectsAlias=jsonData["projects"]["alias"],
+        skills=relevantSkills,
+        skillsAlias=jsonData["unclassifiedSkills"]["alias"],
+        title=relevantTitle,
+        categorizedSkills=relevantCategorizedSkills,
+        accomplishments=relevantAccomplishments,
+        accomplishmentsAlias=jsonData["accomplishments"]["alias"],
+    )
     pdfFile = BytesIO()
-    HTML(string=fileInfo).write_pdf(pdfFile, stylesheets=["./resumeTemplates/template.css", 
-                                                          "https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"])
+    HTML(string=fileInfo).write_pdf(
+        pdfFile,
+        stylesheets=[
+            "./resumeTemplates/template.css",
+            "https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+        ],
+    )
     pdfFile.seek(0)
 
-    return send_file(pdfFile, mimetype="application/pdf" ,as_attachment=True, download_name="Resume.pdf")
+    return send_file(
+        pdfFile,
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name="Resume.pdf",
+    )
