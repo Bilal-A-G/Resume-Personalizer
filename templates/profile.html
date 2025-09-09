@@ -1,143 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Resume Personalizer | Profile</title>
-    <<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='website.css')}}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-        rel="stylesheet">
-</head>
+	<head>
+		<title>Resume Personalizer | Profile</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="{{url_for('static', filename='website.css')}}"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
 
-<body>
-    <div class="st-t w-100">
-        <div class="pL-a pR-a aIRC bg-dg d-f">
-            <button class="btn mr-1em" id="HomePage">
-                <img class="w-2-5em" src="{{url_for('static', filename='images/Home.svg')}}">
-                Home
-            </button>
-            <button class="btn" id="ProfilePage">
-                <img class="w-2-5em" src="{{url_for('static', filename='images/Profile.svg')}}">
-                Profiles
-            </button>
-        </div>
-        <script>
-            document.getElementById("ProfilePage").addEventListener("click", () => {
-                location.href = "/profiles"
-            })
-            document.getElementById("HomePage").addEventListener("click", () => {
-                location.href = "/"
-            })
-        </script>
-    </div>
-    <div class="mt-2em t-XL aICC aIRC d-f">Profile</div>
-    <form id="profileForm">
-        <div class="mR-a mL-a aICC d-f mt-2em mb-2em mW-300px">
-            <div class="t-B t-bol">Profile Name</div>
-            <input class="t-B bB b-0px pA-05em bR-02em" type="text" id="profileName" name="profileName" required>
-        </div>
-        <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
-            Header
-            <img class="w-45px ml-03em" src="{{url_for('static', filename='images/Profile.svg')}}">
-        </div>
-        <div class="bB mL-a mR-a w-95 pL-1em pR-1em aIRC d-f">
-            <div class="d-g g-6c g-3r grg-1em gcg-1em w-95 g-r4c g-r2r mt-2em">
-                <div class="s-2col w-100">
-                    <label class="t-B t-bol aIRC-r d-f" for="name">Full Name</label>
-                    <input class="t-B bB b-0px pA-05em bR-02em" type="text" id="name" name="name">
-                </div>
-                <div class="s-2col w-100">
-                    <label class="t-B t-bol aIRC-r d-f" for="email">Email</label>
-                    <input class="t-B bB b-0px pA-05em bR-02em" type="text" id="email" name="email">
-                </div>
-                <div class="s-2col w-100 grs-3 h-150px gcs-2 gcs-4r grst-3r gre-4r">
-                    <div class="aIRC aICC d-f">
-                        <div class="t-B t-bol">Job Titles</div>
-                    </div>
-                    <div class="gp-03em d-f aICC mH-110px oy-a ox-h sb-s" id="titlesDropdown"></div>
-                    <div class="w-100 h-2px bg-b"></div>
-                    <div class="aIRC d-f">
-                        <button class="btn mt-1em pA-05em mb-1em" type="button" id="AddPersonalTitle">Add New <div>+
-                            </div></button>
-                    </div>
-                </div>
-                <div class="s-2col w-100">
-                    <label class="t-B t-bol aIRC-r d-f" for="website">Website</label>
-                    <input class="t-B bB b-0px pA-05em bR-02em" type="text" id="website" name="website">
-                </div>
-            </div>
-        </div>
-        <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
-            Education
-            <img class="w-45px ml-03em" src="{{url_for('static', filename='images/Education.svg')}}">
-        </div>
-        <div id="educationDropdown" class="w-100"></div>
-        <div class="d-f aIRC mt-1em mb-2em">
-            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddEducation">Add Education <div>+</div></button>
-        </div>
-        <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
-            Experience
-            <img class="w-45px ml-03em" src="{{url_for('static', filename='images/WorkExperience.svg')}}">
-        </div>
-        <div id="experienceDropdown"  class="maxWidth"></div>
-        <div class="d-f aIRC mt-1em mb-2em">
-            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddExperience">Add Experience <div>+</div></button>
-        </div>
-        <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
-            Projects
-            <img class="w-45px ml-03em" src="{{url_for('static', filename='images/Projects.svg')}}">
-        </div>
-        <div id="projectsDropdown"></div>
-        <div class="d-f aIRC mt-1em mb-2em">
-            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddProject">Add Project <div>+</div></button>
-        </div>
-        <div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
-            Skills & Accomplishments
-            <img class="w-45px ml-03em" src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}">
-        </div> 
-        <div class="d-f w-100 aIRC mt-2em">
-            <div class="d-f w-95 gp-2em aICC-r">
-                <div class="mH-200px w-50p w-95-r mb-1em">
-                    <div class="d-f aIRC">
-                        <div class="t-B t-bol aIRC-r d-f">Unclassified Skills</div>
-                    </div>
-                    <div class="gp-03em d-f aICC mH-110px oy-a ox-h sb-s" id="unclassifiedSkillsDropdown"></div>
-                    <div class="w-100 h-2px bg-b"></div>
-                    <div class="d-f aIRC">
-                        <button class="btn bg-g mt-1em pA-05em" type="button" id="AddUnclassifiedSkill">
-                            Add New <div>+</div></button>
-                    </div>
-                </div>
-                <div class="mH-200px w-50p w-95-r">
-                    <div class="d-f aIRC">
-                        <div class="t-B t-bol aIRC-r d-f">Accomplishments</div>
-                    </div>
-                    <div class="gp-03em d-f aICC mH-110px oy-a ox-h sb-s" id="accomplishmentsDropdown"></div>
-                    <div class="w-100 h-2px bg-b"></div>
-                    <div class="d-f aIRC">
-                        <button class="btn bg-g mt-1em pA-05em" type="button" id="AddAccomplishment">Add New <div>+
-                            </div></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="categorizedSkillsDropdown"></div>
-        <div class="d-f aIRC mt-1em mb-2em">
-            <button class="btn t-BW0 pA-05em bg-g" type="button" id="AddCategorizedSkill">Add Category<div>+</div></button>
-        </div>
-        <div class="d-f aIRC">
-            <button class="btn t-L pA-05em pB-02em mt-1em mb-1em" type="submit" id="Submit">
-                Submit
-                <img class="w-45px" src="{{url_for('static', filename='images/Submit.svg')}}">
-            </button>
-        </div>
-    </form>
-    <script>
-        const REMOVE_IMG_SOURCE = "{{url_for('static', filename='images/Remove.svg')}}"
-    </script>
-    <script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
-    <script src="{{url_for('static', filename='saveFormData.js')}}"></script>
-    <script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
-</body>
+	<body>
+		<div class="st-t w-100">
+			<div class="pL-a pR-a aIRC bg-dg d-f">
+				<button class="btn mr-1em" id="HomePage">
+					<img
+						class="w-2-5em"
+						src="{{url_for('static', filename='images/Home.svg')}}"
+					/>
+					Home
+				</button>
+				<button class="btn" id="ProfilePage">
+					<img
+						class="w-2-5em"
+						src="{{url_for('static', filename='images/Profile.svg')}}"
+					/>
+					Profiles
+				</button>
+			</div>
+			<script>
+				document.getElementById("ProfilePage").addEventListener("click", () => {
+					location.href = "/profiles";
+				});
+				document.getElementById("HomePage").addEventListener("click", () => {
+					location.href = "/";
+				});
+			</script>
+		</div>
+		<div class="mt-2em t-XL aICC aIRC d-f">Profile</div>
+		<form id="profileForm">
+			<div class="mR-a mL-a aICC d-f mt-2em mb-2em mW-300px">
+				<div class="t-B t-bol">Profile Name</div>
+				<input
+					class="t-B bB b-0px pA-05em bR-02em"
+					type="text"
+					id="profileName"
+					name="profileName"
+					required
+				/>
+			</div>
+			<div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
+				Header
+				<img
+					class="w-45px ml-03em"
+					src="{{url_for('static', filename='images/Profile.svg')}}"
+				/>
+			</div>
+			<div class="bB mL-a mR-a w-95 pL-1em pR-1em aIRC d-f">
+				<div class="d-g g-6c g-3r grg-1em gcg-1em w-95 g-r4c g-r2r mt-2em">
+					<div class="s-2col w-100">
+						<label class="t-B t-bol aIRC-r d-f" for="name">Full Name</label>
+						<input
+							class="t-B bB b-0px pA-05em bR-02em"
+							type="text"
+							id="name"
+							name="name"
+						/>
+					</div>
+					<div class="s-2col w-100">
+						<label class="t-B t-bol aIRC-r d-f" for="email">Email</label>
+						<input
+							class="t-B bB b-0px pA-05em bR-02em"
+							type="text"
+							id="email"
+							name="email"
+						/>
+					</div>
+					<div class="s-2col w-100 grs-3 h-150px gcs-2 gcs-4r grst-3r gre-4r">
+						<div class="aIRC aICC d-f">
+							<div class="t-B t-bol">Job Titles</div>
+						</div>
+						<div
+							class="gp-03em d-f aICC mH-110px oy-a ox-h sb-s"
+							id="titlesDropdown"
+						></div>
+						<div class="w-100 h-2px bg-b"></div>
+						<div class="aIRC d-f">
+							<button
+								class="btn mt-1em pA-05em mb-1em"
+								type="button"
+								id="AddPersonalTitle"
+							>
+								Add New
+								<div>+</div>
+							</button>
+						</div>
+					</div>
+					<div class="s-2col w-100">
+						<label class="t-B t-bol aIRC-r d-f" for="website">Website</label>
+						<input
+							class="t-B bB b-0px pA-05em bR-02em"
+							type="text"
+							id="website"
+							name="website"
+						/>
+					</div>
+				</div>
+			</div>
+			<div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
+				Education
+				<img
+					class="w-45px ml-03em"
+					src="{{url_for('static', filename='images/Education.svg')}}"
+				/>
+			</div>
+			<div id="educationDropdown" class="w-100"></div>
+			<div class="d-f aIRC mt-1em mb-2em">
+				<button class="btn t-BW0 pA-05em bg-g" type="button" id="AddEducation">
+					Add Education
+					<div>+</div>
+				</button>
+			</div>
+			<div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
+				Experience
+				<img
+					class="w-45px ml-03em"
+					src="{{url_for('static', filename='images/WorkExperience.svg')}}"
+				/>
+			</div>
+			<div id="experienceDropdown" class="maxWidth"></div>
+			<div class="d-f aIRC mt-1em mb-2em">
+				<button class="btn t-BW0 pA-05em bg-g" type="button" id="AddExperience">
+					Add Experience
+					<div>+</div>
+				</button>
+			</div>
+			<div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
+				Projects
+				<img
+					class="w-45px ml-03em"
+					src="{{url_for('static', filename='images/Projects.svg')}}"
+				/>
+			</div>
+			<div id="projectsDropdown"></div>
+			<div class="d-f aIRC mt-1em mb-2em">
+				<button class="btn t-BW0 pA-05em bg-g" type="button" id="AddProject">
+					Add Project
+					<div>+</div>
+				</button>
+			</div>
+			<div class="d-f aIRC-r bg-lg bB t-L pL-1em pT-02em pB-02em">
+				Skills & Accomplishments
+				<img
+					class="w-45px ml-03em"
+					src="{{url_for('static', filename='images/SkillsAndAccomplishments.svg')}}"
+				/>
+			</div>
+			<div class="d-f w-100 aIRC mt-2em">
+				<div class="d-f w-95 gp-2em aICC-r">
+					<div class="mH-200px w-50p w-95-r mb-1em">
+						<div class="d-f aIRC">
+							<div class="t-B t-bol aIRC-r d-f">Unclassified Skills</div>
+						</div>
+						<div
+							class="gp-03em d-f aICC mH-110px oy-a ox-h sb-s"
+							id="unclassifiedSkillsDropdown"
+						></div>
+						<div class="w-100 h-2px bg-b"></div>
+						<div class="d-f aIRC">
+							<button
+								class="btn bg-g mt-1em pA-05em"
+								type="button"
+								id="AddUnclassifiedSkill"
+							>
+								Add New
+								<div>+</div>
+							</button>
+						</div>
+					</div>
+					<div class="mH-200px w-50p w-95-r">
+						<div class="d-f aIRC">
+							<div class="t-B t-bol aIRC-r d-f">Accomplishments</div>
+						</div>
+						<div
+							class="gp-03em d-f aICC mH-110px oy-a ox-h sb-s"
+							id="accomplishmentsDropdown"
+						></div>
+						<div class="w-100 h-2px bg-b"></div>
+						<div class="d-f aIRC">
+							<button
+								class="btn bg-g mt-1em pA-05em"
+								type="button"
+								id="AddAccomplishment"
+							>
+								Add New
+								<div>+</div>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="categorizedSkillsDropdown"></div>
+			<div class="d-f aIRC mt-1em mb-2em">
+				<button
+					class="btn t-BW0 pA-05em bg-g"
+					type="button"
+					id="AddCategorizedSkill"
+				>
+					Add Category
+					<div>+</div>
+				</button>
+			</div>
+			<div class="d-f aIRC">
+				<button
+					class="btn t-L pA-05em pB-02em mt-1em mb-1em"
+					type="submit"
+					id="Submit"
+				>
+					Submit
+					<img
+						class="w-45px"
+						src="{{url_for('static', filename='images/Submit.svg')}}"
+					/>
+				</button>
+			</div>
+		</form>
+		<script>
+			const REMOVE_IMG_SOURCE =
+				"{{url_for('static', filename='images/Remove.svg')}}";
+		</script>
+		<script src="{{url_for('static', filename='handleProfileUpdate.js')}}"></script>
+		<script src="{{url_for('static', filename='saveFormData.js')}}"></script>
+		<script src="{{url_for('static', filename='loadStoredProfile.js')}}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script>
+			flatpickr("input[type=month]", {
+				dateFormat: "Y-m",
+				altFormat: "Y-m",
+			});
+		</script>
+	</body>
 </html>
