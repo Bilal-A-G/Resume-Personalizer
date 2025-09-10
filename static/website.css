@@ -1,840 +1,685 @@
-body{
-    background-color: #d9d9d9;
-    height: 100%;
-    margin: 0px;
+body {
+	background-color: #d9d9d9;
+	height: 100%;
+	margin: 0px;
 }
 
-
-html{
-    font-size: 16px;
-    height: 100%;
-}
-
-.normal{
-    grid-row: span 2;
-    grid-column: span 1;
-    width: 100%;
-}
-
-.tripleWide{
-    grid-column: span 5;
-    grid-row: span 2;
-}
-
-.extraWide{
-    grid-column: span 4;
-    grid-row: span 2;
-}
-
-.wide {
-    grid-column: span 6;
-}
-
-.spanHalf{
-    grid-column: span 1;
-}
-
-.spanHalfList{
-    grid-column: span 1;
-    grid-row: span 2;
+html {
+	font-size: 16px;
+	height: 100%;
 }
 
 /* Overrideables */
 
-.dfd-r{
-    flex-direction: row;
+.dfd-r {
+	flex-direction: row;
 }
 
-.dfd-c{
-    flex-direction: column;
+.dfd-c {
+	flex-direction: column;
 }
 
-.w-50p{
-    width: 50%;
+.w-50p {
+	width: 50%;
 }
 
-.d-f{
-    display: flex;
+.d-f {
+	display: flex;
 }
 
-.g-6c{
-    grid-template-columns: repeat(6, 1fr);
+.g-6c {
+	grid-template-columns: repeat(6, 1fr);
 }
 
-.g-8c{
-  grid-template-columns: repeat(8, 1fr);
+.g-8c {
+	grid-template-columns: repeat(8, 1fr);
 }
 
-.gcs-1{
-    grid-column: span 1;
+.gcs-1 {
+	grid-column: span 1;
 }
 
-.gcs-2{
-    grid-column: span 2;
+.gcs-2 {
+	grid-column: span 2;
 }
 
-.gcs-5{
-    grid-column: span 5;
+.gcs-5 {
+	grid-column: span 5;
 }
 
-.grs-3{
-    grid-row: span 3;
+.grs-3 {
+	grid-row: span 3;
 }
 
-.grs-2{
-    grid-row: span 2;
+.grs-2 {
+	grid-row: span 2;
 }
 
-.g-3r{
-    grid-template-rows: repeat(3, 1fr);
+.g-3r {
+	grid-template-rows: repeat(3, 1fr);
 }
 
-.g-4r{
-  grid-template-rows: repeat(4, 1fr);
+.g-4r {
+	grid-template-rows: repeat(4, 1fr);
 }
 
-.g-4c{
-  grid-template-columns: repeat(4, 1fr);
+.g-4c {
+	grid-template-columns: repeat(4, 1fr);
 }
 
-.grst-3{
-    grid-row-start: 3;
+.grst-3 {
+	grid-row-start: 3;
 }
 
 /* End of overidables */
 
 @media (max-width: 900px) {
-    html{
-        font-size: 13px;
-    }
-    .w-95-r{
-        width: 95%;
-    }
-    .w-50p-r{
-        width: 50%;
-    }
-    .aICC-r{
-        align-items: center;
-        flex-direction: column;
-    }
-    .listContainer{
-        min-height: 0px;
-    }
-    .g-r4c{
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .g-r2c{
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .g-r2r{
-        grid-template-rows: repeat(2, 1fr);
-    }
-    .g-r3r{
-      grid-template-rows: repeat(3, 1fr);
-    }
+	html {
+		font-size: 13px;
+	}
+	.w-95-r {
+		width: 95%;
+	}
+	.w-50p-r {
+		width: 50%;
+	}
+	.aICC-r {
+		align-items: center;
+		flex-direction: column;
+	}
+	.g-r4c {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.g-r2c {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.g-r2r {
+		grid-template-rows: repeat(2, 1fr);
+	}
+	.g-r3r {
+		grid-template-rows: repeat(3, 1fr);
+	}
 
-    .gcs-2-r{
-        grid-column: span 2;
-    }
-    .dfd-r-r{
-        flex-direction: row;
-    }
+	.gcs-2-r {
+		grid-column: span 2;
+	}
+	.dfd-r-r {
+		flex-direction: row;
+	}
 
-    .gcg-r1em{
-      column-gap: 1em
-    }
-    .grg-r1em{
-      row-gap: 1em
-    }
+	.gcg-r1em {
+		column-gap: 1em;
+	}
+	.grg-r1em {
+		row-gap: 1em;
+	}
 
-    .gcs-4r{
-        grid-column: span 4;
-    }
-    .grst-3r{
-        grid-row-start: 3;
-    }
-    .gre-4r{
-        grid-row-end: 4;
-    }
+	.gcs-4r {
+		grid-column: span 4;
+	}
+	.grst-3r {
+		grid-row-start: 3;
+	}
+	.gre-4r {
+		grid-row-end: 4;
+	}
 
-    .aIRC-r{
-        justify-content: center;
-    }
+	.aIRC-r {
+		justify-content: center;
+	}
 
-    .tripleWide{
-        grid-column: span 4;
-        grid-row: span 2;
-    }
-    .extraWide{
-        grid-column: span 4;
-        grid-row: span 2;
-    }
-    .normal{
-        grid-column: span 4;
-        grid-row: span 2;
-        width: 100%;
-    }
-    .positionUnder{
-        grid-row-start: auto;
-    }
-    .spanHalfList{
-        grid-column: span 4;
-        grid-row: span 2;
-    }
-    .t-B{
-        text-align: center;
-    } 
-}
-
-
-
-.sectionHeader{
-    font-size: 5rem;
-    text-align: center;
-    font-weight: 350;
-    font-family: "Josefin Sans", sans-serif;
-    padding-top: 1em;
-}
-
-.majorText{
-    font-family: "Josefin Sans", sans-serif;
-    text-align: center;
-    font-size: 30px;
-    font-weight: 350;
-}
-
-.largeFont{
-    font-size: 20px;
-}
-
-.medFont{
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 1.5rem;
-}
-
-.extraLargeFont{
-    font-size: 35px;
-    min-width: 45px;
-}
-
-.small{
-    width: 40px;
-    height: 40px;
-}
-
-.rightAlign{
-    align-content: end;
-    align-items: end;
-    justify-content: end;
-}
-
-.medMarginHoriz{
-    margin-right: 80px;
-}
-
-.greyBackground{
-    background-color: #d9d9d9;
-}
-
-.smallWidth{
-    width: 245px;
+	.t-B {
+		text-align: center;
+	}
 }
 
 /* ----------------------------------------------- Start of Display ---------------------------------------------------------*/
 
-.d-h{
-    display: none;
+.d-h {
+	display: none;
 }
 
-.d-g{
-    display: grid;
+.d-g {
+	display: grid;
 }
 
-.d-b{
-    display: block;
+.d-b {
+	display: block;
 }
 
-.bBl-5px{
-    backdrop-filter: blur(5px);
+.bBl-5px {
+	backdrop-filter: blur(5px);
 }
 
-.b-0px{
-    border: none;
+.b-0px {
+	border: none;
 }
-
 
 /* ----------------------------------------------- End of Display -----------------------------------------------------------*/
 
 /* ---------------------------------------------- Start of Alignment --------------------------------------------------------*/
-.aIRE{
-    justify-content: flex-end;
+.aIRE {
+	justify-content: flex-end;
 }
 
-.aIRS{
-    justify-items: start;
+.aIRS {
+	justify-items: start;
 }
 
-.p-f{
-    position: fixed
+.p-f {
+	position: fixed;
 }
 
-.p-abs{
-    position: absolute;
+.p-abs {
+	position: absolute;
 }
 
-.st-t{
-    position: fixed;
-    top: 0;
+.st-t {
+	position: fixed;
+	top: 0;
 }
 
-.pL-a{
-    padding-left: auto;
+.pL-a {
+	padding-left: auto;
 }
 
-.pL-1em{
-    padding-left: 1em;
+.pL-1em {
+	padding-left: 1em;
 }
 
-.pR-1em{
-    padding-right: 1em;
+.pR-1em {
+	padding-right: 1em;
 }
 
-.pT-02em{
-    padding-top: 0.2em;
+.pT-02em {
+	padding-top: 0.2em;
 }
 
-
-.pR-a{
-    padding-right: auto;
+.pR-a {
+	padding-right: auto;
 }
 
-.mL-a{
-    margin-left: auto;
+.mL-a {
+	margin-left: auto;
 }
 
-.mR-a{
-    margin-right: auto;
+.mR-a {
+	margin-right: auto;
 }
 
-.lCG-1em{
-    gap: 1em;
-    flex-direction: column;
+.lCG-1em {
+	gap: 1em;
+	flex-direction: column;
 }
 
-.gp-03em{
-    gap: 0.3em;
+.gp-03em {
+	gap: 0.3em;
 }
 
-.gp-1em{
-    gap: 1em;
+.gp-1em {
+	gap: 1em;
 }
 
-.gp-2em{
-    gap: 2em;
+.gp-2em {
+	gap: 2em;
 }
 
-.grg-1em{
-    row-gap: 1em;
+.grg-1em {
+	row-gap: 1em;
 }
 
-.gcg-1em{
-    column-gap: 1em;
+.gcg-1em {
+	column-gap: 1em;
 }
 
-.gcg-2em{
-  column-gap: 2em;
+.gcg-2em {
+	column-gap: 2em;
 }
 
-.aIRC{
-    justify-content: center;
+.aIRC {
+	justify-content: center;
 }
 
-
-.bB{
-  box-sizing: border-box;  
+.bB {
+	box-sizing: border-box;
 }
 
-.aICC{
-    align-items: center;
-    flex-direction: column;
+.aICC {
+	align-items: center;
+	flex-direction: column;
 }
 
-.oy-a{
-    overflow-y: auto;
+.oy-a {
+	overflow-y: auto;
 }
 
-.ox-h{
-    overflow-x: hidden;
+.ox-h {
+	overflow-x: hidden;
 }
 
-.sb-s{
-    scrollbar-gutter: stable;
+.sb-s {
+	scrollbar-gutter: stable;
 }
 
-.bAICC{
-    text-align: center;
+.bAICC {
+	text-align: center;
 }
 
-.mt-1em{
-    margin-top: 1em;
+.mt-1em {
+	margin-top: 1em;
 }
 
-.mt-05em{
-    margin-top: 0.5em;
+.mt-05em {
+	margin-top: 0.5em;
 }
 
-.mt-03em{
-    margin-top: 0.3em;
+.mt-03em {
+	margin-top: 0.3em;
 }
 
-.mt-2em{
-    margin-top: 2em;
+.mt-2em {
+	margin-top: 2em;
 }
 
-.mt-3em{
-    margin-top: 3em;
+.mt-3em {
+	margin-top: 3em;
 }
 
-.mt-4em{
-    margin-top: 4em;
+.mt-4em {
+	margin-top: 4em;
 }
 
-.mr-1em{
-    margin-right: 1em;
+.mr-1em {
+	margin-right: 1em;
 }
 
-.mr-2em{
-    margin-right: 2em;
+.mr-2em {
+	margin-right: 2em;
 }
 
-.ml-1em{
-    margin-left: 1em;
+.ml-1em {
+	margin-left: 1em;
 }
 
-.ml-2em{
-    margin-left: 2em;
+.ml-2em {
+	margin-left: 2em;
 }
 
-.ml-01em{
-    margin-left: 0.1em;
+.ml-01em {
+	margin-left: 0.1em;
 }
 
-.ml-03em{
-    margin-left: 0.3em;
+.ml-03em {
+	margin-left: 0.3em;
 }
 
-.mb-2em{
-    margin-bottom: 2em;
+.mb-2em {
+	margin-bottom: 2em;
 }
 
-.mb-1em{
-    margin-bottom: 1em;
+.mb-1em {
+	margin-bottom: 1em;
 }
 
-.btn-hold{
-    margin-top: 5vh;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
+.btn-hold {
+	margin-top: 5vh;
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
 }
 
-.s-2col{
-    grid-column: span 2;
+.s-2col {
+	grid-column: span 2;
 }
 /* ---------------------------------------------- End of Alignment --------------------------------------------------------*/
 
 /* ----------------------------------------------- One Off ----------------------------------------------------------------*/
 
 @keyframes overlayFade {
-    from {background-color: rgba(0, 0, 0, 0.0);}
-    to {background-color: rgba(0, 0, 0, 0.5);}
+	from {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	to {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
 }
 
 @keyframes profileSelectionFade {
-    from {opacity: 0%;}
-    to {opacity: 100%;}
+	from {
+		opacity: 0%;
+	}
+	to {
+		opacity: 100%;
+	}
 }
 
-@keyframes blurOverlayFade{
-    from {backdrop-filter: blur(0px);}
-    to {backdrop-filter: blur(5px);}
+@keyframes blurOverlayFade {
+	from {
+		backdrop-filter: blur(0px);
+	}
+	to {
+		backdrop-filter: blur(5px);
+	}
 }
 
-.profileSelection{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 250px;
-    min-height: 300px;
-    width: 30vw;
-    border-radius: 10px;
-    background-color: #cbcbcb;
-    opacity: 100%
+.profileSelection {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 250px;
+	min-height: 300px;
+	width: 30vw;
+	border-radius: 10px;
+	background-color: #cbcbcb;
+	opacity: 100%;
 }
 
-.jobDescSelection{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 350px;
-    width: 30vw;
-    border-radius: 10px;
-    background-color: #cbcbcb;
-    opacity: 100%
+.jobDescSelection {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 350px;
+	width: 30vw;
+	border-radius: 10px;
+	background-color: #cbcbcb;
+	opacity: 100%;
 }
 
-.fadeBlurIn{
-    animation-name: blurOverlayFade;
-    animation-duration: 0.3s;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
+.fadeBlurIn {
+	animation-name: blurOverlayFade;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
 }
-.fadeBlurOut{
-    animation-name: blurOverlayFade;
-    animation-duration: 0.3s;
-    animation-direction: reverse;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-}
-
-.fadeOpacityIn{
-    animation-name: profileSelectionFade;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-}
-.fadeOpacityOut{
-    animation-name: profileSelectionFade;
-    animation-duration: 0.4s;
-    animation-direction: reverse;
-    animation-fill-mode: forwards;
+.fadeBlurOut {
+	animation-name: blurOverlayFade;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
 }
 
-.fadeBackgroundIn{
-    animation-name: overlayFade;
-    animation-duration: 0.3s;
-    animation-fill-mode: forwards;
+.fadeOpacityIn {
+	animation-name: profileSelectionFade;
+	animation-duration: 0.4s;
+	animation-fill-mode: forwards;
+}
+.fadeOpacityOut {
+	animation-name: profileSelectionFade;
+	animation-duration: 0.4s;
+	animation-direction: reverse;
+	animation-fill-mode: forwards;
 }
 
-.fadeBackgroundOut{
-    animation-name: overlayFade;
-    animation-duration: 0.3s;
-    animation-direction: reverse;
-    animation-fill-mode: forwards;
+.fadeBackgroundIn {
+	animation-name: overlayFade;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
 }
 
-.listDropdown{
-    background-color: rgb(217, 217, 217);
-    width: 50%;
-    padding-top: 0.15em;
-    padding-bottom: 0.15em;
-    border: none;
-    text-align: center;
-    font-weight: 500;
-    border-top-right-radius: 0.1em;
-    border-top-left-radius: 0.1em;
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 0.9rem;
+.fadeBackgroundOut {
+	animation-name: overlayFade;
+	animation-duration: 0.3s;
+	animation-direction: reverse;
+	animation-fill-mode: forwards;
 }
 
+.listDropdown {
+	background-color: rgb(217, 217, 217);
+	width: 50%;
+	padding-top: 0.15em;
+	padding-bottom: 0.15em;
+	border: none;
+	text-align: center;
+	font-weight: 500;
+	border-top-right-radius: 0.1em;
+	border-top-left-radius: 0.1em;
+	font-family: "Josefin Sans", sans-serif;
+	font-size: 0.9rem;
+}
+
+.jobDesc {
+	resize: none;
+	border: none;
+	background-color: #d9d9d9;
+	border-radius: 10px;
+	padding: 1em;
+	font-size: 0.8rem;
+	font-family: "Josefin Sans", sans-serif;
+	width: 70%;
+	max-width: 300px;
+}
+
+.rightAlign {
+	align-content: end;
+	align-items: end;
+	justify-content: end;
+}
 /* ----------------------------------------------- End of One Off ---------------------------------------------------------*/
 
 /*----------------------------------------------- Start of Sizing ---------------------------------------------------------*/
-.h-100{
-    height: 100%;
+.h-100 {
+	height: 100%;
 }
 
-.h-2px{
-    height: 2px;
+.h-2px {
+	height: 2px;
 }
 
-.h-200px{
-  height: 200px;
+.h-200px {
+	height: 200px;
 }
 
-.h-100px{
-  height: 100px;
+.h-100px {
+	height: 100px;
 }
 
-.h-200px{
-  height: 200px;
+.h-200px {
+	height: 200px;
 }
 
-.mW-800px{
-    max-width: 800px;
+.mW-800px {
+	max-width: 800px;
 }
 
-.mW-1300px{
-    max-width: 1300px;
+.mW-1300px {
+	max-width: 1300px;
 }
 
-.mW-1500px{
-    max-width: 1500px;
+.mW-1500px {
+	max-width: 1500px;
 }
 
-.mH-100px{
-    max-height: 100px;
+.mH-100px {
+	max-height: 100px;
 }
 
-.mH-200px{
-    max-height: 200px;
+.mH-200px {
+	max-height: 200px;
 }
 
-.mH-110px{
-    max-height: 110px;
+.mH-110px {
+	max-height: 110px;
 }
 
-.mW-300px{
-    max-width: 300px;
+.mW-300px {
+	max-width: 300px;
 }
 
-.minH-300px{
-    min-height: 300px;
+.minH-300px {
+	min-height: 300px;
 }
 
-.w-25p{
-    width: 25%;
+.w-25p {
+	width: 25%;
 }
 
-.w-2-5em{
-    width: 2.5em;
+.w-2-5em {
+	width: 2.5em;
 }
 
-.w-100vw{
-    width: 100vw;
+.w-100vw {
+	width: 100vw;
 }
 
-.w-45px{
-    width: 45px;
+.w-45px {
+	width: 45px;
 }
 
-.h-100vh{
-    height: 100vh;
+.h-100vh {
+	height: 100vh;
 }
 
-.w-2em{
-    width: 2em;
+.w-2em {
+	width: 2em;
 }
 
-.w-80p{
-    width: 80%;
+.w-80p {
+	width: 80%;
 }
 
-.pA-2em{
-    padding: 2em;
+.pA-2em {
+	padding: 2em;
 }
 
-.pA-05em{
-    padding: 0.5em;
+.pA-05em {
+	padding: 0.5em;
 }
 
-.pB-02em{
-    padding-bottom: 0.2em;
+.pB-02em {
+	padding-bottom: 0.2em;
 }
 
-.w-100{
-    width: 100%;
+.w-100 {
+	width: 100%;
 }
 
-.w-95{
-    width: 95%;
+.w-95 {
+	width: 95%;
 }
 /*----------------------------------------------- End of Sizing -----------------------------------------------------------*/
 
-
 /* ---------------------------------------------- Start of Buttons --------------------------------------------------------*/
-.btn{
-    background-color: rgba(0, 0, 0, 0.0);
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.8rem;
-    font-family: "Josefin Sans", sans-serif;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    border: none;
-    justify-content: center;
+.btn {
+	background-color: rgba(0, 0, 0, 0);
+	font-weight: 700;
+	display: flex;
+	flex-direction: column;
+	font-size: 0.8rem;
+	font-family: "Josefin Sans", sans-serif;
+	align-items: center;
+	text-align: center;
+	border-radius: 10px;
+	border: none;
+	justify-content: center;
 
-    transition: 0.15s;
+	transition: 0.15s;
 }
 
-.btn:hover{
-    background-color: #EAE7E7;
+.btn:hover {
+	background-color: #eae7e7;
 }
 
-.btn:active{
-    background-color: white;
-    scale: 1.1;
+.btn:active {
+	background-color: white;
+	scale: 1.1;
 }
 
 /* ------------------------------------------------- End of Buttons --------------------------------------------------------*/
 
-/*------------------------------------------------ Start of Text Styles ---------------------------------------------------*/ 
-.t-XXL{
-    font-size: 7rem;
-    font-weight: 350;
-    font-family: "Josefin Sans", sans-serif;
+/*------------------------------------------------ Start of Text Styles ---------------------------------------------------*/
+.t-XXL {
+	font-size: 7rem;
+	font-weight: 350;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-XL{
-    font-size: 4rem;
-    font-family: "Josefin Sans", sans-serif;
+.t-XL {
+	font-size: 4rem;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-L{
-    font-size: 2.5rem;
-    font-family: "Josefin Sans", sans-serif;
+.t-L {
+	font-size: 2.5rem;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-M{
-    font-size: 3rem;
-    font-weight: 400;
-    font-family: "Josefin Sans", sans-serif;
+.t-M {
+	font-size: 3rem;
+	font-weight: 400;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-S{
-    font-size: 1.7rem;
-    font-weight: 300;
-    font-family: "Josefin Sans", sans-serif;
+.t-S {
+	font-size: 1.7rem;
+	font-weight: 300;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-B{
-    font-size: 0.9rem;
-    width: 100%;
-    font-family: "Josefin Sans", sans-serif;
+.t-B {
+	font-size: 0.9rem;
+	width: 100%;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-BW0{
-    font-size: 0.9rem;
-    font-family: "Josefin Sans", sans-serif;
+.t-BW0 {
+	font-size: 0.9rem;
+	font-family: "Josefin Sans", sans-serif;
 }
 
-.t-bol{
-    font-weight: 400;
+.t-bol {
+	font-weight: 400;
 }
 
-.t-c{
-    text-align: center;
+.t-c {
+	text-align: center;
 }
 
-.t-XS{
-    font-size: 0.8rem;
-    font-weight: 300;
-    font-family: "Josefin Sans", sans-serif;
+.t-XS {
+	font-size: 0.8rem;
+	font-weight: 300;
+	font-family: "Josefin Sans", sans-serif;
 }
 /*------------------------------------------------ End of Text Styles -----------------------------------------------------*/
 
 /* ------------------------------------------------- Start of Display pt 2 (Only here so we can override button styles) --------------------------------------------------*/
-.bg-g{
-    background-color: #d9d9d9;
+.bg-g {
+	background-color: #d9d9d9;
 }
 
-.br-05em{
-    border-radius: 0.5em;
+.br-05em {
+	border-radius: 0.5em;
 }
 
-.br-02em{
-    border-radius: 0.2em;
+.br-02em {
+	border-radius: 0.2em;
 }
 
-.bg-b{
-    background-color: black;
+.bg-b {
+	background-color: black;
 }
 
-.bg-tb{
-    background-color: rgba(0, 0, 0, 0.5);
+.bg-tb {
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.bg-llg{
-    background-color: #e0e0e0;
+.bg-llg {
+	background-color: #e0e0e0;
 }
 
-.bg-lg{
-    background-color: #cbcbcb;
+.bg-lg {
+	background-color: #cbcbcb;
 }
 
-.bg-w{
-    background-color: white;
+.bg-w {
+	background-color: white;
 }
 
-.bg-dg{
-    background-color: rgba(190, 190, 190, 0.95)
+.bg-dg {
+	background-color: rgba(190, 190, 190, 0.95);
 }
 /* ------------------------------------------------- End of Display pt 2 -------------------------------------------------------*/
-
-.navbarActive{
-    background-color: #EAE7E7;
-    padding-bottom: 6px;
-}
-
-.profileSubHeading{
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 25px;
-    font-weight: 400;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 200px;
-}
-
-.rightAlignBlock{
-    margin-left: auto;
-    gap: 20px;
-    display: flex;
-    flex-direction: row;
-}
-
-.largerProfileFieldGroup{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    margin-top: 20px;
-    width: 110%;
-    height: fit-content;
-}
-
-.rowAlign{
-    display: flex;
-    flex-direction: row;
-    height: 25px;
-}
-
-.rowAlignCentered{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-}
-
-.textCenter{
-    display: flex;
-    align-items: center;
-}
-
-.jobDesc{
-    resize: none;
-    border: none;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-    padding: 1em;
-    font-size: 0.8rem;
-    font-family: "Josefin Sans", sans-serif;
-    width: 70%;
-    max-width: 300px;
-}
-
-.profile{
-    text-align: center;
-    padding-top: 1%;
-    font-size: small;
-}
-
-.formContainer{
-    text-align: center;
-    align-items: center;
-    padding-top: 3%;
-}
