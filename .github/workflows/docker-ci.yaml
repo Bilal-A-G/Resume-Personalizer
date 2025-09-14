@@ -11,5 +11,5 @@ jobs:
       - name: Build and push image (Docker compose)
         run: |
           docker login --username bilal-a-g --password ${{secrets.GH_TOKEN}} ghcr.io
-          docker compose build . --tag ghcr.io/bilal-a-g/resume-personalizer:latest
-          docker compose push ghcr.io/bilal-a-g/resume-personalizer:latest
+          docker compose build 
+          docker compose push 
