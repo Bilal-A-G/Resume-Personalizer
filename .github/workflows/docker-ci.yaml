@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and push image
+      - name: Build and push image (Docker compose)
         run: |
           docker login --username bilal-a-g --password ${{secrets.GH_TOKEN}} ghcr.io
-          docker build . --tag ghcr.io/bilal-a-g/resume-personalizer:latest
-          docker push ghcr.io/bilal-a-g/resume-personalizer:latest
+          docker compose build . --tag ghcr.io/bilal-a-g/resume-personalizer:latest
+          docker compose push ghcr.io/bilal-a-g/resume-personalizer:latest
