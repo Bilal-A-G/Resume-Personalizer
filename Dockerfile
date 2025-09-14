@@ -5,6 +5,6 @@ COPY . .
 RUN apt-get update && apt-get install -y weasyprint
 RUN python -m pip install -r requirements.txt
 RUN python -m nltk-imports
-EXPOSE 8080
+EXPOSE 5000
 
-CMD flask run
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
