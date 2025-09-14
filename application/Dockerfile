@@ -5,6 +5,6 @@ COPY . .
 RUN apt-get update && apt-get install -y weasyprint
 RUN python -m pip install -r requirements.txt
 RUN python -m nltk-imports
-EXPOSE 5000
+EXPOSE 8000
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]

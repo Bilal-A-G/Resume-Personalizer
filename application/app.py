@@ -11,7 +11,12 @@ from nltk.corpus import stopwords
 from nltk import WordNetLemmatizer, pos_tag
 from timeit import default_timer
 
+
 app = Flask(__name__)
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
 wordnet = WordNetLemmatizer()
 # Initial lemmatization, to initialize wordnet so subsequent requests are fast
 wordnet.lemmatize("dogs")
