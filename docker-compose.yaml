@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     container_name: flask
     image:
-      ghcr.io/bilal-a-g/resume-personalizer:latest
+      public.ecr.aws/j4s7f3v1/resume-personalizer:latest
     networks:
       deploy:
         aliases:
